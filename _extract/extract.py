@@ -69,11 +69,21 @@ out["spend_propensity"] = spend
 print(f"Spend propensity: {len(spend)} categories, {total_brands} brands total")
 
 # ---------------------------------------------------------------------------
-# 3. PPTX -> text from slides mentioning Breezy Boomers
+# 3. PPTX -> text + tables + CHARTS from slides mentioning Breezy Boomers.
+#    Recurses into grouped shapes and reads native chart data (category:value),
+#    which a plain text-frame extractor would otherwise miss.
 # ---------------------------------------------------------------------------
+from pptx.enum.shapes import MSO_SHAPE_TYPE
 prs = Presentation(PPTX)
-def shape_text(shape):
+out["pptx_charts"] = []  # [{slide, title, points:[{label,value}]}]
+
+def shape_text(shape, charts_sink, slide_no):
     chunks = []
+    # Recurse into groups
+    if shape.shape_type == MSO_SHAPE_TYPE.GROUP:
+        for sub in shape.shapes:
+            chunks.extend(shape_text(sub, charts_sink, slide_no))
+        return chunks
     if shape.has_text_frame:
         for para in shape.text_frame.paragraphs:
             t = "".join(run.text for run in para.runs)
@@ -84,16 +94,33 @@ def shape_text(shape):
             cells = [c.text for c in row.cells]
             if any(x.strip() for x in cells):
                 chunks.append(" | ".join(cells))
+    if shape.has_chart:
+        try:
+            ch = shape.chart
+            cats = [str(c) for c in ch.plots[0].categories]
+            title = ch.chart_title.text_frame.text if ch.has_title else ""
+            for series in ch.series:
+                pts = [{"label": cats[j] if j < len(cats) else str(j),
+                        "value": (round(v, 1) if isinstance(v, float) else v)}
+                       for j, v in enumerate(series.values)]
+                charts_sink.append({"slide": slide_no,
+                                    "title": (title or series.name or "chart"),
+                                    "points": pts})
+        except Exception as e:
+            charts_sink.append({"slide": slide_no, "title": "unreadable-chart", "error": str(e)})
     return chunks
 
 for i, slide in enumerate(prs.slides, start=1):
     texts = []
+    slide_charts = []
     for shape in slide.shapes:
-        texts.extend(shape_text(shape))
+        texts.extend(shape_text(shape, slide_charts, i))
     joined = "\n".join(texts)
     if re.search(r"breezy\s*boomer", joined, re.I):
         out["pptx_text"].append({"slide": i, "text": joined})
-print(f"PPTX: captured {len(out['pptx_text'])} Breezy Boomers slides")
+        out["pptx_charts"].extend(slide_charts)
+print(f"PPTX: captured {len(out['pptx_text'])} Breezy Boomers slides, "
+      f"{len(out['pptx_charts'])} charts")
 
 os.makedirs(HERE, exist_ok=True)
 with open(os.path.join(HERE, "breezy_boomers_source.json"), "w", encoding="utf-8") as f:

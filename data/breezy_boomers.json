@@ -527,42 +527,238 @@
     },
     {
       "id": 15,
+      "category": "media_exposure_chart",
+      "title": "Media exposure index - full 20-channel chart (slide 19)",
+      "text": "Breezy Boomers media exposure index by channel. Positive = over-indexed (consume more than average); negative = under-indexed (less than average):\nCinema: -55.1\nDrive: -20.6\nEmail Promotions: -12.0\nFree Subscription TV: 30.6\nFTA TV: 64.9\nInternet Browse: -1.7\nMusic/ Audio App: -73.5\nOnline Magazines: -29.6\nOnline Newspapers: 24.4\nPlay video games: -60.0\nPodcasts: -60.9\nPrint Magazines: 13.5\nPrint Newspapers: 50.0\nPublic Transport: -58.1\nRadio: 35.9\nShopping Centre: -14.8\nSocial Media: -31.7\nSocialising with Friends: -4.8\nStreaming & Pay TV: -28.5\nWalk: -1.8"
+    },
+    {
+      "id": 16,
+      "category": "movement_chart",
+      "title": "Membership movement 2024-2025 - member counts (slide 14)",
+      "text": "Breezy Boomers segment member movement (counts):\n2024 Members: 8378\nNew members: 1747\nFrom other segment: 519\nMoved to other segment: -63\nLost / Did not renew: -871"
+    },
+    {
+      "id": 17,
+      "category": "annual_spend_chart",
+      "title": "Annual membership spend - Breezy Boomers vs club (slide 16)",
+      "text": "Breezy Boomers annual membership spend: Average $586.0, Median $455.0 (club baseline for comparison is lower)."
+    },
+    {
+      "id": 18,
       "category": "spend_propensity",
       "title": "Spend propensity - Retail & Supermarkets",
       "text": "Breezy Boomers spend propensity index vs population for Retail & Supermarkets (1.0x = average; higher = over-indexed):\nBook Stores: 0.9x\nBuilding / Hardware: 0.9x\nClothing Stores: 0.7x\nGardening / Nursery: 0.8x\nFlorists: 0.7x\nHomewares / Furniture: 0.8x\nHealth Food: 1.0x\nLiquor Stores: 1.0x\nNewsagencies: 1.4x\nOffice & Printing: 1.0x\nPO & Parcel Delivery: 1.2x\nOnline Marketplace: 0.8x\nAmazon: 0.7x\nCatch of the Day: 0.2x\neBay: 0.7x\nKogan: 1.0x\nTemu: 1.0x\nOutdoor / Camping: 0.7x\nPharmacies: 1.0x\nPhoto & Camera: 0.4x\nSecond Hand / Thrift: 0.8x\nShoe Stores: 0.7x\nSports Stores: 0.6x\nSupermarket: 0.9x\nToy & Games Stores: 0.4x\nVineyards: 1.1x\nALDI: 0.7x\nAutobarn: 0.6x\nBest & Less: 0.4x\nBIG W: 0.6x\nThe Bottle-O: 0.8x\nBunnings: 1.0x\nBWS: 0.9x\nCellarbrations: 1.6x\nCity Beach: 0.9x\nColes: 0.8x\nCostco: 1.0x\nCotton On: 0.6x\nDan Murphy's: 1.1x\nDavid Jones: 1.7x\nFirst Choice Liquor: 1.3x\nThe Good Guys: 1.2x\nHarvey Norman: 0.7x\nIGA: 1.6x\nIkea: 0.9x\nJB Hi-Fi: 0.9x\nKmart: 0.7x\nLiquorland: 1.1x\nMecca: 0.8x\nMyer: 1.4x\nOnePass: 0.7x\nPetbarn: 1.0x\nPETstock: 0.6x\nSHEIN: 0.5x\nSupercheap Auto: 0.8x\nTarget: 0.7x\nTK Maxx: 0.2x\nUniqlo: 0.8x\nVintage Cellars: 2.2x\nWoolworths: 0.8x"
     },
     {
-      "id": 16,
+      "id": 19,
       "category": "spend_propensity",
       "title": "Spend propensity - Tourism & Travel",
       "text": "Breezy Boomers spend propensity index vs population for Tourism & Travel (1.0x = average; higher = over-indexed):\nAirlines: 1.2x\nJetstar: 0.8x\nQantas: 1.3x\nVirgin Australia: 1.2x\nCaravan & Camping: 1.2x\nDuty Free: 1.5x\nEV Charging Station: 0.6x\nFuel: 0.8x\nHotels & Resorts: 1.2x\nMotels & Apartments: 0.5x\nPublic Transport: 1.2x\nRideshare Services: 0.9x\nDiDi: 1.1x\nUber: 0.8x\nRoad Tolls: 0.1x\nScooter Rental Services: 0.4x\nTaxi Services: 0.5x\nTravel Agency: 1.7x\nAirbnb: 0.7x\nBooking.com: 0.9x\nStreaming Services: Index\nStreaming Service Provider: 0.8x\nAmazon Prime: 0.8x\nApple: 0.7x\nAudible: 1.0x\nBinge: 0.8x\nBritBox: 2.3x\nCandy Crush: 1.1x\nCrunchyroll: 0.5x\nDisney Plus: 0.6x\nFoxtel: 1.0x\nHayu: 0.9x\nKayo Sports: 0.9x\nNetflix: 0.9x\nOnlyFans: 0.6x\nParamount Plus: 0.8x\nRoblox: 0.4x\nSpotify: 0.7x\nStan: 0.9x\nSteam: 0.6x\nTikTok: 0.5x"
     },
     {
-      "id": 17,
+      "id": 20,
       "category": "spend_propensity",
       "title": "Spend propensity - QSR & Dining",
       "text": "Breezy Boomers spend propensity index vs population for QSR & Dining (1.0x = average; higher = over-indexed):\nConvenience Stores: 0.7x\n7-Eleven: 0.6x\nEzyMart: 0.1x\nNightOwl: 0.5x\nEating Out: 0.8x\nBakery: 0.7x\nCafes: 0.9x\nHotels & Bars: 0.9x\nLeagues & Clubs: 0.4x\nRestaurants: 0.9x\nVegan / Veg Rest.: 0.9x\nChatime: 0.5x\nThe Coffee Club: 1.4x\nDome Cafe: 5.9x\nGloria Jean's Coffees: 0.3x\nJamaica Blue: 3.7x\nme&u: 0.8x\nSoul Origin: 0.9x\nStarbucks: 0.5x\nZarraffas Coffee: 0.1x\nSporting Globe Bar & Grill: 0.9x\nTakeaway & Fast Food: 0.8x\nBaker's Delight: 0.8x\nBoost Juice: 0.6x\nBreadtop: 0.7x\nBrumby's Bakeries: 0.6x\nDomino's: 0.6x\nDonut King: 0.3x\nEl Jannah: 0.0x\nFish and Chips: 1.0x\nGrill'd: 1.1x\nGuzman y Gomez: 0.3x\nHungry Jack's: 0.7x\nKFC: 0.5x\nKrispy Kreme: 0.8x\nMcDonald's: 0.6x\nMuffin Break: 1.7x\nNando's: 1.3x\nNespresso: 2.2x\nOporto: 0.2x\nPizza Hut: 0.4x\nRed Rooster: 1.3x\nSchnitz: 0.1x\nSubway: 0.6x\nSushi: 0.6x\nZambrero: 1.0x\nTea, Juice & Yoghurt Bars: 0.6x\nFood Delivery: 0.6x\nDoorDash: 0.6x\nMILKRUN: 1.0x\nUber Eats: 0.7x\nMeal Plan Provider: 0.9x\nHelloFresh: 0.6x\nLite'N'Easy: 2.4x\nYoufoodz: 0.7x\nVending Machines: 0.5x"
     },
     {
-      "id": 18,
+      "id": 21,
       "category": "spend_propensity",
       "title": "Spend propensity - Lifestyle & Entertainment",
       "text": "Breezy Boomers spend propensity index vs population for Lifestyle & Entertainment (1.0x = average; higher = over-indexed):\nLeisure: 0.7x\nAdult Entertainment: 1.0x\nAmusement Centres & Rides: 0.5x\nTimezone: 0.4x\nAmusement Parks: 0.3x\nCinema / Movie Theatre: 0.8x\nHOYTS Cinemas: 1.1x\nVillage Cinemas: 0.3x\nExhibitions: 0.8x\nGolf Club: 0.8x\nHobby Centres: 1.4x\nLawn Bowls: 0.8x\nLifestyle Clubs: 0.9x\nLive Entertainment: 0.7x\nTicketek: 0.5x\nTicketmaster: 1.2x\nMemberships: 0.7x\nOnline Dating: 1.1x\nOutdoor Entertainment: 0.7x\nSports Clubs: 0.7x\nSports Entertainment: 0.8x\nWildlife Parks: 0.4x\nGambling: 0.9x\nOnline Casinos: 0.9x\nOnline Gambling: 1.1x\nBet365: 0.6x\nDabble: 0.5x\nNeds: 0.7x\nPointsBet: 0.7x\nSportsbet: 0.6x\nTabcorp: 1.8x\nTatts Online: 0.1x\nEB Games: 0.4x\nNintendo: 0.4x\nSony PlayStation: 0.4x\nTrade Unions: 1.0x\nVehicle Maintenance: 0.7x\nCar Detailing & Wash: 0.6x\nCleaning & Home Maintenance Service Provider: 0.7x\nDry Cleaners & Laundromats: 0.9x\nPersonal Care: 0.9x\nAlternative Medicine Clinics: 0.6x\nBeauty Salons: 0.8x\nCharitable Donations: 0.8x\nChildcare: 0.2x\nDental Clinics: 1.2x\nFitness Centres: 0.6x\nHairdressers: 1.0x\nMedical Clinics: 1.1x\nMedical Specialist: 1.3x\nPet Care: 0.8x\nOptical Stores: 1.3x\nOptometrists: 0.8x\nOPSM: 1.6x\nSpecsavers: 1.2x\nSports & Aquatic Centres: 0.6x\nTattoo & Piercing Studios: 0.5x\nTobacconists: 0.5x"
     },
     {
-      "id": 19,
+      "id": 22,
       "category": "spend_propensity",
       "title": "Spend propensity - Govt, Telco & Utilities",
       "text": "Breezy Boomers spend propensity index vs population for Govt, Telco & Utilities (1.0x = average; higher = over-indexed):\nDigital Service Provider: 0.8x\nInternet Service Provider: 1.0x\nAussie Broadband: 1.3x\nBelong: 0.7x\nDodo: 0.8x\niiNet: 2.2x\nStarlink: 0.5x\nTPG: 1.0x\nTelecommunications: 0.9x\nALDImobile: 0.3x\namaysim: 0.6x\nBoost mobile: 0.7x\nOptus: 0.7x\nTelstra: 1.2x\nVodafone: 1.1x\nOnline VPN: 1.4x\nProduct Subscription Provider: 0.7x\nSoftware Subscription Provider: 0.6x\nAdobe Creative Cloud: 1.1x\nChatGPT: 0.8x\nGoogle: 0.8x\nLinkedIn: 1.4x\nLMCT Plus: 0.8x\nMicrosoft: 0.7x\nRing: 0.8x\nXero: 0.5x\nUtilities: 1.0x\nAGL Energy: 0.5x\nAlinta Energy: 4.1x\nEnergyAustralia: 0.1x\nErgon Energy: 0.0x\nOrigin Energy: 0.2x\nRed Energy: 0.1x\nSynergy: 7.7x\nRent: 0.9x\nCity & Shire Council Office: 1.7x\nState Government Office: 1.1x\nState Revenue Office: 0.4x"
     },
     {
-      "id": 20,
+      "id": 23,
       "category": "spend_propensity",
       "title": "Spend propensity - Insurance & Banking",
       "text": "Breezy Boomers spend propensity index vs population for Insurance & Banking (1.0x = average; higher = over-indexed):\nBuy Now Pay Later Provider: 0.9x\nCredit Card: 1.5x\nCryptocurrency: 0.9x\nShare & Investment Service Provider: 1.1x\nAfterpay: 0.8x\nAmerican Express: 1.7x\nANZ: 2.1x\nApple Pay: 1.7x\nBankwest: 2.7x\nBeforepay: 0.9x\nCitibank: 1.9x\nColes Mastercard: 1.0x\nCommonwealth Bank: 1.5x\nJacaranda Finance: 1.4x\nKlarna: 0.7x\nLatitude Finance: 1.3x\nLazer Money: 1.1x\nMoney3: 0.7x\nMoneyMe: 1.3x\nMoneyspot: 1.0x\nMyPayNow: 0.9x\nNational Australia Bank: 2.3x\nPayPal: 1.1x\nPayPal Pay in 4: 1.0x\nRemitly: 0.9x\nRevolut: 1.1x\nSpriggy: 0.4x\nStepPay: 0.7x\nSunshine Loans: 1.0x\nSwoosh: 0.8x\nWallet Wizard: 0.9x\nWestpac Banking: 2.2x\nWise: 1.0x\nZip Money: 0.9x\nZip Pay: 0.9x\nInsurance: 1.4x\nGeneral & Property Insurance: 1.3x\nHealth Insurance: 1.9x\nLife & Income Insurance: 1.6x\nAAMI: 0.8x\nahm: 1.3x\nAIA Insurance: 2.6x\nAllianz Insurance: 0.9x\nAPIA: 2.3x\nBudget Direct: 0.7x\nBupa: 1.1x\nCGU Insurance: 1.1x\nHCF: 1.7x\nHollard Insurance: 1.2x\nMedibank Private: 1.7x\nMLC: 1.3x\nnib Health Funds: 1.2x\nNRMA Insurance: 0.5x\nQBE Insurance: 0.3x\nRAC Insurance: 4.0x\nShannons: 0.8x\nSuncorp Insurance: 0.7x\nYoui: 0.7x"
     }
   ],
+  "charts": [
+    {
+      "slide": 14,
+      "title": "Members",
+      "points": [
+        {
+          "label": "2024 Members",
+          "value": 8378.0
+        },
+        {
+          "label": "New members",
+          "value": 1747.0
+        },
+        {
+          "label": "From other segment",
+          "value": 519.0
+        },
+        {
+          "label": "Moved to other segment",
+          "value": -63.0
+        },
+        {
+          "label": "Lost / Did not renew",
+          "value": -871.0
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "title": "Fremantle",
+      "points": [
+        {
+          "label": "Male",
+          "value": 0.6
+        },
+        {
+          "label": "Female",
+          "value": 0.4
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "title": "Breezy Boomers",
+      "points": [
+        {
+          "label": "Male",
+          "value": 0.6
+        },
+        {
+          "label": "Female",
+          "value": 0.4
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "title": "Families",
+      "points": [
+        {
+          "label": "Average",
+          "value": 586.0
+        },
+        {
+          "label": "Median",
+          "value": 455.0
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "title": "Freo",
+      "points": [
+        {
+          "label": "Average",
+          "value": 442.0
+        },
+        {
+          "label": "Median",
+          "value": 372.7
+        }
+      ]
+    },
+    {
+      "slide": 19,
+      "title": "Index",
+      "points": [
+        {
+          "label": "Cinema",
+          "value": -55.1
+        },
+        {
+          "label": "Drive",
+          "value": -20.6
+        },
+        {
+          "label": "Email Promotions",
+          "value": -12.0
+        },
+        {
+          "label": "Free Subscription TV",
+          "value": 30.6
+        },
+        {
+          "label": "FTA TV",
+          "value": 64.9
+        },
+        {
+          "label": "Internet Browse",
+          "value": -1.7
+        },
+        {
+          "label": "Music/ Audio App",
+          "value": -73.5
+        },
+        {
+          "label": "Online Magazines",
+          "value": -29.6
+        },
+        {
+          "label": "Online Newspapers",
+          "value": 24.4
+        },
+        {
+          "label": "Play video games",
+          "value": -60.0
+        },
+        {
+          "label": "Podcasts",
+          "value": -60.9
+        },
+        {
+          "label": "Print Magazines",
+          "value": 13.5
+        },
+        {
+          "label": "Print Newspapers",
+          "value": 50.0
+        },
+        {
+          "label": "Public Transport",
+          "value": -58.1
+        },
+        {
+          "label": "Radio",
+          "value": 35.9
+        },
+        {
+          "label": "Shopping Centre",
+          "value": -14.8
+        },
+        {
+          "label": "Social Media",
+          "value": -31.7
+        },
+        {
+          "label": "Socialising with Friends",
+          "value": -4.8
+        },
+        {
+          "label": "Streaming & Pay TV",
+          "value": -28.5
+        },
+        {
+          "label": "Walk",
+          "value": -1.8
+        }
+      ]
+    }
+  ],
   "raw_slides": [
+    {
+      "slide": 6,
+      "text": "Founding Faithfuls\n22%\nModern Families\n14%\nUrban Hipster\n13%\nHappy Suburbanites\n11%\nComfortable Crowd\n8%\nBreezy Boomers\n22%\nGen Fun\n10%"
+    },
+    {
+      "slide": 8,
+      "text": "AMPPI: Aggregate Member Purchase Price Index: The averaged total of Purchase Price data compared to baseline average Purchase Price across all matched Members. \npersona attributes\nVALUE (AMPPI*)\nLOWER\nHIGHER\nSHORTER\nLONGER\nMEMBERSHIP TENURE\nComfortable\nCrowd1.33x\nBreezy Boomers\n1.33x\nGen Fun\n0.61x\nBreezy Boomers\n16.9years\nGen Fun\n8.1 years\n12.3 yearsaverage\nHappy Suburbanite\n12.1 years\nFounding Faithfuls\n13.2 years\nModern Families\n10.2 years\nComfortable Crowd12.5 years\nFounding Faithfuls\n1.01x\nHappy Suburbanite\n0.98x\nModern Families\n0.88x\nUrban Hipster\n8.3 years\nUrban Hipster\n0.67x"
+    },
     {
       "slide": 13,
       "text": "Breezy Boomers\nCommercial In Confidence\nBreezy Boomers fans are confident and easygoing consumers who enjoy the rewards of a stable financial situation. They gravitate toward brands that offer convenience, reliability, and a sense of familiarity, favouring products or services that enhance their leisure-focused lifestyle. Tech-capable but not overly dependent on digital trends, they appreciate straightforward communication and value-for-money offerings that cater to their preferences for comfort and quality.\nWe're Robert & Susan...\n\"Breezy Boomer\" fans:\nRelaxed and Confident: Approaches life with a laid-back attitude, valuing comfort and ease in their choices.\nFinancially Stable: Likely to have a steady income or retirement savings, allowing for discretionary spending on leisure and quality.\nExperience-Oriented: Prefers enjoyable experiences over material possessions, such as travel, dining, or social activities.\nValue-Conscious: Looks for good value without compromising on quality, favouring trusted and reliable brands.\nCautiously Tech-Capable: Comfortable using technology for convenience (e.g., online shopping or smart devices) but approaches new tech trends with caution, preferring familiar tools and platforms.\nHealth and Wellness Aware: Interested in products and services that promote well-being, comfort, and an active lifestyle.\nCommunity-Focused: Enjoys being part of social groups or engaging in community events, whether locally or through online communities.\nAppreciates Simplicity: Favours straightforward, no-frills communication and solutions that align with their relaxed, low-stress outlook."
@@ -577,7 +773,7 @@
     },
     {
       "slide": 16,
-      "text": "We're Robert & Susan...\nBreezy Boomers\nMY MEMBERSHIP\nME AS A MEMBER\nENGAGEMENT PROFILE:\nAverage membership 16.9 years (1.4X)\nAverage attendance 2025 6 to 9 games \n 5% Non-Access 0 Games\n 19% Attended 0 Games\n 18% Attended 1 - 4 Games\n 23% Attended 5 - 8 Games\n 20% Attended 9 - 10 Games\n 16% Attended 11+ Games\n81% had a 2024 membership\n52% email open rate\n15% email click rate\nBreezy Boomers\nAll Members Average\nCommercial In Confidence\nMY LOYALTY \nCHURN PROPENSITY:\nENGAGEMENT SCORE:\nLIFETIME VALUE ESTIMATE:\nMinimum: $ 1,100 Maximum: $82,300\nAverage: $13,450 Median: $10,450\nANNUAL MEMBERSHIP SPEND:\nMinimum: $ 45 Maximum: $3,600\nAverage: $586 Median: $ 455\n7.0\nThe FPS is indicative of the score expected to be most highly indexed for this group. \nMERCHANDISE\nPurchased (0.7x)\nOrders p.a. (0.9x)\nSpend value (0.8x)\n2024 Membership (1.2x)\nTenure (1.4x)\n0 - 1 Years (0.5x)\n2 - 4 Years (0.6x)\n5 - 8 Years (0.9x)\n9 - 12 Years (1.0x)\n13 - 20 Years (1.3x)\n21+ Years (2.0x)\n2024 Churn % (0.6x)\nAttendance 2025 (1.2x)\nNon-Access (1.0x)\n0 Games (0.8x)\n1 - 4 Games (0.7x)\n5 - 8 Games (1.1x)\n9 - 10 Games (1.4x)\n11+ Games (1.5x)\nOpt-in-to Email (1.1x)\nOpt-in-to SMS (1.0x)\nCompleted Survey 2025 (1.7x)\nLow\nModerate to High \nTOP MEMBERSHIPS:\nSeason Reserved Seat 56%\n3 Game Pass 10%\nPurple Army 4%\n25XGATH 2%\n5MONEYP 2%\nTOP PRICE CODES:\nCategory 2 Adult 13%\nCategory 4 Adult 12%\nGA 3 Adult 9%\nCategory 3 Adult 8%\nCategory 1 Adult 5%\nEVENT INDEX SCORE:\nPremium (2.1x)\nCategory 2 (1.4x)\nVictorian (1.2x)\nCategory 3 (1.2x)\nPurple Army (0.7x)\nMERCHANDISE\nPurchase Propensity (0.8x)\nOrders p.a. (0.9x)\nSpend value (0.8x)\nHas Wishlist (N.A)\nHas Abandoned Cart (N.A)"
+      "text": "We're Robert & Susan...\nBreezy Boomers\nMY MEMBERSHIP\nLow\nHigh\nATTENDANCE\n$0\n$800\nSPEND\nLow\nHigh\nSOCIAL\nLow\nHigh\nEMAIL\nME AS A MEMBER\nENGAGEMENT PROFILE:\nAverage membership 16.9 years (1.4X)\nAverage attendance 2025 6 to 9 games \n 5% Non-Access 0 Games\n 19% Attended 0 Games\n 18% Attended 1 - 4 Games\n 23% Attended 5 - 8 Games\n 20% Attended 9 - 10 Games\n 16% Attended 11+ Games\n81% had a 2024 membership\n52% email open rate\n15% email click rate\nBreezy Boomers\nAll Members Average\nCommercial In Confidence\nMY LOYALTY \nCHURN PROPENSITY:\nENGAGEMENT SCORE:\nLIFETIME VALUE ESTIMATE:\nMinimum: $ 1,100 Maximum: $82,300\nAverage: $13,450 Median: $10,450\nFAN PASSION SCORE®\nHigh spend profile\nStrong attendance profile\nGood tenure profile\nResponsive to marketing\nANNUAL MEMBERSHIP SPEND:\nMinimum: $ 45 Maximum: $3,600\nAverage: $586 Median: $ 455\nFremantle Population\n7.0\n$0\n$240\nMERCHANDISE\nThe FPS is indicative of the score expected to be most highly indexed for this group. \nMERCHANDISE\nPurchased (0.7x)\nOrders p.a. (0.9x)\nSpend value (0.8x)\n2024 Membership (1.2x)\nTenure (1.4x)\n0 - 1 Years (0.5x)\n2 - 4 Years (0.6x)\n5 - 8 Years (0.9x)\n9 - 12 Years (1.0x)\n13 - 20 Years (1.3x)\n21+ Years (2.0x)\n2024 Churn % (0.6x)\nAttendance 2025 (1.2x)\nNon-Access (1.0x)\n0 Games (0.8x)\n1 - 4 Games (0.7x)\n5 - 8 Games (1.1x)\n9 - 10 Games (1.4x)\n11+ Games (1.5x)\nOpt-in-to Email (1.1x)\nOpt-in-to SMS (1.0x)\nCompleted Survey 2025 (1.7x)\nLow\nModerate to High \nTOP MEMBERSHIPS:\nSeason Reserved Seat 56%\n3 Game Pass 10%\nPurple Army 4%\n25XGATH 2%\n5MONEYP 2%\nTOP PRICE CODES:\nCategory 2 Adult 13%\nCategory 4 Adult 12%\nGA 3 Adult 9%\nCategory 3 Adult 8%\nCategory 1 Adult 5%\nEVENT INDEX SCORE:\nPremium (2.1x)\nCategory 2 (1.4x)\nVictorian (1.2x)\nCategory 3 (1.2x)\nPurple Army (0.7x)\nMERCHANDISE\nPurchase Propensity (0.8x)\nOrders p.a. (0.9x)\nSpend value (0.8x)\nHas Wishlist (N.A)\nHas Abandoned Cart (N.A)"
     },
     {
       "slide": 17,

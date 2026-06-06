@@ -177,6 +177,37 @@ add("commercial_value", "Lifetime value, annual spend & fan passion score",
 # 15. Membership movement (slide 14)
 add("movement", "Membership movement 2024-2025", slides.get(14, ""))
 
+# 15b. CHARTS from the persona deck (slides 13-20) - data a text-only
+#      extractor would miss (native PowerPoint charts).
+deck_charts = [c for c in src.get("pptx_charts", [])
+               if 13 <= c.get("slide", 0) <= 20 and "points" in c]
+
+media_chart = next((c for c in deck_charts if c["slide"] == 19), None)
+if media_chart:
+    lines = [f"{clean(p['label'])}: {p['value']}" for p in media_chart["points"]]
+    add("media_exposure_chart",
+        "Media exposure index - full 20-channel chart (slide 19)",
+        "Breezy Boomers media exposure index by channel. Positive = over-indexed "
+        "(consume more than average); negative = under-indexed (less than average):\n"
+        + "\n".join(lines))
+
+mv_chart = next((c for c in deck_charts if c["slide"] == 14), None)
+if mv_chart:
+    lines = [f"{clean(p['label'])}: {int(p['value'])}" for p in mv_chart["points"]]
+    add("movement_chart",
+        "Membership movement 2024-2025 - member counts (slide 14)",
+        "Breezy Boomers segment member movement (counts):\n" + "\n".join(lines))
+
+spend_chart = next((c for c in deck_charts if c["slide"] == 16), None)
+if spend_chart:
+    pts = ", ".join(f"{clean(p['label'])} ${p['value']}" for p in spend_chart["points"])
+    add("annual_spend_chart",
+        "Annual membership spend - Breezy Boomers vs club (slide 16)",
+        f"Breezy Boomers annual membership spend: {pts} (club baseline for comparison "
+        "is lower).")
+
+out_charts = deck_charts  # stored verbatim below
+
 # 16. Spend propensity - one section per category
 for cat, brands in spend.items():
     lines = [f"{b}: {i}" for b, i in brands.items() if i]
@@ -195,6 +226,7 @@ out = {
     "profile": profile,
     "spend_propensity": spend,
     "knowledge": knowledge,
+    "charts": out_charts,
     "raw_slides": [{"slide": k, "text": v} for k, v in sorted(slides.items())],
 }
 
