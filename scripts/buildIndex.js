@@ -1,30 +1,17 @@
-#!/usr/bin/env node
 /**
- * buildIndex.js — One-time script to build and persist the RAG vector index.
- *
- * Run:  npm run build-index
- *
- * This embeds all persona chunks using OpenRouter's embedding endpoint
- * and saves them to data/vectors/index.json.
- *
- * You only need to run this once (or after editing personas_raw.json).
+ * buildIndex.js — One-time RAG index builder.
+ *   npm run build-index
+ * Embeds the Breezy Boomers knowledge corpus into data/vectors/index.json.
  */
-
 import { buildIndex } from "../src/rag.js";
 import "dotenv/config";
 
 const apiKey = process.env.OPENROUTER_API_KEY;
 if (!apiKey || apiKey === "your_openrouter_api_key_here") {
-  console.error("\n❌  OPENROUTER_API_KEY not set in .env\n");
+  console.error("❌  Set OPENROUTER_API_KEY in .env first.");
   process.exit(1);
 }
 
-console.log("\n🔨  Building RAG index…\n");
 buildIndex(apiKey)
-  .then(() => {
-    console.log("\n✅  Done! You can now run: npm run chat  or  npm run dev\n");
-  })
-  .catch((err) => {
-    console.error("❌  Error building index:", err.message);
-    process.exit(1);
-  });
+  .then(() => console.log("✅  Index built."))
+  .catch((e) => { console.error("Failed:", e.message); process.exit(1); });

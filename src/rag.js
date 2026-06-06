@@ -1,10 +1,12 @@
 /**
- * rag.js  — Pure-JSON RAG engine (no external vector DB)
+ * rag.js — Pure-JSON RAG engine for the Breezy Boomers persona.
  *
- * Embeddings are stored as flat JSON files under data/vectors/.
- * Similarity search uses cosine similarity in-process.
- * On first run, call buildIndex() to chunk & embed all persona docs.
- * After that, query() retrieves the top-k most relevant chunks.
+ * No vector database. Embeddings live in data/vectors/index.json and
+ * similarity search runs in-process via cosine similarity.
+ *
+ * Corpus = the `knowledge` sections + the persona slide texts (13-20) from
+ * data/breezy_boomers.json, which was extracted 1:1 from the source Excel
+ * and PowerPoint.
  */
 
 import fs from "fs";
@@ -13,342 +15,166 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.join(__dirname, "../data");
+const DATASET = path.join(DATA_DIR, "breezy_boomers.json");
 const VECTORS_DIR = path.join(DATA_DIR, "vectors");
 const INDEX_FILE = path.join(VECTORS_DIR, "index.json");
+
 const OPENROUTER_BASE = "https://openrouter.ai/api/v1";
-// OpenRouter exposes the OpenAI-compatible embeddings endpoint
 const EMBED_MODEL = "openai/text-embedding-3-small";
 
 // ---------------------------------------------------------------------------
-// Utilities
-// ---------------------------------------------------------------------------
+let _dataset = null;
+export function loadDataset() {
+  if (_dataset) return _dataset;
+  _dataset = JSON.parse(fs.readFileSync(DATASET, "utf8"));
+  return _dataset;
+}
 
 function cosine(a, b) {
-  let dot = 0,
-    normA = 0,
-    normB = 0;
+  let dot = 0, na = 0, nb = 0;
   for (let i = 0; i < a.length; i++) {
     dot += a[i] * b[i];
-    normA += a[i] * a[i];
-    normB += b[i] * b[i];
+    na += a[i] * a[i];
+    nb += b[i] * b[i];
   }
-  return dot / (Math.sqrt(normA) * Math.sqrt(normB));
+  return dot / (Math.sqrt(na) * Math.sqrt(nb));
 }
 
 async function embed(texts, apiKey) {
   const res = await fetch(`${OPENROUTER_BASE}/embeddings`, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
     body: JSON.stringify({ model: EMBED_MODEL, input: texts }),
   });
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Embedding API error ${res.status}: ${err}`);
-  }
+  if (!res.ok) throw new Error(`Embedding API error ${res.status}: ${await res.text()}`);
   const data = await res.json();
   return data.data.map((d) => d.embedding);
 }
 
 // ---------------------------------------------------------------------------
-// Document chunking
+// Build the corpus of text chunks to embed.
 // ---------------------------------------------------------------------------
-
-/**
- * Build a rich text corpus from personas_raw.json.
- * Returns an array of { id, personaName, category, text } objects.
- */
 export function buildChunks() {
-  const raw = JSON.parse(
-    fs.readFileSync(path.join(DATA_DIR, "personas_raw.json"), "utf8")
-  );
+  const ds = loadDataset();
   const chunks = [];
-  let id = 0;
 
-  const SEG_NAMES = [
-    "Breezy Boomers",
-    "Comfortable Crowd",
-    "Founding Faithfuls",
-    "Generation Fun",
-    "Happy Suburbanites",
-    "Modern Families",
-    "Urban Hipster",
-  ];
-
-  for (const segName of SEG_NAMES) {
-    const p = raw.personas[segName];
-    if (!p) continue;
-    const brands = raw.brand_affinities[segName] || [];
-
-    // 1. Identity / Profile chunk
+  // 1. Distilled knowledge sections (identity, bio, attitudes, metrics, comms,
+  //    merchandise, lifestyle, media, buying, commercial value, spend matrix…)
+  for (const k of ds.knowledge) {
     chunks.push({
-      id: id++,
-      personaName: segName,
-      category: "profile",
-      text: [
-        `Persona: ${segName}`,
-        `Profile: ${p["Profile"] || ""}`,
-        `Consumer Attributes: ${p["Consumer Attributes"] || ""}`,
-        `Average Age: ${parseFloat(p["Average Age"] || 0).toFixed(1)}`,
-        `Occupation: ${p["Occupation"] || ""}`,
-        `Location: ${p["Location"] || ""}`,
-        `Relationship: ${p["Relationship"] || ""}`,
-        `Lifestyle: ${p["Lifestyle"] || ""}`,
-      ]
-        .filter((l) => !l.endsWith(": "))
-        .join("\n"),
+      id: `k${k.id}`,
+      category: k.category,
+      title: k.title,
+      text: `${k.title}\n${k.text}`,
     });
+  }
 
-    // 2. Bio / narrative chunk
-    if (p["Bio"]) {
+  // 2. Verbatim persona-deck slides (13-20) as a safety net so any detail
+  //    phrased differently is still retrievable.
+  for (const s of ds.raw_slides || []) {
+    if (s.slide >= 13 && s.slide <= 20) {
       chunks.push({
-        id: id++,
-        personaName: segName,
-        category: "bio",
-        text: `Persona: ${segName}\nBio / Narrative:\n${p["Bio"]}`,
-      });
-    }
-
-    // 3. Voice / About Me chunk
-    if (p["About Me"]) {
-      chunks.push({
-        id: id++,
-        personaName: segName,
-        category: "voice",
-        text: `Persona: ${segName}\nIn their own words (About Me):\n${p["About Me"]}`,
-      });
-    }
-
-    // 4. Personal attitudes chunk
-    if (p["Personal Attitudes"]) {
-      chunks.push({
-        id: id++,
-        personaName: segName,
-        category: "attitudes",
-        text: `Persona: ${segName}\nPersonal Attitudes & Values:\n${p["Personal Attitudes"]}`,
-      });
-    }
-
-    // 5. Membership & engagement metrics chunk
-    const metrics = [
-      `Segment share of members: ${p["% of Members"] ? (parseFloat(p["% of Members"]) * 100).toFixed(1) + "%" : "N/A"}`,
-      `Churn propensity: ${p["Churn Propensity"] || "N/A"}`,
-      `Engagement score: ${p["Engagement Score"] || "N/A"}`,
-      `Membership index: ${p["2024 Membership Index Score"] || "N/A"}`,
-      `Average tenure index: ${p["Average Years Tenure Index Score"] || "N/A"}`,
-      `2025 Attendance index: ${p["2025 Attendance Index Score"] || "N/A"}`,
-      `MCC index: ${p["2025 MCC Index Score"] || "N/A"}`,
-      `Non-access index: ${p["2025 Non-Access Index Score"] || "N/A"}`,
-      `Zero game attendance index: ${p["2025 Attendance 0 games Index Score"] || "N/A"}`,
-      `1-4 games index: ${p["2025 Attendance 1-4 Games Index Score"] || "N/A"}`,
-      `5-8 games index: ${p["2025 Attendance 5 - 8 games Index Score"] || "N/A"}`,
-    ];
-    chunks.push({
-      id: id++,
-      personaName: segName,
-      category: "membership_metrics",
-      text: `Persona: ${segName}\nMembership & Engagement Metrics:\n${metrics.join("\n")}`,
-    });
-
-    // 6. Spending & media chunk
-    chunks.push({
-      id: id++,
-      personaName: segName,
-      category: "spending_media",
-      text: [
-        `Persona: ${segName}`,
-        `High Spend Categories: ${p["High Spend Categories"] || ""}`,
-        `Media Index Scores: ${p["Media Index Scores"] || ""}`,
-      ]
-        .filter((l) => !l.endsWith(": "))
-        .join("\n"),
-    });
-
-    // 7. Top brand affinities chunk
-    if (brands.length > 0) {
-      const brandList = brands
-        .map((b) => `${b.brand} (${b.index})`)
-        .join(", ");
-      chunks.push({
-        id: id++,
-        personaName: segName,
-        category: "brand_affinities",
-        text: `Persona: ${segName}\nTop Over-Indexed Brands (spend propensity vs population):\n${brandList}`,
+        id: `slide${s.slide}`,
+        category: "slide",
+        title: `Persona deck slide ${s.slide}`,
+        text: s.text,
       });
     }
   }
-
-  // 8. Cross-segment comparison chunk
-  const overviewParts = SEG_NAMES.map((n) => {
-    const p = raw.personas[n];
-    if (!p) return "";
-    const share = p["% of Members"]
-      ? (parseFloat(p["% of Members"]) * 100).toFixed(1) + "%"
-      : "N/A";
-    return `${n}: ${share} of members, avg age ${parseFloat(p["Average Age"] || 0).toFixed(0)}, churn ${p["Churn Propensity"] || "N/A"}`;
-  });
-  chunks.push({
-    id: id++,
-    personaName: "All Segments",
-    category: "overview",
-    text: `Fremantle Dockers Membership Segment Overview:\n${overviewParts.join("\n")}`,
-  });
 
   return chunks;
 }
 
 // ---------------------------------------------------------------------------
-// Index build & persist
-// ---------------------------------------------------------------------------
-
 export async function buildIndex(apiKey) {
-  console.log("Building RAG index…");
   if (!fs.existsSync(VECTORS_DIR)) fs.mkdirSync(VECTORS_DIR, { recursive: true });
-
   const chunks = buildChunks();
-  console.log(`  ${chunks.length} chunks to embed`);
+  console.log(`Embedding ${chunks.length} chunks…`);
 
-  // Embed in batches of 20
   const BATCH = 20;
-  const allVectors = [];
+  const vectors = [];
   for (let i = 0; i < chunks.length; i += BATCH) {
     const batch = chunks.slice(i, i + BATCH);
-    const texts = batch.map((c) => c.text);
-    process.stdout.write(`  Embedding batch ${Math.floor(i / BATCH) + 1}…`);
-    const vecs = await embed(texts, apiKey);
-    allVectors.push(...vecs);
-    console.log(" done");
+    const vecs = await embed(batch.map((c) => c.text), apiKey);
+    vectors.push(...vecs);
+    console.log(`  embedded ${Math.min(i + BATCH, chunks.length)}/${chunks.length}`);
   }
-
-  const index = chunks.map((c, i) => ({ ...c, vector: allVectors[i] }));
+  const index = chunks.map((c, i) => ({ ...c, vector: vectors[i] }));
   fs.writeFileSync(INDEX_FILE, JSON.stringify(index));
-  console.log(`Index saved to ${INDEX_FILE} (${index.length} entries)`);
+  console.log(`Saved index → ${INDEX_FILE} (${index.length} entries)`);
   return index;
 }
 
-// ---------------------------------------------------------------------------
-// Query
-// ---------------------------------------------------------------------------
-
 let _index = null;
-
 function loadIndex() {
   if (_index) return _index;
-  if (!fs.existsSync(INDEX_FILE)) {
-    throw new Error(
-      "RAG index not found. Run: npm run build-index  first."
-    );
-  }
+  if (!fs.existsSync(INDEX_FILE)) throw new Error("RAG index not found. Run: npm run build-index");
   _index = JSON.parse(fs.readFileSync(INDEX_FILE, "utf8"));
   return _index;
 }
 
-/**
- * Retrieve top-k relevant chunks for a query string.
- * If `personaName` is given, retrieval is restricted to that persona's chunks
- * (plus the cross-segment overview) so the context matches the selected member.
- * Returns array of { personaName, category, text, score }.
- */
-export async function retrieve(query, apiKey, topK = 5, personaName = null) {
+export async function retrieve(query, apiKey, topK = 6) {
   const index = loadIndex();
-  const [qVec] = await embed([query], apiKey);
-
-  let pool = index;
-  if (personaName) {
-    pool = index.filter(
-      (e) => e.personaName === personaName || e.personaName === "All Segments"
-    );
-    if (pool.length === 0) pool = index; // fall back if name doesn't match
-  }
-
-  const scored = pool.map((entry) => ({
-    personaName: entry.personaName,
-    category: entry.category,
-    text: entry.text,
-    score: cosine(qVec, entry.vector),
-  }));
-  scored.sort((a, b) => b.score - a.score);
-  return scored.slice(0, topK);
-}
-
-/**
- * Build a rich, authoritative first-person profile for a single persona,
- * straight from personas_raw.json. Used as the grounding "snapshot" in
- * persona mode so the bot embodies whichever segment is selected — not a
- * hardcoded one. Pulls in the granular fields (comms, lifestyle, buying
- * intent, brands) that the RAG chunks leave out.
- * @returns {string|null} formatted profile, or null if persona not found.
- */
-export function getPersonaProfile(personaName) {
-  const raw = JSON.parse(
-    fs.readFileSync(path.join(DATA_DIR, "personas_raw.json"), "utf8")
-  );
-  const p = raw.personas?.[personaName];
-  if (!p) return null;
-  const brands = raw.brand_affinities?.[personaName] || [];
-
-  // Format a stored decimal string (e.g. "0.7119") as a percentage.
-  const pct = (v) =>
-    v === undefined || v === null || v === ""
-      ? null
-      : (parseFloat(v) * 100).toFixed(0) + "%";
-  const val = (v) => (v === undefined || v === null || v === "" ? null : v);
-
-  const lines = [];
-  const add = (label, v) => { if (v !== null && v !== undefined && v !== "") lines.push(`- ${label}: ${v}`); };
-
-  lines.push(`PERSONA: ${personaName}`);
-  lines.push("");
-  lines.push("IDENTITY");
-  add("Profile", val(p["Profile"]));
-  if (p["Average Age"]) add("Average age", parseFloat(p["Average Age"]).toFixed(0));
-  add("Occupation", val(p["Occupation"]));
-  add("Location", val(p["Location"]));
-  add("Relationship", val(p["Relationship"]));
-  add("Lifestyle", val(p["Lifestyle"]));
-  add("Share of Fremantle members", pct(p["% of Members"]));
-
-  if (p["About Me"]) {
-    lines.push("", "IN THEIR OWN WORDS (use this voice)", p["About Me"]);
-  }
-  if (p["Bio"]) lines.push("", "BIO", p["Bio"]);
-  if (p["Personal Attitudes"]) lines.push("", "VALUES & ATTITUDES", p["Personal Attitudes"]);
-
-  lines.push("", "MEMBERSHIP & ENGAGEMENT");
-  add("Churn propensity", val(p["Churn Propensity"]));
-  add("Engagement", val(p["Engagement Score"]));
-  add("2024 membership index", val(p["2024 Membership Index Score"]));
-  add("Average tenure (years)", val(p["Average Years Tenure"]));
-  add("2025 attendance index", val(p["2025 Attendance Index Score"]));
-  add("MCC index", val(p["2025 MCC Index Score"]));
-
-  lines.push("", "COMMS & DIGITAL BEHAVIOUR");
-  add("Email opted-in", pct(p["Email Opted-In %"]));
-  add("SMS opted-in", pct(p["SMS Opted-In %"]));
-  add("Email open rate", pct(p["Email Opens (if in email data)"]));
-  add("Email click rate", pct(p["Email Click (if in email data)"]));
-  add("Engaged in competition", pct(p["Engaged in Competition"]));
-  add("Completed survey", pct(p["Completed Survey"]));
-
-  lines.push("", "LIFESTYLE, MEDIA & SPENDING");
-  add("Lifestyle interests", val(p["Lifestyle Interests"]));
-  add("Media exposure (top channels)", val(p["Media Exposure"]));
-  add("Media index scores", val(p["Media Index Scores"]));
-  add("Social platforms", val(p["Social Platforms"]));
-  add("Buying intentions", val(p["Buying Intentions"]));
-  add("High spend categories", val(p["High Spend Categories"]));
-  if (brands.length) {
-    add(
-      "Top over-indexed brands",
-      brands.map((b) => `${b.brand} (${b.index})`).join(", ")
-    );
-  }
-
-  return lines.join("\n");
+  const [q] = await embed([query], apiKey);
+  return index
+    .map((e) => ({ title: e.title, category: e.category, text: e.text, score: cosine(q, e.vector) }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, topK);
 }
 
 export function indexExists() {
   return fs.existsSync(INDEX_FILE);
+}
+
+// ---------------------------------------------------------------------------
+// Authoritative persona snapshot injected into every prompt so the bot is
+// always grounded in Robert & Susan, regardless of what RAG retrieves.
+// ---------------------------------------------------------------------------
+export function getPersonaProfile() {
+  const ds = loadDataset();
+  const p = ds.profile || {};
+  const g = (k) => p[k] || "";
+  const num = (k) => { const n = parseFloat(p[k]); return isNaN(n) ? null : n; };
+  const age = num("Average Age") ? Math.round(num("Average Age")) : g("Average Age");
+  const ses = num("Average SES") ? Math.round(num("Average SES") * 100) : g("Average SES");
+  const share = num("% of Members") ? Math.round(num("% of Members") * 100) + "%" : g("% of Members");
+  const topBrands = [];
+  for (const [cat, brands] of Object.entries(ds.spend_propensity || {})) {
+    for (const [b, idx] of Object.entries(brands)) {
+      const n = parseFloat(String(idx).replace("x", ""));
+      if (!isNaN(n) && n >= 1.5) topBrands.push(`${b} (${idx})`);
+    }
+  }
+
+  return [
+    "PERSONA: Breezy Boomers — representative members Robert & Susan",
+    "",
+    "IDENTITY",
+    `- ${g("Profile")}`,
+    `- Average age ${age} (65+ skews); ${g("Relationship")}; SES ${ses}/100`,
+    `- ${g("Occupation")}; lives ${g("Location")}`,
+    `- Largest segment: ${share} of Fremantle members; 97% in WA; mostly male`,
+    "",
+    "BIO",
+    g("Bio"),
+    "",
+    "IN THEIR OWN WORDS (use this voice)",
+    g("About Me"),
+    "",
+    "VALUES & ATTITUDES",
+    g("Personal Attitudes"),
+    "",
+    "MEMBERSHIP & MONEY",
+    `- 20+ year member; average tenure 16.9 years; churn just 10% (lowest of all segments vs 22% club baseline)`,
+    `- Auto-renews; Season Reserved Seat (56%); attends ~6-9 games a season`,
+    `- Lifetime value avg $13,450 (median $10,450); annual membership spend avg $586; Fan Passion Score 7.0`,
+    `- Engagement: ${g("Engagement Score")}; merchandise spend slightly below average`,
+    "",
+    "LIFESTYLE, MEDIA & BUYING",
+    `- Lifestyle interests: ${g("Lifestyle Interests")}`,
+    `- Media: traditional-leaning (${g("Media Exposure")}); social: ${g("Social Platforms")}`,
+    `- Buying intentions: ${g("Buying Intentions")}`,
+    `- Buys for: ${g("Buying Behaviour")}; high spend on ${g("High Spend Categories")}`,
+    topBrands.length ? `- Over-indexed brands: ${topBrands.slice(0, 20).join(", ")}` : "",
+  ].filter((l) => l !== "").join("\n");
 }

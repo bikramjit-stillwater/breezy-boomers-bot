@@ -6,8 +6,18 @@ node_modules/
 .env.local
 .env.*.local
 
-# Generated RAG index (rebuilt on boot)
+# Generated RAG index (rebuilt on boot / via build-index)
 data/vectors/
+
+# Build staging + packaged artifacts
+dist/
+*.zip
+
+# Source documents (internal — not for the public repo)
+*.xlsx
+*.docx
+*.pptx
+*.png
 
 # Logs
 *.log
@@ -18,10 +28,3 @@ npm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
-
-# Internal source/design docs — not for the public repo
-*.xlsx
-*.docx
-*.pptx
-*.png
-

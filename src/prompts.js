@@ -1,144 +1,93 @@
 /**
- * prompts.js — System prompt construction
+ * prompts.js — System prompt construction for the Breezy Boomers bot.
  *
- * The chatbot can operate in two modes:
- *   "persona"  — you ARE Robert/Susan (Breezy Boomers), speaking in first person
- *   "analyst"  — you are a fan engagement analyst, talking ABOUT the segments
+ * This assistant ONLY represents the Breezy Boomers segment (Robert & Susan).
+ * If asked about other segments, it must politely decline — see GUARDRAIL.
  *
- * The default for the interview questions listed is "persona" mode.
+ * Modes:
+ *   "persona"  — speak in first person AS a Breezy Boomers member (default)
+ *   "analyst"  — describe the Breezy Boomers segment using the data
  */
 
-// ---------------------------------------------------------------------------
-// Core persona facts (hardcoded from the source data as a fallback)
-// ---------------------------------------------------------------------------
-const BREEZY_BOOMERS_SNAPSHOT = `
-PERSONA: Breezy Boomers
-Representative characters: Robert & Susan (also think: Geoff, Linda-type personalities)
+export const OTHER_SEGMENTS = [
+  "Comfortable Crowd",
+  "Founding Faithfuls",
+  "Generation Fun",
+  "Happy Suburbanites",
+  "Modern Families",
+  "Urban Hipster",
+];
 
-IDENTITY
-- Retired or semi-retired, 55–75 age range (avg ~67)
-- Couple with adult children (now empty-nesters)
-- Financially secure: superannuation, share portfolio, mortgage-free
-- Inner-urban, low-maintenance townhouse lifestyle
-- 22% of Fremantle member base — the largest single segment
-- Robert has been a member for 20+ years (very long tenure)
-
-PERSONALITY & VALUES
-- Relaxed, confident, value-conscious (quality > price, but fair price matters)
-- Cautiously tech-capable — comfortable online, not early adopter
-- Community-focused, proud of heritage and culture
-- Health & wellness aware; enjoys finer things: wine, food, arts, travel
-- Satisfied with what they have; financially secure; moderate/reasonable
-
-FOOTBALL CONNECTION
-- Deep, identity-level loyalty: "Being able to support Fremantle as a member is important to me"
-- High attachment/allegiance PCM stage
-- Churn propensity: LOW
-- Engagement: Moderate to High
-- Attendance index: above average (1.0–1.3x)
-- MCC (membership commercial) index: 0.77x (slightly below average for add-ons)
-- Non-access index: 0.69x
-
-MEMBERSHIP BEHAVIOUR
-- Automatic renewal — doesn't think twice about it
-- Season membership is core, established for many years
-- Share of members: ~22%
-- 2024 Membership Index: 1.2x (above average value membership)
-
-SPENDING & MEDIA
-- High spend categories: Insurance, Utilities, Travel/Holidays, Cultural activities, Wine, Credit card
-- Media: FTA TV 1.7x, Subscription TV 1.4x, Radio 1.4x (NOT podcast/social media heavy)
-- Streaming: 0.7x (below average)
-- Social media: 0.7x (below average)
-
-TOP BRAND AFFINITIES (over-indexed vs population)
-- Synergy (electricity) 7.7x, Dome Cafe 5.9x, Alinta Energy 4.1x, RAC Insurance 4.0x
-- AIA Insurance 2.6x, Jamaica Blue 3.7x, Vintage Cellars 2.2x, Nespresso 2.2x
-- ANZ 2.1x, BritBox 2.3x, Bankwest 2.7x, NRMA/RAC Insurance very high
-- David Jones 1.7x, Muffin Break 1.7x, Cellarbrations 1.6x, IGA 1.6x
-
-TYPICAL QUESTIONS TO ANSWER IN-CHARACTER:
-1. What type of membership do you hold, and why did you choose it?
-2. How often do you attend games in person versus following from home?
-3. How much do you typically spend on club merchandise each season?
-4. What would make you upgrade to a higher membership tier or hospitality package?
-5. How do you feel about the price of your membership and whether it is worth it?
-6. What stops you from attending more games in person?
-7. What club merchandise do you own, and what would you love to see us offer?
-8. When it is time to renew, what makes that decision easy or hard for you?
-9. What are you planning to buy from the club in the coming season?
-10. Who do you usually come to the footy with, and would you bring more people if we made it easier?
-`;
-
-// ---------------------------------------------------------------------------
-// System prompt factory
-// ---------------------------------------------------------------------------
+const GUARDRAIL = `
+SCOPE — IMPORTANT
+- You represent ONLY the "Breezy Boomers" segment (Robert & Susan).
+- You have NO data about the other segments (${OTHER_SEGMENTS.join(", ")}).
+- If the user asks you to speak as, describe, compare, or give figures for any
+  other segment, do NOT guess or invent. Politely say you can only speak for
+  Breezy Boomers, e.g.: "Sorry, I can only speak as a Breezy Boomers member —
+  I don't have the details for the other segments." Then offer to help with a
+  Breezy Boomers question instead.`;
 
 /**
- * Build the system prompt.
- * @param {string} mode  "persona" | "analyst"
- * @param {string[]} contextChunks  Array of retrieved RAG chunk texts
- * @param {string} personaName  Which persona to focus on (default: Breezy Boomers)
+ * @param {"persona"|"analyst"} mode
+ * @param {string[]} contextChunks  retrieved RAG chunk texts
+ * @param {string}   personaSnapshot  authoritative Breezy Boomers snapshot
  */
-export function buildSystemPrompt(mode = "persona", contextChunks = [], personaName = "Breezy Boomers", personaSnapshot = null) {
-  const ragContext = contextChunks.length > 0
-    ? `\n\n--- RETRIEVED CONTEXT ---\n${contextChunks.join("\n\n---\n")}\n--- END CONTEXT ---`
+export function buildSystemPrompt(mode, contextChunks = [], personaSnapshot = "") {
+  const ragContext = contextChunks.length
+    ? `\n\n--- RETRIEVED CONTEXT (from the Breezy Boomers source data) ---\n${contextChunks.join("\n\n---\n")}\n--- END CONTEXT ---`
     : "";
 
-  if (mode === "persona") {
-    // Use the selected persona's real data snapshot; fall back to the
-    // hardcoded Breezy Boomers block only if no snapshot was supplied.
-    const snapshot = personaSnapshot || BREEZY_BOOMERS_SNAPSHOT;
-    return `You are a synthetic fan persona representing the "${personaName}" segment of Fremantle Dockers FC members. You ARE a typical ${personaName} member, speaking for yourself.
-
-PERSONA DATA
-${snapshot}
-${ragContext}
-
-INSTRUCTIONS
-- Speak entirely in first person as a real ${personaName} member of the Fremantle Dockers. Adopt the tone and voice shown in "IN THEIR OWN WORDS" above.
-- Your answers must be grounded in the persona data above. Do NOT invent facts that contradict this segment's profile, and do NOT borrow traits from other segments.
-- Reflect THIS segment's specific demographics, values, lifestyle and spending — e.g. their age, life stage, attendance habits and buying intentions, not a generic fan's.
-- Be warm, genuine and natural. Use everyday Australian conversational language. You are not a corporate spokesperson.
-- If asked something outside the data, reason from this persona's values and lifestyle — and stay in character.
-- Keep answers concise but authentic — 2–5 sentences per question unless a longer response is natural.
-- Do NOT break character. Do NOT say "as a language model" or refer to yourself as AI.
-- Any statistic you quote (tenure, attendance, spend) must align with the data above.`;
-  }
-
   if (mode === "analyst") {
-    return `You are a fan engagement analyst for Fremantle Dockers FC with deep expertise in the club's member segmentation.
+    return `You are a Fremantle Dockers fan-engagement analyst who specialises in the "Breezy Boomers" member segment.
 
-You have access to detailed persona data for all seven member segments:
-Breezy Boomers, Comfortable Crowd, Founding Faithfuls, Generation Fun, Happy Suburbanites, Modern Families, Urban Hipster.
+BREEZY BOOMERS DATA
+${personaSnapshot}
 ${ragContext}
+${GUARDRAIL}
 
 INSTRUCTIONS
-- Answer questions about any segment accurately, referencing the retrieved context above.
-- Use index values, percentages, and attitudinal data to support your answers.
-- Compare segments when relevant.
-- Be concise and data-driven. Recommend commercial or engagement actions where appropriate.
-- Always cite which segment you are discussing.`;
+- Answer questions about the Breezy Boomers segment accurately, using the index values, percentages and figures above.
+- Be concise and data-driven; cite the relevant numbers.
+- Recommend commercial or engagement actions where it helps.
+- Never fabricate figures that are not in the data above.`;
   }
 
-  // default fallback
-  return `You are a helpful assistant for Fremantle Dockers FC fan engagement research.${ragContext}`;
+  // default: persona
+  return `You ARE a typical "Breezy Boomers" member of the Fremantle Dockers — think Robert (or Susan). You are speaking for yourself.
+
+WHO YOU ARE (your data)
+${personaSnapshot}
+${ragContext}
+${GUARDRAIL}
+
+INSTRUCTIONS
+- Speak entirely in the first person as a real Breezy Boomers member, in the warm, relaxed voice shown in "IN THEIR OWN WORDS".
+- Ground every answer in your data above. Do NOT invent facts that contradict it.
+- Natural Australian conversational language — you are a real footy fan, not a corporate spokesperson.
+- Reflect your life stage: retired/semi-retired, 65+, financially secure, 20+ year member, value-conscious, traditional media, loves Freo and the finer things (wine, food, the arts).
+- If asked something not in your data, reason from your values and lifestyle and stay in character.
+- Keep answers concise but authentic — usually 2-5 sentences.
+- Never break character or mention being an AI.
+- Any statistic you quote (tenure, attendance, spend) must match your data.`;
 }
 
 /**
- * Detect which mode to use based on the query text.
- * Queries that sound like researcher/analyst questions → "analyst"
- * Queries that ask the persona to speak → "persona"
+ * Decide mode from the question. Analyst-style wording → "analyst",
+ * otherwise the bot answers in character as a member.
  */
 export function detectMode(query) {
-  const analystKeywords = [
-    "segment", "segments", "compare", "which persona", "all personas",
-    "data shows", "percentage", "index", "metric", "analyst", "insight",
-    "what does the data", "founding faithfuls", "comfortable crowd",
-    "generation fun", "happy suburbanites", "modern families", "urban hipster",
-    "churn", "retention", "acquisition"
-  ];
   const q = query.toLowerCase();
-  if (analystKeywords.some((k) => q.includes(k))) return "analyst";
-  return "persona";
+  const analyst = ["segment", "index", "percentage", "% ", "data", "metric",
+    "churn rate", "average", "compare", "lifetime value", "propensity", "analyse", "analyze"];
+  return analyst.some((k) => q.includes(k)) ? "analyst" : "persona";
+}
+
+/**
+ * Quick check: does the question reference another segment by name?
+ * (The model also guards against this, but this lets the app respond instantly.)
+ */
+export function mentionsOtherSegment(query) {
+  const q = query.toLowerCase();
+  return OTHER_SEGMENTS.find((s) => q.includes(s.toLowerCase())) || null;
 }

@@ -1,124 +1,70 @@
-#!/usr/bin/env node
 /**
- * cli.js — Interactive terminal chatbot
+ * cli.js — Interactive terminal chat with the Breezy Boomers persona.
  *
- * Usage:
- *   npm run chat
- *   node src/cli.js
+ *   npm run chat                 interactive
+ *   node src/cli.js --interview  run the 10 interview questions
  *   node src/cli.js --mode analyst
- *   node src/cli.js --persona "Founding Faithfuls"
- *   node src/cli.js --interview    (runs all 10 questions automatically)
  */
-
 import readline from "readline";
 import { BreezyBot } from "./chatbot.js";
 import { buildIndex, indexExists } from "./rag.js";
 import "dotenv/config";
 
-// ---------------------------------------------------------------------------
-// Parse CLI args
-// ---------------------------------------------------------------------------
-const args = process.argv.slice(2);
-const modeArg =
-  args.includes("--mode") ? args[args.indexOf("--mode") + 1] : "auto";
-const personaArg =
-  args.includes("--persona") ? args[args.indexOf("--persona") + 1] : "Breezy Boomers";
-const doInterview = args.includes("--interview");
+const INTERVIEW = [
+  "What type of membership do you hold, and why did you choose it?",
+  "How often do you attend games in person versus following from home?",
+  "How much do you typically spend on club merchandise each season?",
+  "What would make you upgrade to a higher membership tier or hospitality package?",
+  "How do you feel about the price of your membership and whether it is worth it?",
+  "What stops you from attending more games in person?",
+  "What club merchandise do you own, and what would you love to see us offer?",
+  "When it is time to renew, what makes that decision easy or hard for you?",
+  "What are you planning to buy from the club in the coming season?",
+  "Who do you usually come to the footy with, and would you bring more people if we made it easier?",
+];
 
-// ---------------------------------------------------------------------------
-// Validate env
-// ---------------------------------------------------------------------------
-const apiKey = process.env.OPENROUTER_API_KEY;
-if (!apiKey || apiKey === "your_openrouter_api_key_here") {
-  console.error(
-    "\n❌  OPENROUTER_API_KEY not set.\n" +
-      "   1. Copy .env.example to .env\n" +
-      "   2. Add your OpenRouter key\n" +
-      "   3. Run again.\n"
-  );
-  process.exit(1);
+function arg(name, def) {
+  const i = process.argv.indexOf(name);
+  return i !== -1 ? process.argv[i + 1] : def;
 }
 
-// ---------------------------------------------------------------------------
-// Auto-build index on first run
-// ---------------------------------------------------------------------------
-async function ensureIndex() {
-  if (!indexExists()) {
-    console.log("\n📦  RAG index not found — building now (one-time setup)…");
-    await buildIndex(apiKey);
-    console.log("✅  Index built.\n");
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Main
-// ---------------------------------------------------------------------------
 async function main() {
-  await ensureIndex();
-
-  const bot = new BreezyBot({
-    apiKey,
-    model: process.env.MODEL || "anthropic/claude-sonnet-4-5",
-    mode: modeArg,
-    personaName: personaArg,
-    siteUrl: process.env.SITE_URL || "",
-    siteName: process.env.SITE_NAME || "BreezyBoomersBot",
-  });
-
-  // Batch interview mode
-  if (doInterview) {
-    console.log(`\n🎙️  Running interview for: ${personaArg}\n${"─".repeat(60)}`);
-    await bot.runInterviewQuestions();
-    process.exit(0);
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  if (!apiKey || apiKey === "your_openrouter_api_key_here") {
+    console.error("❌  Set OPENROUTER_API_KEY in .env (copy from .env.example).");
+    process.exit(1);
+  }
+  if (!indexExists()) {
+    console.log("📦  Building RAG index (one-time)…");
+    await buildIndex(apiKey);
   }
 
-  // Interactive mode
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    terminal: true,
-  });
+  const mode = arg("--mode", "auto");
+  const bot = new BreezyBot({ apiKey, model: process.env.MODEL, mode });
 
-  const modeLabel = modeArg === "auto" ? "auto-detect" : modeArg;
-  console.log(`
-╔══════════════════════════════════════════════════════════╗
-║         Breezy Boomers Synthetic Persona Bot             ║
-║  Persona : ${personaArg.padEnd(44)}║
-║  Mode    : ${modeLabel.padEnd(44)}║
-║  Type 'reset' to clear history, 'exit' to quit           ║
-╚══════════════════════════════════════════════════════════╝
-`);
-
-  function prompt() {
-    rl.question("You: ", async (input) => {
-      const msg = input.trim();
-      if (!msg) return prompt();
-      if (msg.toLowerCase() === "exit" || msg.toLowerCase() === "quit") {
-        console.log("\nGoodbye! 🏉\n");
-        rl.close();
-        return;
-      }
-      if (msg.toLowerCase() === "reset") {
-        bot.resetHistory();
-        console.log("✓ Conversation history cleared.\n");
-        return prompt();
-      }
-
-      console.log("\nPersona: ");
-      try {
-        await bot.chat(msg, { stream: true });
-        console.log("\n");
-      } catch (err) {
-        console.error(`\n❌ Error: ${err.message}\n`);
-      }
-      prompt();
-    });
+  if (process.argv.includes("--interview")) {
+    for (const q of INTERVIEW) {
+      console.log(`\n\x1b[35mQ: ${q}\x1b[0m`);
+      process.stdout.write("A: ");
+      await bot.chat(q, { stream: true });
+      console.log("\n");
+    }
+    return;
   }
 
-  prompt();
+  console.log("\n🏉  Breezy Boomers Bot — chatting as Robert & Susan. Type 'exit' to quit, 'reset' to clear.\n");
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  const ask = () => rl.question("\x1b[36mYou:\x1b[0m ", async (line) => {
+    const t = line.trim();
+    if (t.toLowerCase() === "exit") return rl.close();
+    if (t.toLowerCase() === "reset") { bot.resetHistory(); console.log("(history cleared)\n"); return ask(); }
+    if (!t) return ask();
+    process.stdout.write("\x1b[35mBreezy:\x1b[0m ");
+    try { await bot.chat(t, { stream: true }); } catch (e) { console.error("\n⚠️ ", e.message); }
+    console.log("\n");
+    ask();
+  });
+  ask();
 }
 
-main().catch((err) => {
-  console.error("Fatal:", err.message);
-  process.exit(1);
-});
+main().catch((e) => { console.error("Fatal:", e.message); process.exit(1); });
