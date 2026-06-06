@@ -13,12 +13,20 @@
  */
 
 import express from "express";
+import { fileURLToPath } from "url";
+import path from "path";
 import { BreezyBot } from "./chatbot.js";
 import { buildIndex, indexExists } from "./rag.js";
 import "dotenv/config";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const PUBLIC_DIR = path.join(__dirname, "..", "public");
+
 const app = express();
 app.use(express.json());
+
+// Serve the browser chat UI at /
+app.use(express.static(PUBLIC_DIR));
 
 // CORS — allow all origins in dev (tighten in production)
 app.use((req, res, next) => {

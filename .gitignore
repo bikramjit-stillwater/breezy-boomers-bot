@@ -18,3 +18,10 @@ npm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
+
+# Internal source/design docs — not for the public repo
+*.xlsx
+*.docx
+*.pptx
+*.png
+
