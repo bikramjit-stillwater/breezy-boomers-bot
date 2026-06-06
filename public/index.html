@@ -5,44 +5,124 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Breezy Boomers Bot 🏉</title>
 <style>
-  :root { --freo:#2a0a4a; --freo-light:#4b2a6b; --accent:#b89cd6; --bg:#f5f3f8; --live:#e0457b; }
+  :root {
+    --bg:#1b1533; --bg2:#221a42; --surface:#2a2150; --surface2:#332a63;
+    --border:#3d3473; --accent:#c4a9f0; --accent2:#e0457b;
+    --text:#eceaf7; --muted:#a99fcf;
+    --user-grad:linear-gradient(135deg,#7b46e0,#c2418f);
+  }
   * { box-sizing:border-box; }
-  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:var(--bg); color:#1a1a1a; height:100vh; display:flex; flex-direction:column; }
-  header { background:var(--freo); color:#fff; padding:12px 18px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
-  header h1 { font-size:18px; margin:0; font-weight:600; white-space:nowrap; }
-  header .sub { font-size:12px; color:var(--accent); }
-  header .controls { margin-left:auto; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-  .ctl-label { font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:.5px; }
-  select { background:var(--freo-light); color:#fff; border:1px solid var(--accent); border-radius:8px; padding:6px 10px; font-size:14px; }
-  button.icon { background:var(--freo-light); color:#fff; border:1px solid var(--accent); border-radius:8px; padding:6px 10px; cursor:pointer; font-size:15px; line-height:1; }
-  button.icon.active { background:var(--accent); color:var(--freo); }
-  button.reset { background:transparent; color:var(--accent); border:1px solid var(--accent); border-radius:8px; padding:6px 12px; cursor:pointer; font-size:14px; }
-  #log { flex:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:14px; max-width:820px; width:100%; margin:0 auto; }
-  .msg { display:flex; } .msg.user { justify-content:flex-end; }
-  .bubble { max-width:78%; padding:12px 16px; border-radius:16px; line-height:1.5; white-space:pre-wrap; word-wrap:break-word; box-shadow:0 1px 2px rgba(0,0,0,.08); }
-  .msg.bot .bubble { background:#fff; border-bottom-left-radius:4px; }
-  .msg.user .bubble { background:var(--freo); color:#fff; border-bottom-right-radius:4px; }
-  .bubble.thinking { color:#888; font-style:italic; }
-  .speak-btn { background:none; border:none; cursor:pointer; font-size:13px; color:var(--freo-light); margin-top:6px; padding:0; opacity:.7; }
-  .speak-btn:hover { opacity:1; }
-  .suggest { max-width:820px; margin:0 auto; padding:0 20px; display:flex; gap:8px; flex-wrap:wrap; }
-  .chip { background:#fff; border:1px solid #d4cce0; border-radius:16px; padding:6px 12px; font-size:13px; cursor:pointer; color:var(--freo); }
-  .chip:hover { background:var(--accent); color:#fff; }
-  footer { padding:14px 20px; background:#fff; border-top:1px solid #e2dded; }
-  .inputrow { display:flex; gap:10px; max-width:820px; margin:0 auto; align-items:flex-end; }
-  #input { flex:1; padding:12px 16px; border:1px solid #d4cce0; border-radius:12px; font-size:15px; resize:none; font-family:inherit; }
-  #input:focus { outline:none; border-color:var(--accent); }
-  #mic { background:#fff; color:var(--freo); border:1px solid #d4cce0; border-radius:12px; width:48px; height:46px; font-size:20px; cursor:pointer; flex-shrink:0; }
-  #mic.listening { background:var(--live); color:#fff; border-color:var(--live); animation:pulse 1.2s infinite; }
+  html,body { height:100%; }
+  body {
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:radial-gradient(1200px 600px at 80% -10%, #2a1f55 0%, var(--bg) 55%);
+    color:var(--text); display:flex; flex-direction:column; height:100vh;
+  }
+  /* Header */
+  header {
+    background:rgba(27,21,51,.85); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border); padding:12px 20px;
+    display:flex; align-items:center; gap:12px; flex-wrap:wrap; position:sticky; top:0; z-index:5;
+  }
+  .brand { display:flex; align-items:center; gap:10px; }
+  .brand .logo { font-size:22px; }
+  header h1 { font-size:17px; margin:0; font-weight:700; letter-spacing:.2px; }
+  header .sub { font-size:11px; color:var(--muted); margin-top:1px; }
+  .controls { margin-left:auto; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  .ctl-label { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; }
+  select {
+    background:var(--surface); color:var(--text); border:1px solid var(--border);
+    border-radius:9px; padding:7px 10px; font-size:13px; cursor:pointer;
+  }
+  select:focus { outline:none; border-color:var(--accent); }
+  button.icon {
+    background:var(--surface); color:var(--text); border:1px solid var(--border);
+    border-radius:9px; padding:7px 10px; cursor:pointer; font-size:15px; line-height:1;
+  }
+  button.icon.active { background:var(--accent); color:#1b1533; border-color:var(--accent); }
+  button.icon.speaking { background:var(--accent2); color:#fff; border-color:var(--accent2); }
+  .reset {
+    background:transparent; color:var(--muted); border:1px solid var(--border);
+    border-radius:9px; padding:7px 12px; cursor:pointer; font-size:13px;
+  }
+  .reset:hover { color:var(--text); border-color:var(--accent); }
+
+  /* Pinned starter questions */
+  .starters {
+    position:sticky; top:0; z-index:4; background:var(--bg2);
+    border-bottom:1px solid var(--border); padding:10px 20px;
+    display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+  }
+  .starters .lbl { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-right:2px; }
+
+  /* Chat log */
+  #log {
+    flex:1; overflow-y:auto; padding:22px 20px; display:flex; flex-direction:column;
+    gap:16px; max-width:860px; width:100%; margin:0 auto;
+  }
+  .msg { display:flex; flex-direction:column; }
+  .msg.user { align-items:flex-end; }
+  .msg.bot  { align-items:flex-start; }
+  .bubble {
+    max-width:82%; padding:13px 17px; border-radius:18px; line-height:1.55;
+    white-space:pre-wrap; word-wrap:break-word; font-size:15px;
+  }
+  .msg.bot .bubble { background:var(--surface); border:1px solid var(--border); border-bottom-left-radius:5px; }
+  .msg.user .bubble { background:var(--user-grad); color:#fff; border-bottom-right-radius:5px; }
+  .bubble.thinking { color:var(--muted); font-style:italic; }
+  .row-actions { display:flex; gap:14px; margin-top:7px; }
+  .mini-btn { background:none; border:none; cursor:pointer; font-size:12.5px; color:var(--muted); padding:0; }
+  .mini-btn:hover { color:var(--accent); }
+
+  /* Follow-ups (Perplexity style) */
+  .followups { margin-top:10px; max-width:82%; display:flex; flex-direction:column; gap:1px; }
+  .followups .fu-title { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+  .fu {
+    display:flex; align-items:center; gap:10px; padding:11px 14px; cursor:pointer;
+    border-top:1px solid var(--border); color:var(--text); font-size:14px; transition:.15s;
+  }
+  .fu:first-of-type { border-top:none; }
+  .fu:hover { color:var(--accent); }
+  .fu .plus { color:var(--accent2); font-weight:700; font-size:17px; }
+
+  /* Chips */
+  .chip {
+    background:var(--surface); border:1px solid var(--border); border-radius:18px;
+    padding:7px 13px; font-size:13px; cursor:pointer; color:var(--text); transition:.15s; line-height:1.2;
+  }
+  .chip:hover { background:var(--accent); color:#1b1533; border-color:var(--accent); }
+
+  /* Footer / input */
+  footer { padding:14px 20px 16px; background:rgba(27,21,51,.85); backdrop-filter:blur(10px); border-top:1px solid var(--border); }
+  .inputrow { display:flex; gap:10px; max-width:860px; margin:0 auto; align-items:flex-end; }
+  #input {
+    flex:1; padding:13px 16px; border:1px solid var(--border); border-radius:14px; font-size:15px;
+    resize:none; font-family:inherit; background:var(--surface); color:var(--text);
+  }
+  #input::placeholder { color:var(--muted); }
+  #input:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(196,169,240,.15); }
+  #mic {
+    background:var(--surface); color:var(--text); border:1px solid var(--border); border-radius:14px;
+    width:50px; height:48px; font-size:20px; cursor:pointer; flex-shrink:0;
+  }
+  #mic.listening { background:var(--accent2); color:#fff; border-color:var(--accent2); animation:pulse 1.2s infinite; }
   #mic:disabled { opacity:.4; cursor:not-allowed; }
-  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(224,69,123,.5);} 70%{box-shadow:0 0 0 10px rgba(224,69,123,0);} 100%{box-shadow:0 0 0 0 rgba(224,69,123,0);} }
-  #send { background:var(--freo); color:#fff; border:none; border-radius:12px; padding:0 22px; height:46px; font-size:15px; cursor:pointer; font-weight:600; flex-shrink:0; }
-  .hint { text-align:center; color:#999; font-size:12px; margin-top:8px; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(224,69,123,.5);} 70%{box-shadow:0 0 0 11px rgba(224,69,123,0);} 100%{box-shadow:0 0 0 0 rgba(224,69,123,0);} }
+  #send {
+    background:var(--user-grad); color:#fff; border:none; border-radius:14px; padding:0 24px; height:48px;
+    font-size:15px; cursor:pointer; font-weight:700; flex-shrink:0;
+  }
+  #send:hover { filter:brightness(1.08); }
+  .hint { text-align:center; color:var(--muted); font-size:11.5px; margin-top:9px; }
+  ::-webkit-scrollbar { width:9px; } ::-webkit-scrollbar-thumb { background:var(--border); border-radius:5px; }
 </style>
 </head>
 <body>
   <header>
-    <div><h1>🏉 Breezy Boomers Bot</h1><div class="sub">chatting as Robert &amp; Susan</div></div>
+    <div class="brand">
+      <span class="logo">🏉</span>
+      <div><h1>Breezy Boomers Bot</h1><div class="sub">chatting as Robert &amp; Susan</div></div>
+    </div>
     <div class="controls">
       <select id="mode" title="Answer mode">
         <option value="auto">auto</option>
@@ -51,21 +131,23 @@
       </select>
       <span class="ctl-label">Voice</span>
       <select id="gender" title="Voice gender"><option value="male">Male</option><option value="female">Female</option></select>
-      <button class="icon active" id="speakerBtn" title="Toggle voice replies">🔊</button>
+      <button class="icon active" id="speakerBtn" title="Voice replies (only after you speak a question)">🔊</button>
       <button class="reset" id="resetBtn">Reset</button>
     </div>
   </header>
 
+  <!-- Always-on starter questions, pinned at the top -->
+  <div class="starters" id="starters"><span class="lbl">Try asking</span></div>
+
   <div id="log"></div>
-  <div class="suggest" id="suggest"></div>
 
   <footer>
     <div class="inputrow">
       <textarea id="input" rows="1" placeholder="Ask Robert about membership, footy, merch…"></textarea>
-      <button id="mic" title="Speak your question">🎤</button>
+      <button id="mic" title="Speak your question (reply will be read aloud)">🎤</button>
       <button id="send">Send</button>
     </div>
-    <div class="hint">Enter to send · Shift+Enter newline · 🎤 speak · 🔊 hear replies</div>
+    <div class="hint">Enter to send · Shift+Enter newline · 🎤 speak (reply is read aloud) · 🔊 replies are silent when you type</div>
   </footer>
 
 <script>
@@ -73,21 +155,40 @@
         sendBtn=document.getElementById("send"), micBtn=document.getElementById("mic"),
         modeSel=document.getElementById("mode"), genderSel=document.getElementById("gender"),
         speakerBtn=document.getElementById("speakerBtn"), resetBtn=document.getElementById("resetBtn"),
-        suggest=document.getElementById("suggest");
+        startersEl=document.getElementById("starters");
   const sessionId="web_"+Math.random().toString(36).slice(2);
-  let ttsOn=true;
 
-  const QUESTIONS=[
+  // 3 pinned starter questions (always at the top)
+  const STARTERS=[
     "What type of membership do you hold, and why did you choose it?",
-    "How often do you attend games in person versus from home?",
-    "How much do you spend on club merchandise each season?",
-    "How do you feel about the price of your membership?",
+    "How do you feel about the price of your membership and whether it is worth it?",
     "Who do you usually come to the footy with?"
   ];
-  QUESTIONS.forEach(q=>{ const c=document.createElement("div"); c.className="chip"; c.textContent=q;
-    c.onclick=()=>{ input.value=q; send(); }; suggest.appendChild(c); });
+  // Pool used to suggest follow-ups under each answer
+  const POOL=[
+    "How often do you attend games in person versus from home?",
+    "How much do you spend on club merchandise each season?",
+    "What would make you upgrade to a higher membership tier or hospitality package?",
+    "What stops you from attending more games in person?",
+    "What club merchandise do you own, and what would you love to see us offer?",
+    "When it is time to renew, what makes that decision easy or hard for you?",
+    "What are you planning to buy from the club in the coming season?",
+    "What do you enjoy doing outside the footy?",
+    "Walk me through your typical matchday.",
+    "What brands and shops do you spend the most on?"
+  ];
+  const asked=new Set();
+  function pickFollowups(n=3){
+    let avail=POOL.filter(q=>!asked.has(q));
+    if(avail.length<n) avail=POOL.slice();
+    avail=avail.slice().sort(()=>Math.random()-0.5);
+    return avail.slice(0,n);
+  }
 
-  // ---- Text to speech ----
+  STARTERS.forEach(q=>{ const c=document.createElement("div"); c.className="chip"; c.textContent=q;
+    c.onclick=()=>ask(q); startersEl.appendChild(c); });
+
+  // ---- Voice output (TTS) ----
   const synth=window.speechSynthesis; let voices=[];
   function loadVoices(){ if(synth) voices=synth.getVoices(); }
   if(synth){ loadVoices(); synth.onvoiceschanged=loadVoices; }
@@ -97,39 +198,72 @@
     const male=["male","david","mark","guy","daniel","alex","george","james","fred","google uk english male"];
     for(const h of (g==="female"?fem:male)){ const m=pool.find(v=>v.name.toLowerCase().includes(h)); if(m) return m; }
     return pool[0]||null; }
-  function speak(t){ if(!ttsOn||!synth||!t) return; synth.cancel();
+  function speak(t){ if(!synth||!t) return; synth.cancel();
     const u=new SpeechSynthesisUtterance(t); const v=pickVoice(genderSel.value);
-    if(v){u.voice=v;u.lang=v.lang;} else u.lang="en-AU"; synth.speak(u); }
-  speakerBtn.onclick=()=>{ ttsOn=!ttsOn; speakerBtn.classList.toggle("active",ttsOn);
-    speakerBtn.textContent=ttsOn?"🔊":"🔇"; if(!ttsOn&&synth) synth.cancel(); };
+    if(v){u.voice=v;u.lang=v.lang;} else u.lang="en-AU";
+    u.onstart=()=>speakerBtn.classList.add("speaking");
+    u.onend=()=>speakerBtn.classList.remove("speaking");
+    synth.speak(u); }
+  let allowVoice=true; // master toggle
+  function stopSpeaking(){ if(synth) synth.cancel(); speakerBtn.classList.remove("speaking"); }
+  // Click speaker: if currently speaking -> stop. Otherwise toggle allow on/off.
+  speakerBtn.onclick=()=>{
+    if(synth && synth.speaking){ stopSpeaking(); return; }
+    allowVoice=!allowVoice;
+    speakerBtn.classList.toggle("active",allowVoice);
+    speakerBtn.textContent=allowVoice?"🔊":"🔇";
+    speakerBtn.title=allowVoice?"Voice replies on (after you speak a question)":"Voice replies muted";
+  };
 
-  // ---- Speech to text ----
+  // ---- Voice input (STT) ----
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition; let recognition=null,listening=false;
+  let voiceInputPending=false; // set true only when a question came from the mic
   if(SR){ recognition=new SR(); recognition.lang="en-AU"; recognition.interimResults=true; recognition.continuous=false;
     recognition.onresult=e=>{ let t=""; for(let i=0;i<e.results.length;i++) t+=e.results[i][0].transcript;
-      input.value=t; autoGrow(); if(e.results[e.results.length-1].isFinal){ stopListening(); if(t.trim()) send(); } };
+      input.value=t; autoGrow();
+      if(e.results[e.results.length-1].isFinal){ stopListening(); if(t.trim()){ voiceInputPending=true; ask(t.trim()); } } };
     recognition.onerror=stopListening; recognition.onend=stopListening;
   } else { micBtn.disabled=true; micBtn.title="Voice input needs Chrome or Edge"; }
-  function startListening(){ if(!recognition||listening) return; if(synth) synth.cancel();
+  function startListening(){ if(!recognition||listening) return; stopSpeaking(); // stop any reply if mic tapped mid-speech
     try{ recognition.start(); }catch(_){ return; } listening=true; micBtn.classList.add("listening"); }
   function stopListening(){ if(!recognition) return; listening=false; micBtn.classList.remove("listening"); try{ recognition.stop(); }catch(_){} }
   micBtn.onclick=()=> listening?stopListening():startListening();
 
   // ---- Chat ----
   function addBubble(text,who,opts={}){ const m=document.createElement("div"); m.className="msg "+who;
-    const wrap=document.createElement("div"); const b=document.createElement("div");
-    b.className="bubble"+(opts.thinking?" thinking":""); b.textContent=text; wrap.appendChild(b);
-    m.appendChild(wrap); log.appendChild(m); log.scrollTop=log.scrollHeight; return {bubble:b,wrap}; }
-  function addSpeak(wrap,getText){ if(!synth) return; const b=document.createElement("button");
-    b.className="speak-btn"; b.textContent="🔊 Replay"; b.onclick=()=>{ const p=ttsOn; ttsOn=true; speak(getText()); ttsOn=p; }; wrap.appendChild(b); }
+    const b=document.createElement("div"); b.className="bubble"+(opts.thinking?" thinking":""); b.textContent=text;
+    m.appendChild(b); log.appendChild(m); log.scrollTop=log.scrollHeight; return {msg:m,bubble:b}; }
+
+  function addFollowups(msgEl, full){
+    const actions=document.createElement("div"); actions.className="row-actions";
+    if(synth){ const r=document.createElement("button"); r.className="mini-btn"; r.textContent="🔊 Replay";
+      r.onclick=()=>speak(full); actions.appendChild(r); }
+    const cp=document.createElement("button"); cp.className="mini-btn"; cp.textContent="⧉ Copy";
+    cp.onclick=()=>navigator.clipboard?.writeText(full); actions.appendChild(cp);
+    msgEl.appendChild(actions);
+
+    const fus=pickFollowups(3);
+    const box=document.createElement("div"); box.className="followups";
+    const t=document.createElement("div"); t.className="fu-title"; t.textContent="Related"; box.appendChild(t);
+    fus.forEach(q=>{ const row=document.createElement("div"); row.className="fu";
+      row.innerHTML='<span class="plus">+</span>'; const s=document.createElement("span"); s.textContent=q; row.appendChild(s);
+      row.onclick=()=>ask(q); box.appendChild(row); });
+    msgEl.appendChild(box);
+    log.scrollTop=log.scrollHeight;
+  }
+
   function autoGrow(){ input.style.height="auto"; input.style.height=Math.min(input.scrollHeight,140)+"px"; }
   input.addEventListener("input",autoGrow);
 
-  async function send(){
-    const message=input.value.trim(); if(!message) return;
+  // Single entry point. fromVoice is only true when triggered by the mic.
+  async function ask(message){
+    message=(message||"").trim(); if(!message) return;
+    const fromVoice=voiceInputPending; voiceInputPending=false;
+    asked.add(message);
     input.value=""; autoGrow(); sendBtn.disabled=true;
+    stopSpeaking();
     addBubble(message,"user");
-    const {bubble,wrap}=addBubble("…","bot",{thinking:true});
+    const {msg,bubble}=addBubble("…","bot",{thinking:true});
     try{
       const res=await fetch("/chat/stream",{ method:"POST", headers:{"Content-Type":"application/json"},
         body:JSON.stringify({ message, sessionId, mode:modeSel.value }) });
@@ -143,18 +277,23 @@
             full+=evt.token; bubble.textContent=full; log.scrollTop=log.scrollHeight; }
           else if(evt.error){ bubble.classList.remove("thinking"); bubble.textContent="⚠️ "+evt.error; } } }
       if(first){ bubble.classList.remove("thinking"); bubble.textContent=full||"(no response)"; }
-      if(full){ addSpeak(wrap,()=>full); speak(full); }
+      if(full){
+        addFollowups(msg, full);
+        // Speak ONLY when the question was spoken via the mic (and not muted).
+        if(fromVoice && allowVoice) speak(full);
+      }
     }catch(err){ bubble.classList.remove("thinking"); bubble.textContent="⚠️ "+err.message; }
     finally{ sendBtn.disabled=false; input.focus(); }
   }
-  sendBtn.onclick=send;
-  input.addEventListener("keydown",e=>{ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); send(); } });
-  resetBtn.onclick=async()=>{ if(synth) synth.cancel();
-    await fetch("/reset",{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({sessionId}) });
-    log.innerHTML=""; addBubble("Righto, fresh start. What would you like to know?","bot"); };
 
-  addBubble("G'day! I'm a Breezy Boomers member — think Robert or Susan. Ask me about my membership, getting to the footy, merch, or anything Freo. Tap a question below or type your own.","bot");
-  input.focus();
+  sendBtn.onclick=()=>ask(input.value);
+  input.addEventListener("keydown",e=>{ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); ask(input.value); } });
+  resetBtn.onclick=async()=>{ stopSpeaking(); asked.clear();
+    await fetch("/reset",{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({sessionId}) });
+    log.innerHTML=""; greet(); };
+
+  function greet(){ addBubble("G'day! I'm a Breezy Boomers member — think Robert or Susan. Ask me about my membership, getting to the footy, merch, or anything Freo. Tap a question up top, type below, or hit 🎤 to talk.","bot"); }
+  greet(); input.focus();
 </script>
 </body>
 </html>
