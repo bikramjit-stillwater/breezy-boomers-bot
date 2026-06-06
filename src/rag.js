@@ -247,12 +247,23 @@ function loadIndex() {
 
 /**
  * Retrieve top-k relevant chunks for a query string.
+ * If `personaName` is given, retrieval is restricted to that persona's chunks
+ * (plus the cross-segment overview) so the context matches the selected member.
  * Returns array of { personaName, category, text, score }.
  */
-export async function retrieve(query, apiKey, topK = 5) {
+export async function retrieve(query, apiKey, topK = 5, personaName = null) {
   const index = loadIndex();
   const [qVec] = await embed([query], apiKey);
-  const scored = index.map((entry) => ({
+
+  let pool = index;
+  if (personaName) {
+    pool = index.filter(
+      (e) => e.personaName === personaName || e.personaName === "All Segments"
+    );
+    if (pool.length === 0) pool = index; // fall back if name doesn't match
+  }
+
+  const scored = pool.map((entry) => ({
     personaName: entry.personaName,
     category: entry.category,
     text: entry.text,
@@ -260,6 +271,82 @@ export async function retrieve(query, apiKey, topK = 5) {
   }));
   scored.sort((a, b) => b.score - a.score);
   return scored.slice(0, topK);
+}
+
+/**
+ * Build a rich, authoritative first-person profile for a single persona,
+ * straight from personas_raw.json. Used as the grounding "snapshot" in
+ * persona mode so the bot embodies whichever segment is selected — not a
+ * hardcoded one. Pulls in the granular fields (comms, lifestyle, buying
+ * intent, brands) that the RAG chunks leave out.
+ * @returns {string|null} formatted profile, or null if persona not found.
+ */
+export function getPersonaProfile(personaName) {
+  const raw = JSON.parse(
+    fs.readFileSync(path.join(DATA_DIR, "personas_raw.json"), "utf8")
+  );
+  const p = raw.personas?.[personaName];
+  if (!p) return null;
+  const brands = raw.brand_affinities?.[personaName] || [];
+
+  // Format a stored decimal string (e.g. "0.7119") as a percentage.
+  const pct = (v) =>
+    v === undefined || v === null || v === ""
+      ? null
+      : (parseFloat(v) * 100).toFixed(0) + "%";
+  const val = (v) => (v === undefined || v === null || v === "" ? null : v);
+
+  const lines = [];
+  const add = (label, v) => { if (v !== null && v !== undefined && v !== "") lines.push(`- ${label}: ${v}`); };
+
+  lines.push(`PERSONA: ${personaName}`);
+  lines.push("");
+  lines.push("IDENTITY");
+  add("Profile", val(p["Profile"]));
+  if (p["Average Age"]) add("Average age", parseFloat(p["Average Age"]).toFixed(0));
+  add("Occupation", val(p["Occupation"]));
+  add("Location", val(p["Location"]));
+  add("Relationship", val(p["Relationship"]));
+  add("Lifestyle", val(p["Lifestyle"]));
+  add("Share of Fremantle members", pct(p["% of Members"]));
+
+  if (p["About Me"]) {
+    lines.push("", "IN THEIR OWN WORDS (use this voice)", p["About Me"]);
+  }
+  if (p["Bio"]) lines.push("", "BIO", p["Bio"]);
+  if (p["Personal Attitudes"]) lines.push("", "VALUES & ATTITUDES", p["Personal Attitudes"]);
+
+  lines.push("", "MEMBERSHIP & ENGAGEMENT");
+  add("Churn propensity", val(p["Churn Propensity"]));
+  add("Engagement", val(p["Engagement Score"]));
+  add("2024 membership index", val(p["2024 Membership Index Score"]));
+  add("Average tenure (years)", val(p["Average Years Tenure"]));
+  add("2025 attendance index", val(p["2025 Attendance Index Score"]));
+  add("MCC index", val(p["2025 MCC Index Score"]));
+
+  lines.push("", "COMMS & DIGITAL BEHAVIOUR");
+  add("Email opted-in", pct(p["Email Opted-In %"]));
+  add("SMS opted-in", pct(p["SMS Opted-In %"]));
+  add("Email open rate", pct(p["Email Opens (if in email data)"]));
+  add("Email click rate", pct(p["Email Click (if in email data)"]));
+  add("Engaged in competition", pct(p["Engaged in Competition"]));
+  add("Completed survey", pct(p["Completed Survey"]));
+
+  lines.push("", "LIFESTYLE, MEDIA & SPENDING");
+  add("Lifestyle interests", val(p["Lifestyle Interests"]));
+  add("Media exposure (top channels)", val(p["Media Exposure"]));
+  add("Media index scores", val(p["Media Index Scores"]));
+  add("Social platforms", val(p["Social Platforms"]));
+  add("Buying intentions", val(p["Buying Intentions"]));
+  add("High spend categories", val(p["High Spend Categories"]));
+  if (brands.length) {
+    add(
+      "Top over-indexed brands",
+      brands.map((b) => `${b.brand} (${b.index})`).join(", ")
+    );
+  }
+
+  return lines.join("\n");
 }
 
 export function indexExists() {

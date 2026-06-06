@@ -5,7 +5,7 @@
  * Maintains conversation history for multi-turn sessions.
  */
 
-import { retrieve, indexExists } from "./rag.js";
+import { retrieve, indexExists, getPersonaProfile } from "./rag.js";
 import { buildSystemPrompt, detectMode } from "./prompts.js";
 import { chatComplete, chatStream } from "./openrouter.js";
 
@@ -61,19 +61,26 @@ export class BreezyBot {
       );
     }
 
-    // 1. Retrieve relevant context chunks
-    const chunks = await retrieve(userMessage, this.apiKey, this.topK);
-    const contextTexts = chunks.map((c) => c.text);
-
-    // 2. Determine mode
+    // 1. Determine mode (auto-detect or explicit)
     const resolvedMode =
       this.mode === "auto" ? detectMode(userMessage) : this.mode;
 
-    // 3. Build system prompt
+    // 2. Retrieve relevant context chunks.
+    //    In persona mode, restrict retrieval to the selected persona so the
+    //    bot only sees its own segment's data.
+    const personaFilter = resolvedMode === "persona" ? this.personaName : null;
+    const chunks = await retrieve(userMessage, this.apiKey, this.topK, personaFilter);
+    const contextTexts = chunks.map((c) => c.text);
+
+    // 3. Build system prompt. In persona mode, ground it in the selected
+    //    persona's real data snapshot (not a hardcoded one).
+    const personaSnapshot =
+      resolvedMode === "persona" ? getPersonaProfile(this.personaName) : null;
     const systemPrompt = buildSystemPrompt(
       resolvedMode,
       contextTexts,
-      this.personaName
+      this.personaName,
+      personaSnapshot
     );
 
     // 4. Append user message to history
