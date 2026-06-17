@@ -67,7 +67,7 @@ function buildPersonaCard() {
   return {
     name: "Robert & Susan",
     segment: "Breezy Boomers",
-    voiceLine: "I'm Robert — Freo to the core.",
+    voiceLine: "We're Robert & Susan — Freo to the core.",
     meta: `Perth, WA · ${age} · Retired`,
     bio: "Fremantle to the core and part of the Purple Army. Downsized to a low-maintenance townhouse near the cafes, galleries and theatre. Comfortable in retirement, value-conscious, and proud of a 20+ year membership.",
     traits: ["20+ year member", "Loyal renewer", "Value-conscious", "Traditional media",
