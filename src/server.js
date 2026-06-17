@@ -11,7 +11,7 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { BreezyBot } from "./chatbot.js";
-import { buildIndex, indexExists } from "./rag.js";
+import { buildIndex, indexExists, loadDataset } from "./rag.js";
 import "dotenv/config";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -47,24 +47,81 @@ function getBot(sessionId = "default", mode = "auto") {
 app.get("/health", (req, res) =>
   res.json({ status: "ok", persona: "Breezy Boomers", indexReady: indexExists(), sessions: sessions.size }));
 
+// Persona card + segment snapshot for the side panels — derived from the real
+// dataset so the numbers always match source (and never need to be recited in chat).
+function buildPersonaCard() {
+  const ds = loadDataset();
+  const p = ds.profile || {};
+  const pct = (k, d = 0) => { const n = parseFloat(p[k]); return isNaN(n) ? null : Math.round(n * 100 * 10 ** d) / 10 ** d; };
+  const age = Math.round(parseFloat(p["Average Age"]) || 67);
+
+  // Media skew (over / under-indexed channels) parsed from the 20-channel chart.
+  const mediaChart = (ds.charts || []).find((c) => c.slide === 19);
+  let mediaUp = [], mediaDown = [];
+  if (mediaChart) {
+    const pts = [...mediaChart.points].sort((a, b) => b.value - a.value);
+    mediaUp = pts.slice(0, 4).map((x) => ({ label: x.label, value: `+${Math.round(x.value)}` }));
+    mediaDown = pts.slice(-4).reverse().map((x) => ({ label: x.label, value: `${Math.round(x.value)}` }));
+  }
+
+  return {
+    name: "Robert & Susan",
+    segment: "Breezy Boomers",
+    voiceLine: "I'm Robert — Freo to the core.",
+    meta: `Perth, WA · ${age} · Retired`,
+    bio: "Fremantle to the core and part of the Purple Army. Downsized to a low-maintenance townhouse near the cafes, galleries and theatre. Comfortable in retirement, value-conscious, and proud of a 20+ year membership.",
+    traits: ["20+ year member", "Loyal renewer", "Value-conscious", "Traditional media",
+      "Arts & culture", "Empty nester", "Financially secure", "Cautious adopter"],
+    stats: [
+      { label: "Share of members", value: "22%" },
+      { label: "LTV median", value: "$10,450" },
+      { label: "Tenure", value: "16.9 yrs" },
+      { label: "Fan passion", value: "7.0" },
+    ],
+    snapshot: {
+      "Membership": [
+        { label: "Share of members", value: "22%", note: "largest segment" },
+        { label: "Churn", value: "Low (10%)", note: "vs 22% club baseline" },
+        { label: "Avg tenure", value: "16.9 yrs", note: "1.4x club avg" },
+        { label: "Reserved seat", value: "56%", note: "top membership type" },
+        { label: "Attendance", value: "6–9 games", note: "2025 season" },
+      ],
+      "Value & passion": [
+        { label: "LTV avg / median", value: "$13,450 / $10,450" },
+        { label: "Annual spend", value: "$586 avg", note: "vs $442 club" },
+        { label: "Fan Passion Score", value: "7.0" },
+        { label: "Engagement", value: "Moderate–High" },
+      ],
+      "Media skew (index)": [...mediaUp, ...mediaDown],
+    },
+  };
+}
+
+app.get("/persona", (req, res) => {
+  try { res.json(buildPersonaCard()); }
+  catch (err) { console.error(err); res.status(500).json({ error: err.message }); }
+});
+
 app.post("/chat", async (req, res) => {
-  const { message, sessionId = "default", mode = "auto" } = req.body;
+  const { message, sessionId = "default", mode = "auto", speaker = "male" } = req.body;
   if (!message) return res.status(400).json({ error: "message is required" });
   try {
-    const reply = await getBot(sessionId, mode).chat(message);
-    res.json({ reply, sessionId });
+    let meta = null;
+    const reply = await getBot(sessionId, mode).chat(message, { speaker, onMeta: (m) => { meta = m; } });
+    res.json({ reply, sessionId, mode: meta?.mode, evidence: meta?.evidence || [] });
   } catch (err) { console.error(err); res.status(500).json({ error: err.message }); }
 });
 
 app.post("/chat/stream", async (req, res) => {
-  const { message, sessionId = "default", mode = "auto" } = req.body;
+  const { message, sessionId = "default", mode = "auto", speaker = "male" } = req.body;
   if (!message) return res.status(400).json({ error: "message is required" });
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Cache-Control", "no-cache");
   res.setHeader("Connection", "keep-alive");
   try {
     await getBot(sessionId, mode).chat(message, {
-      stream: true,
+      stream: true, speaker,
+      onMeta: (m) => res.write(`data: ${JSON.stringify({ meta: m })}\n\n`),
       onToken: (token) => res.write(`data: ${JSON.stringify({ token })}\n\n`),
     });
     res.write(`data: ${JSON.stringify({ done: true })}\n\n`);

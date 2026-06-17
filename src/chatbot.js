@@ -20,7 +20,7 @@ export class BreezyBot {
 
   resetHistory() { this.history = []; }
 
-  async chat(userMessage, { stream = false, onToken } = {}) {
+  async chat(userMessage, { stream = false, onToken, onMeta, speaker = "male" } = {}) {
     if (!indexExists()) throw new Error("RAG index not built. Run: npm run build-index");
 
     const resolvedMode = this.mode === "auto" ? detectMode(userMessage) : this.mode;
@@ -28,7 +28,18 @@ export class BreezyBot {
     // Retrieve grounding context + the fixed persona snapshot.
     const chunks = await retrieve(userMessage, this.apiKey, this.topK);
     const snapshot = getPersonaProfile();
-    const systemPrompt = buildSystemPrompt(resolvedMode, chunks.map((c) => c.text), snapshot);
+    const systemPrompt = buildSystemPrompt(resolvedMode, chunks.map((c) => c.text), snapshot, speaker);
+
+    // Surface the evidence that grounds this answer (for the UI's live drawer).
+    const evidence = chunks.map((c) => ({
+      title: c.title,
+      category: c.category,
+      score: Math.round((c.score || 0) * 100),
+      snippet: String(c.text || "").replace(/\s+/g, " ").trim().slice(0, 300),
+    }));
+    if (onMeta) onMeta({ mode: resolvedMode, evidence });
+    this.lastEvidence = evidence;
+    this.lastMode = resolvedMode;
 
     this.history.push({ role: "user", content: userMessage });
 

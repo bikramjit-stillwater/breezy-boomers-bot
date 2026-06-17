@@ -1,6 +1,6 @@
 # Breezy Boomers Bot — Handoff
 
-_Last updated: 2026-06-06_
+_Last updated: 2026-06-17_
 
 A RAG chatbot that answers **as a Fremantle Dockers "Breezy Boomers" member** (Robert & Susan),
 for member research. Powered by **OpenRouter → Claude**. Vectors stored in a plain **JSON file** — no database.
@@ -159,7 +159,44 @@ The Render server builds the index automatically on boot if `data/vectors/index.
 
 ---
 
-## 9. Commit history (high level)
+## 9. Persona tuning — V1 testing feedback (2026-06-17)
+
+Reviewer feedback from **`Synthetic Persona V1 Testing .xlsx`** (sheet _Synethic Interview_,
+"Notes for Improvement" column, + _General Thoughts & Questions_). The notes across ~14 questions
+traced back to a handful of root causes, all fixed in the **persona prompt + grounding snapshot**
+(`src/prompts.js` persona instructions and `src/rag.js` → `getPersonaProfile`). **No index rebuild
+needed** — the embedded corpus (`buildChunks`) was untouched, so existing `data/vectors/index.json`
+stays valid.
+
+**Addressed in this pass:**
+- **No analyst stats in member voice.** Persona must not say "our segment", "16.9 years", "10% churn",
+  "$586", "1.4X", "Fan Passion Score", percentages or indices. The snapshot now separates "WHO YOU ARE
+  (things you naturally know)" from a clearly-labelled "SEGMENT RESEARCH DATA — analyst figures only,
+  do not quote in persona voice" block. (Q19 "our segment", Q23/Q2A stat-dumps)
+- **Bio colour de-emphasised.** Italian family / La Sosta / wine / Cultural Centre demoted to a "LIGHT
+  BACKGROUND COLOUR — use sparingly, most answers should NOT mention these" section; the full Bio prose
+  is no longer injected wholesale. (Q3, General #7, #14)
+- **No markdown / asterisks / bold headers / bullet-list report format** — plain conversational prose only. (Q6, Q18, Q20, General #12)
+- **Fewer em-dashes.** (General #13)
+- **No fabricated checkable specifics** (exact opponents, dates, scores, "5 or 6 years back", weeknight
+  health appointments). Persona now speaks with imperfect human memory and stays general. (Q9, Q10, General #11)
+- **Personal Attitudes treated as background guardrails, not lines to recite** ("I obey the rules…"). (Q8)
+- **No third-person "For me (Robert)"** phrasing. (Q23)
+- **In-character pushback preserved** when a question miscasts the persona (reviewer liked Q35/Q2A).
+
+**How to verify (needs the OpenRouter key):** run `npm run interview` (or the live app) and re-check the
+flagged rows. Look specifically for: zero segment percentages/indices in persona answers; no `**bold**`/`*asterisks*`;
+sparse colour references; no invented specific games; consistent conversational tone start-to-finish.
+
+**Deferred (larger scope, not in this pass — see General Thoughts):**
+- Differentiate Robert vs Susan (#1); make/remove the synthesised voice (#2).
+- Latency grows deep in a conversation (#6) — likely history length; consider trimming/summarising history.
+- Lean harder on **behavioural + category-level spend** signal over attitudes/bio and noisy individual brands (#8, #9).
+- Document/clarify auto-vs-persona-vs-analyst mode logic and how related follow-up questions surface (#3, #4, #5).
+
+---
+
+## 10. Commit history (high level)
 1. Browser chat UI served at `/`
 2. Persona dropdown fixed for all segments (superseded)
 3. Rebuilt as Breezy-Boomers-only with 100% source data
