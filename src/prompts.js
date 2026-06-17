@@ -66,8 +66,12 @@ INSTRUCTIONS
 - Be concise and data-driven; cite the relevant numbers.
 - Recommend commercial or engagement actions where it helps.
 - Never fabricate figures that are not in the data above.
-- Write in clean, plain prose. Do NOT use markdown: no ** bold **, no asterisks for emphasis, no # headings, no bullet/numbered lists. If you list figures, write them in normal sentences or comma-separated, not as a bulleted table.
-- Go easy on em-dashes (—); prefer full stops and commas. Keep it readable and professional.`;
+
+FORMATTING — STRICT, applies to EVERY answer including data-heavy ones:
+- Reply in flowing plain-text paragraphs of full sentences ONLY.
+- NEVER use markdown or layout characters of any kind: no asterisks (* or **), no bold, no italics, no "#"/"##" headings, no bullet points, no "•", no lines that begin with "-", no numbered lists, no tables.
+- Even when presenting many figures (media channels, brands, spend categories), you MUST weave them into ordinary sentences. Example of the REQUIRED style: "They over-index most on free-to-air TV at 1.7x, print newspapers at 1.5x and radio at 1.4x, while under-indexing on podcasts at 0.4x and social media at 0.7x." Do NOT lay figures out as a bulleted or headed list under any circumstances.
+- Use minimal em-dashes (—); prefer commas and full stops. Keep it readable and professional prose.`;
   }
 
   // default: persona
