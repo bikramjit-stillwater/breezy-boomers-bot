@@ -249,6 +249,7 @@
   function renderStarters(){
     startersEl.innerHTML='<span class="lbl">Try asking</span>';
     LENSES[lens].slice(0,3).forEach(q=>{ const c=document.createElement("div"); c.className="chip"; c.textContent=q; c.onclick=()=>ask(q); startersEl.appendChild(c); });
+    startersEl.style.display="";   // selecting/refreshing a lens shows its suggestions
   }
   Object.keys(LENSES).forEach((name,i)=>{ const b=document.createElement("button");
     b.className="lens"+(name===lens?" active":""); b.textContent=name;
