@@ -31,13 +31,14 @@ Scoped to Breezy Boomers only; it politely declines questions about other segmen
 ## 2. What it does
 
 - Answers the **10 research interview questions** + any free-form question, **in character**.
-- **3 modes** (dropdown):
-  - `persona` — speaks as Robert/Susan in first person (the research voice).
+- **3 modes** (tabs, top-right of chat):
+  - `persona` — speaks as Robert/Susan in first person (the research voice). **No segment stats are spoken in this voice** (see §10).
   - `analyst` — describes the segment with data/numbers (LTV, churn, indices).
   - `auto` — picks persona vs analyst from your wording (default). Each message judged independently.
   - Mode can be switched **mid-conversation**; it applies from the next message; chat history is retained.
+- **Voice = Male / Female** control: sets both the answer **tone** (reads as a man vs a woman, via `speaker` in the prompt) **and** the read-aloud TTS voice. It does *not* rename the persona (it stays Robert & Susan).
 - **Guardrail:** only represents Breezy Boomers. Asked about other segments → *"Sorry, I can only speak as a Breezy Boomers member…"* (`src/prompts.js` → `GUARDRAIL`).
-- **Web UI** (`public/index.html`): dark theme, 3 pinned starter questions, Perplexity-style follow-ups under each answer, voice input (🎤) and voice output (🔊, male/female). Voice output plays **only** when the question was asked by voice; typed questions stay silent (Replay button available).
+- **Web UI** (`public/index.html`): **3-pane layout** — persona card (left), chat (middle), live evidence drawer (right). See §10. Plus a **team-lens bar** (Consumer/Marketing/Commercial/Foundation/Executive) that swaps the suggested questions only, follow-ups under each answer, and voice input (🎤) / output (🔊). Voice output plays **only** when the question was asked by voice; typed questions stay silent (Replay button available).
 
 ---
 
@@ -55,8 +56,9 @@ Scoped to Breezy Boomers only; it politely declines questions about other segmen
 ## 4. Architecture
 
 ```
-Browser (public/index.html)
-   │  POST /chat or /chat/stream { message, sessionId, mode }
+Browser (public/index.html)  3-pane UI
+   │  GET  /persona                         → left card + right segment snapshot
+   │  POST /chat or /chat/stream { message, sessionId, mode, speaker }
    ▼
 server.js (Express)
    ▼
@@ -64,21 +66,25 @@ chatbot.js  BreezyBot.chat():
    1. detectMode()           prompts.js  (if mode=auto)
    2. retrieve()             rag.js      → embeds question, cosine top-6 chunks
    3. getPersonaProfile()    rag.js      → fixed Robert & Susan grounding snapshot
-   4. buildSystemPrompt()    prompts.js  → persona|analyst prompt + guardrail
-   5. chatStream()           openrouter.js → Claude → streamed tokens
+   4. onMeta({mode,evidence}) → streamed first, feeds the right "EVIDENCE · LIVE" drawer
+   5. buildSystemPrompt()    prompts.js  → persona|analyst prompt + guardrail + gender tone
+   6. chatStream()           openrouter.js → Claude → streamed tokens
 ```
+
+Endpoints: `GET /` UI · `GET /persona` card+snapshot · `POST /chat` · `POST /chat/stream` (SSE: `meta` then `token`…) · `POST /reset` · `GET /health`.
 
 ### File map
 ```
 data/breezy_boomers.json   complete dataset (Excel + PPTX). profile / spend_propensity / knowledge / charts / raw_slides
 data/vectors/index.json    generated embeddings (gitignored; built on first run / boot)
 src/rag.js                 chunk, embed, retrieve, getPersonaProfile, buildIndex
-src/prompts.js             persona/analyst prompts, GUARDRAIL, detectMode, mentionsOtherSegment
+src/prompts.js             persona/analyst prompts, GUARDRAIL, detectMode, gender-tone note
 src/openrouter.js          OpenRouter chat client (complete + stream)
-src/chatbot.js             BreezyBot orchestrator + per-session history
+src/chatbot.js             BreezyBot orchestrator + per-session history; emits onMeta (evidence)
 src/cli.js                 terminal chat / --interview
-src/server.js              Express server + serves the web UI
-public/index.html          browser chat UI (dark theme, voice, follow-ups)
+src/server.js              Express server + serves the web UI; /persona card+snapshot builder
+public/index.html          browser 3-pane UI (persona card · chat · evidence drawer; lenses, voice)
+public/persona.jpg         Robert & Susan photo (from the persona deck) — used as the card avatar
 scripts/buildIndex.js      one-time index builder
 _extract/                  Python extractors (source files → dataset) — reproducible
 ```
@@ -196,9 +202,45 @@ sparse colour references; no invented specific games; consistent conversational 
 
 ---
 
-## 10. Commit history (high level)
+## 10. UI revamp + persona tone & photo (2026-06-17) — on branch `test`
+
+> All of the below is committed on the **`test`** branch (pushed to origin), **not `main`**. The live
+> Render app deploys from `main`, so it is unaffected until `test` is merged. Local `.env` holds the
+> OpenRouter key (gitignored). After editing any `src/*.js` or prompt, **restart the server** — Node does
+> not hot-reload.
+
+**3-pane UI** (`public/index.html`, light theme, modelled on the client's "Classic chat + data drawer" mock):
+- **Left — persona card:** name "Robert & Susan", photo avatar (`public/persona.jpg`), age/location, bio,
+  trait chips, and headline stats (Share 22%, LTV median $10,450, Tenure 16.9 yrs, Fan Passion 7.0).
+- **Middle — chat:** Auto/Persona/Analyst **mode tabs**; a **team-lens bar** (Consumer/Marketing/Commercial/
+  Foundation/Executive) that only swaps the suggested questions (it does **not** change the answer — labelled
+  as such in the UI); follow-up chips; voice in/out.
+- **Right — "EVIDENCE · LIVE":** per answer shows the **retrieved source chunks** ("Grounded in", no % shown)
+  + a persistent **segment snapshot** (membership, value, and colour-coded media-skew indices). All values
+  come from `GET /persona` → built from the dataset, never invented. Core principle: **numbers live in the
+  panels, not in the persona's spoken answer.**
+
+**Persona answer quality** (from `Synthetic Persona V1 Testing .xlsx` feedback — see §9 for the per-question
+mapping; all verified intact via a 14-question regression):
+- Persona voice: no segment stats/percentages spoken, no markdown/asterisks, fewer em-dashes, no fabricated
+  specifics, no verbatim attitudes; in-character pushback when miscast is preserved.
+
+**Gender tone** (`speaker` param, the Voice Male/Female control): shapes how the reply *reads* (man vs woman)
+via a tone note in `buildSystemPrompt` — generic/reusable, does **not** rename the persona. Also sets the TTS voice.
+
+**Data provenance — two source files only** (`data/breezy_boomers.json` → `source_files`):
+- `Fremantle 2025 Segmentation AI-Ready Format 2026_05 V2.xlsx` (sheets: Persona Info, Breezy Boomers)
+- `Fremantle_Personas_050426_V1.2.pptx` (slides 13–20; the card photo is from slide 13)
+
+**Deferred / not done** (larger scope): differentiate Robert vs Susan in *content* (currently tone-only);
+latency on deep conversations; lean harder on behavioural/category-level spend signal; topic-lens answers.
+
+---
+
+## 11. Commit history (high level)
 1. Browser chat UI served at `/`
 2. Persona dropdown fixed for all segments (superseded)
 3. Rebuilt as Breezy-Boomers-only with 100% source data
 4. UI redesign: dark theme, pinned starters, follow-ups, smarter voice
 5. Capture PPTX chart data (Media Exposure 20-channel, movement, annual spend)
+6. _(branch `test`)_ Persona tuning + 3-pane UI (persona card · chat · live evidence drawer), team lenses, gender tone, Robert & Susan photo avatar
