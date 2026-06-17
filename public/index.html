@@ -146,9 +146,8 @@
       <div><h1>Breezy Boomers Bot</h1><div class="sub">Synthetic member persona · grounded in segment data</div></div>
     </div>
     <div class="right">
-      <span class="vlabel">Voice</span>
-      <select id="gender" title="Tone of the reply (reads as male or female) and the read-aloud voice"><option value="male">Male</option><option value="female">Female</option></select>
-      <button class="btn icon active" id="speakerBtn" title="Voice replies (only after you speak a question)">🔊</button>
+      <span class="vlabel">Tone</span>
+      <select id="gender" title="Tone of the reply — reads as male or female"><option value="male">Male</option><option value="female">Female</option></select>
       <button class="btn" id="resetBtn">Reset</button>
     </div>
   </div>
@@ -181,7 +180,7 @@
       <div class="tryask" id="starters"><span class="lbl">Try asking</span></div>
       <div class="inputbar">
         <textarea id="input" rows="1" placeholder="Ask Robert about membership, footy, merch…"></textarea>
-        <button id="mic" title="Speak your question (reply read aloud)">🎤</button>
+        <button id="mic" title="Speak your question">🎤</button>
         <button id="send">Send</button>
       </div>
     </div>
@@ -204,7 +203,7 @@
 <script>
   const log=document.getElementById("log"), input=document.getElementById("input"),
         sendBtn=document.getElementById("send"), micBtn=document.getElementById("mic"),
-        genderSel=document.getElementById("gender"), speakerBtn=document.getElementById("speakerBtn"),
+        genderSel=document.getElementById("gender"),
         resetBtn=document.getElementById("resetBtn"), startersEl=document.getElementById("starters"),
         tabsEl=document.getElementById("tabs"), lensbarEl=document.getElementById("lensbar"),
         groundedEl=document.getElementById("grounded"), snapshotEl=document.getElementById("snapshot");
@@ -242,9 +241,9 @@
   };
   let lens="Consumer";
   const asked=new Set();
-  // Follow-ups draw from every lens so suggestions stay varied.
-  const POOL=[].concat(...Object.values(LENSES));
-  function pickFollowups(n=3){ let a=POOL.filter(q=>!asked.has(q)); if(a.length<n) a=POOL.slice();
+  // Follow-ups are based on the currently-selected LENS (the team tab).
+  function pickFollowups(n=3){ const set=LENSES[lens]||[];
+    let a=set.filter(q=>!asked.has(q)); if(a.length<n) a=set.slice();
     return a.sort(()=>Math.random()-0.5).slice(0,n); }
 
   function renderStarters(){
@@ -293,34 +292,14 @@
           <div><div class="ti">${e.title}</div><div class="ca">${e.category}</div></div></div>`).join("");
   }
 
-  // ---- Voice output (TTS) ----
-  const synth=window.speechSynthesis; let voices=[];
-  function loadVoices(){ if(synth) voices=synth.getVoices(); }
-  if(synth){ loadVoices(); synth.onvoiceschanged=loadVoices; }
-  function pickVoice(g){ if(!voices.length) loadVoices();
-    const en=voices.filter(v=>/en[-_]/i.test(v.lang)); const pool=en.length?en:voices;
-    const fem=["female","zira","aria","jenny","susan","samantha","karen","catherine","fiona","moira","tessa","google uk english female","google us english"];
-    const male=["male","david","mark","guy","daniel","alex","george","james","fred","google uk english male"];
-    for(const h of (g==="female"?fem:male)){ const m=pool.find(v=>v.name.toLowerCase().includes(h)); if(m) return m; }
-    return pool[0]||null; }
-  function speak(t){ if(!synth||!t) return; synth.cancel();
-    const u=new SpeechSynthesisUtterance(t); const v=pickVoice(genderSel.value);
-    if(v){u.voice=v;u.lang=v.lang;} else u.lang="en-AU";
-    u.onstart=()=>speakerBtn.classList.add("speaking"); u.onend=()=>speakerBtn.classList.remove("speaking"); synth.speak(u); }
-  let allowVoice=true;
-  function stopSpeaking(){ if(synth) synth.cancel(); speakerBtn.classList.remove("speaking"); }
-  speakerBtn.onclick=()=>{ if(synth&&synth.speaking){ stopSpeaking(); return; }
-    allowVoice=!allowVoice; speakerBtn.classList.toggle("active",allowVoice);
-    speakerBtn.textContent=allowVoice?"🔊":"🔇"; };
-
-  // ---- Voice input (STT) ----
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition; let recognition=null,listening=false; let voiceInputPending=false;
+  // ---- Voice input (STT) only — voice output (TTS) removed ----
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition; let recognition=null,listening=false;
   if(SR){ recognition=new SR(); recognition.lang="en-AU"; recognition.interimResults=true; recognition.continuous=false;
     recognition.onresult=e=>{ let t=""; for(let i=0;i<e.results.length;i++) t+=e.results[i][0].transcript; input.value=t; autoGrow();
-      if(e.results[e.results.length-1].isFinal){ stopListening(); if(t.trim()){ voiceInputPending=true; ask(t.trim()); } } };
+      if(e.results[e.results.length-1].isFinal){ stopListening(); if(t.trim()){ ask(t.trim()); } } };
     recognition.onerror=stopListening; recognition.onend=stopListening;
   } else { micBtn.disabled=true; micBtn.title="Voice input needs Chrome or Edge"; }
-  function startListening(){ if(!recognition||listening) return; stopSpeaking(); try{ recognition.start(); }catch(_){ return; } listening=true; micBtn.classList.add("listening"); }
+  function startListening(){ if(!recognition||listening) return; try{ recognition.start(); }catch(_){ return; } listening=true; micBtn.classList.add("listening"); }
   function stopListening(){ if(!recognition) return; listening=false; micBtn.classList.remove("listening"); try{ recognition.stop(); }catch(_){} }
   micBtn.onclick=()=> listening?stopListening():startListening();
 
@@ -331,7 +310,6 @@
 
   function addFollowups(msgEl,full){
     const actions=document.createElement("div"); actions.className="row-actions";
-    if(synth){ const r=document.createElement("button"); r.className="mini"; r.textContent="🔊 Replay"; r.onclick=()=>speak(full); actions.appendChild(r); }
     const cp=document.createElement("button"); cp.className="mini"; cp.textContent="⧉ Copy"; cp.onclick=()=>navigator.clipboard?.writeText(full); actions.appendChild(cp);
     msgEl.appendChild(actions);
     const box=document.createElement("div"); box.className="followups";
@@ -346,8 +324,8 @@
 
   async function ask(message){
     message=(message||"").trim(); if(!message) return;
-    const fromVoice=voiceInputPending; voiceInputPending=false;
-    asked.add(message); input.value=""; autoGrow(); sendBtn.disabled=true; stopSpeaking();
+    asked.add(message); input.value=""; autoGrow(); sendBtn.disabled=true;
+    startersEl.style.display="none";   // pinned starters show only before the first question
     addBubble(message,"user");
     const {msg,bubble}=addBubble("…","bot",{thinking:true});
     try{
@@ -365,16 +343,17 @@
           else if(evt.error){ bubble.classList.remove("thinking"); bubble.textContent="⚠️ "+evt.error; } } }
       if(first){ bubble.classList.remove("thinking"); bubble.textContent=full||"(no response)"; }
       if(meta&&meta.mode){ const f=document.createElement("div"); f.className="modeflag"; f.textContent="answered as "+meta.mode; msg.appendChild(f); }
-      if(full){ addFollowups(msg,full); if(fromVoice&&allowVoice) speak(full); }
+      if(full){ addFollowups(msg,full); }
     }catch(err){ bubble.classList.remove("thinking"); bubble.textContent="⚠️ "+err.message; }
     finally{ sendBtn.disabled=false; input.focus(); }
   }
 
   sendBtn.onclick=()=>ask(input.value);
   input.addEventListener("keydown",e=>{ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); ask(input.value); } });
-  resetBtn.onclick=async()=>{ stopSpeaking(); asked.clear();
+  resetBtn.onclick=async()=>{ asked.clear();
     await fetch("/reset",{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({sessionId}) });
-    log.innerHTML=""; groundedEl.innerHTML="<div class='ev-empty'>Ask a question and the source chunks that ground the answer appear here.</div>"; greet(); };
+    log.innerHTML=""; groundedEl.innerHTML="<div class='ev-empty'>Ask a question and the source chunks that ground the answer appear here.</div>";
+    startersEl.style.display=""; renderStarters(); greet(); };
 
   function greet(){ addBubble("G'day! I'm a Breezy Boomers member — think Robert or Susan. Ask me about my membership, getting to the footy, merch, or anything Freo. The panel on the left is who I am; the panel on the right shows the data behind each answer.","bot"); }
   greet(); input.focus();
