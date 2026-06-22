@@ -1,8 +1,8 @@
 """
 build_dataset.py — Turn the raw source capture into one clean, complete
-Breezy Boomers dataset that the RAG codebase will consume.
+Urban Hipster dataset that the RAG codebase will consume.
 
-Produces:  dist/breezy-boomers-bot/data/breezy_boomers.json
+Produces:  data/urban_hipster.json
 with three parts:
   - profile          : all 102 Excel 'Persona Info' fields (cleaned)
   - spend_propensity : the full 311-brand, 6-category matrix
@@ -13,8 +13,8 @@ import json, os, re
 
 HERE = os.path.dirname(__file__)
 ROOT = os.path.dirname(HERE)
-SRC = os.path.join(HERE, "breezy_boomers_source.json")
-OUT_DIR = os.path.join(ROOT, "dist", "breezy-boomers-bot", "data")
+SRC = os.path.join(HERE, "urban_hipster_source.json")
+OUT_DIR = os.path.join(ROOT, "data")
 
 src = json.load(open(SRC, encoding="utf-8"))
 
@@ -62,10 +62,10 @@ def fnum(key, mult=1, suffix="", dp=0):  # formatted numeric profile lookup
 
 # 1. Identity & demographics
 add("identity", "Identity & demographics", "\n".join([
-    f"Persona: Breezy Boomers (representative members: Robert & Susan)",
+    f"Persona: Urban Hipster (representative member: Rebecca)",
     f"Profile: {f('Profile')}",
     f"Consumer attributes: {f('Consumer Attributes')}",
-    f"Average age: {fnum('Average Age')} (segment skews 65+)",
+    f"Average age: {fnum('Average Age')} (segment skews 25-34)",
     f"Relationship: {f('Relationship')}",
     f"Average SES: {fnum('Average SES', 100)} / 100",
     f"Occupation: {f('Occupation')}",
@@ -76,8 +76,8 @@ add("identity", "Identity & demographics", "\n".join([
     f"State distribution - WA {f('WA')}, VIC {f('VIC')}, NSW {f('NSW')}, QLD {f('QLD')}, SA {f('SA')}, TAS {f('TAS')}, ACT {f('ACT')}, NT {f('NT')}",
 ]))
 
-# 2. Bio narrative (Excel Bio field; slide 15 carries the same story verbatim)
-add("bio", "Bio - Robert & Susan", f('Bio'))
+# 2. Bio narrative (Excel Bio field; slide 65 carries the same story verbatim)
+add("bio", "Bio - Rebecca", f('Bio'))
 
 # 3. About me / who I am
 add("voice", "About me (first-person voice)", f('About Me'))
@@ -87,7 +87,7 @@ add("attitudes", "Personal attitudes & values", f('Personal Attitudes'))
 
 # 5. Membership & engagement metrics
 add("membership", "Membership & engagement metrics", "\n".join([
-    f"Churn propensity: {f('Churn Propensity')} (segment churn 10% vs club baseline 22% - the lowest of all segments)",
+    f"Churn propensity: {f('Churn Propensity')} (segment churn 47% vs club baseline 22% - the HIGHEST of all segments; only segment to record a net contraction)",
     f"Engagement score: {f('Engagement Score')}",
     f"2024 membership index: {f('2024 Membership Index Score')}",
     f"Average years tenure: {f('Average Years Tenure')} (index {f('Average Years Tenure Index Score')})",
@@ -123,7 +123,7 @@ add("comms", "Communications & digital behaviour", "\n".join([
     f"Engaged in competition: {pc('Engaged in Competition')}",
     f"Completed survey: {pc('Completed Survey')}",
     f"Opt-in email index: {f('Opt-in-to Email Index Score')}, opt-in SMS index: {f('Opt-in-to SMS')}",
-    "Media exposure is primarily traditional with low digital participation; reasonably engaged on club channels but open/click rates are low.",
+    "Media exposure is heavily digital with very low traditional media exposure; low engagement across the club's key media channels (email/SMS open and click rates are low).",
 ]))
 
 # 8. Merchandise
@@ -164,47 +164,47 @@ add("values", "Cultural, sustainability & outlook", "\n".join([
     "Outlook on life: " + f('Outlook on Life'),
 ]))
 
-# 14. Commercial value (PPTX slide 16) - keep the slide text verbatim for fidelity
+# 14. Commercial value (PPTX slide 66) - keep the slide text verbatim for fidelity
 add("commercial_value", "Lifetime value, annual spend & fan passion score",
-    "From the member analytics (Breezy Boomers):\n" +
-    "Lifetime Value Estimate - Minimum $1,100, Maximum $82,300, Average $13,450, Median $10,450.\n" +
-    "Annual Membership Spend - Minimum $45, Maximum $3,600, Average $586, Median $455.\n" +
-    "Fan Passion Score (FPS): 7.0 (indicative score most highly indexed for this group).\n" +
-    "Average membership tenure 16.9 years (1.4x). Average attendance 2025: 6 to 9 games.\n" +
-    "Top memberships: Season Reserved Seat 56%, 3 Game Pass 10%, Purple Army 4%.\n" +
-    "Top price codes: Category 2 Adult 13%, Category 4 Adult 12%, GA 3 Adult 9%.")
+    "From the member analytics (Urban Hipster):\n" +
+    "Lifetime Value Estimate - Minimum $3,100, Maximum $345,350, Average $29,350, Median $31,250.\n" +
+    "Annual Membership Spend - Minimum $23, Maximum $3,600, Average $297, Median $318.\n" +
+    "Fan Passion Score (FPS): 5.0 (indicative score most highly indexed for this group).\n" +
+    "Average membership tenure 8.3 years (0.7x). Average attendance 2025: 4 to 7 games.\n" +
+    "Top memberships: Season Reserved Seat 28%, 3 Game Pass 13%, 5MONEYP 4%, Melbourne 3%, Purple Army 3%.\n" +
+    "Top price codes: Category 4 Adult 10%, GA 3 Adult 10%, Category 2 Adult 6%, Category 3 Adult 4%, Melbourne Adult 3%.")
 
-# 15. Membership movement (slide 14)
-add("movement", "Membership movement 2024-2025", slides.get(14, ""))
+# 15. Membership movement (slide 63)
+add("movement", "Membership movement 2024-2025", slides.get(63, ""))
 
-# 15b. CHARTS from the persona deck (slides 13-20) - data a text-only
+# 15b. CHARTS from the persona deck (slides 62-70) - data a text-only
 #      extractor would miss (native PowerPoint charts).
 deck_charts = [c for c in src.get("pptx_charts", [])
-               if 13 <= c.get("slide", 0) <= 20 and "points" in c]
+               if 62 <= c.get("slide", 0) <= 70 and "points" in c]
 
-media_chart = next((c for c in deck_charts if c["slide"] == 19), None)
+media_chart = next((c for c in deck_charts if c["slide"] == 69), None)
 if media_chart:
     lines = [f"{clean(p['label'])}: {p['value']}" for p in media_chart["points"]]
     add("media_exposure_chart",
-        "Media exposure index - full 20-channel chart (slide 19)",
-        "Breezy Boomers media exposure index by channel. Positive = over-indexed "
+        "Media exposure index - full 20-channel chart (slide 69)",
+        "Urban Hipster media exposure index by channel. Positive = over-indexed "
         "(consume more than average); negative = under-indexed (less than average):\n"
         + "\n".join(lines))
 
-mv_chart = next((c for c in deck_charts if c["slide"] == 14), None)
+mv_chart = next((c for c in deck_charts if c["slide"] == 63), None)
 if mv_chart:
     lines = [f"{clean(p['label'])}: {int(p['value'])}" for p in mv_chart["points"]]
     add("movement_chart",
-        "Membership movement 2024-2025 - member counts (slide 14)",
-        "Breezy Boomers segment member movement (counts):\n" + "\n".join(lines))
+        "Membership movement 2024-2025 - member counts (slide 63)",
+        "Urban Hipster segment member movement (counts):\n" + "\n".join(lines))
 
-spend_chart = next((c for c in deck_charts if c["slide"] == 16), None)
+spend_chart = next((c for c in deck_charts if c["slide"] == 66 and "Urban" in (c.get("title") or "")), None)
 if spend_chart:
     pts = ", ".join(f"{clean(p['label'])} ${p['value']}" for p in spend_chart["points"])
     add("annual_spend_chart",
-        "Annual membership spend - Breezy Boomers vs club (slide 16)",
-        f"Breezy Boomers annual membership spend: {pts} (club baseline for comparison "
-        "is lower).")
+        "Annual membership spend - Urban Hipster vs club (slide 66)",
+        f"Urban Hipster annual membership spend: {pts} (the club/Fremantle population "
+        "average is HIGHER: Average $442, Median $373 - Urban Hipsters spend below the club average).")
 
 out_charts = deck_charts  # stored verbatim below
 
@@ -212,16 +212,16 @@ out_charts = deck_charts  # stored verbatim below
 for cat, brands in spend.items():
     lines = [f"{b}: {i}" for b, i in brands.items() if i]
     add("spend_propensity", f"Spend propensity - {cat}",
-        f"Breezy Boomers spend propensity index vs population for {cat} "
+        f"Urban Hipster spend propensity index vs population for {cat} "
         f"(1.0x = average; higher = over-indexed):\n" + "\n".join(lines))
 
 # ---------------------------------------------------------------------------
 out = {
-    "segment": "Breezy Boomers",
-    "characters": "Robert & Susan",
+    "segment": "Urban Hipster",
+    "characters": "Rebecca",
     "source_files": [
-        "Fremantle 2025 Segmentation AI-Ready Format 2026_05 V2.xlsx (sheets: Persona Info, Breezy Boomers)",
-        "Fremantle_Personas_050426_V1.2.pptx (slides 13-20)",
+        "Fremantle 2025 Segmentation AI-Ready Format 2026_05 V2.xlsx (sheets: Persona Info, Urban Hipster)",
+        "Fremantle_Personas_050426_V1.2.pptx (slides 62-70)",
     ],
     "profile": profile,
     "spend_propensity": spend,
@@ -231,7 +231,7 @@ out = {
 }
 
 os.makedirs(OUT_DIR, exist_ok=True)
-path = os.path.join(OUT_DIR, "breezy_boomers.json")
+path = os.path.join(OUT_DIR, "urban_hipster.json")
 with open(path, "w", encoding="utf-8") as fp:
     json.dump(out, fp, indent=2, ensure_ascii=False)
 

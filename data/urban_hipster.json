@@ -1,0 +1,867 @@
+{
+  "segment": "Urban Hipster",
+  "characters": "Rebecca",
+  "source_files": [
+    "Fremantle 2025 Segmentation AI-Ready Format 2026_05 V2.xlsx (sheets: Persona Info, Urban Hipster)",
+    "Fremantle_Personas_050426_V1.2.pptx (slides 62-70)"
+  ],
+  "profile": {
+    "Segment Name": "Urban Hipster",
+    "Profile": "\"Urban Hipster\" fans are socially active, trend-conscious individuals who enjoy exploring new experiences and maintaining a stylish, modern lifestyle. They are career-focused and value independence, often spending on dining out, fitness, travel, and technology that enhances their image and convenience. With a strong preference for authenticity, they favour brands that align with their values of sustainability and creativity.",
+    "Consumer Attributes": "\"Urban Hipster\" fans:\nTrend-Conscious: Keeps up with the latest fashion, technology, and cultural trends, often setting themselves apart with a distinctive style.\nExperience-Seeking: Prefers spending on experiences like dining out, live music, and travel rather than material possessions.\nSocially Active: Highly engaged in social activities, both in-person and online, valuing connections and building their personal brand.\nCareer-Driven: Focused on professional growth and financial independence, often investing in further education or career-enhancing tools.\nSustainability-Oriented: Favours brands and products that are environmentally friendly, ethically produced, and socially conscious.\nTech-Savvy: Quick to adopt new technology, especially if it enhances their lifestyle or aligns with their interests in creativity and convenience.\nUrban Lifestyle: Enjoys the perks of inner-city living, such as proximity to cafes, cultural events, and boutique shopping.\nAuthenticity-Focused: Values originality and uniqueness in brands, favouring local, artisanal, or niche offerings over mainstream options.",
+    "Bio": "Rebecca was introduced to the Dockers by her dad Steve when she was 5 years old, and it quickly became part her DNA. She loves the club and loves the social side of being part of the Purple army and attending most games with her best mates. But sometimes work and life can get so busy that there just isn't enough time to go to the footy. Rebecca worked in Melbourne for a few years after graduating, before heading back to her beloved Fremantle, away from Melbourne winters and back with family and friends. Working as a People & Culture manager in an ad agency keeps Rebecca very busy, but not so busy that she doesn't have time for fun with friends and exploring new life experiences. Rebecca is a career woman who enjoys being financially independent and in control over her future. Rebecca rents an apartment in Northbridge close to work, her gym, pubs, bars, restaurants, and most importantly the beach. Life is good and the only thing that could make it better would be a Freo premiership!",
+    "About Me": "I love being part of the Purple Army\nI enjoy being the centre of attention \nI'm always looking for new things to experience\nI set ambitious personal goals\nBeing able to enjoy the finer things in life is important to me.",
+    "Average Age": "31.4956252278526",
+    "% Age Range <25": "0.0659107016300493",
+    "% Age 25 - 34": "0.740609496810769",
+    "% Age 35 - 44": "0.121545003543585",
+    "% Age 45 - 54": "0.0191353649893692",
+    "% Age 55 - 64": "0.0147058823529411",
+    "% Age 65+": "0.0109851169383415",
+    "% No Age": "0.0271084337349396",
+    "Relationship": "Single or Couple without kids",
+    "Average SES": "0.662739192062363",
+    "Occupation": "Business professional, manager student",
+    "Location": "Inner urban reasonably affluent area living in a house",
+    "Lifestyle": "Exercises at gym regularly; Uses ride share / taxis; Invests in further education; Holiday Traveler; Career oriented",
+    "High Spend Categories": "Body Corp / Rent Fees; Tertiary Education Fees; Sports participation; Public Transport / Taxis; Gym Health Club Fees; Overseas / Local holidays",
+    "Media Index Scores": "Streaming: 1.1X; Subscription TV: 0.7X; FTA TV: 0.5X; Radio: 0.5X; Internet Browse: 0.9X; Podcasts: 1.5X; Social media: 1.2X",
+    "% of Members": "0.12988447553735",
+    "% Females": "0.397058823529411",
+    "VIC": "0.0643160878809355",
+    "Missing": "0.0527994330262225",
+    "NSW": "0.0111622962437987",
+    "QLD": "0.00779588944011339",
+    "WA": "0.849397590361446",
+    "SA": "0.00797306874557052",
+    "TAS": "0.000531537916371368",
+    "ACT": "0.00460666194188519",
+    "NT": "0.00141743444365698",
+    "Personal Attitudes": "I want the feeling of power that having money can bring; I like to impress others by displaying signs of affluence; I pursue status and power; I am still trying to work out what I want from life; I want to be admired for my achievements; I can be a bit unreliable at times; I adopt the latest technologies and use them easily; I want my life to be full of excitement; I maintain a high level of physical fitness; I enjoy doing things that are risky or extreme; I try to get as much as I can while putting in the least possible effort; I go out of my way to look stylish and attractive",
+    "Churn Propensity": "High",
+    "Engagement Score": "Low to Moderate",
+    "2024 Membership Index Score": "0.8",
+    "Average Years Tenure Index Score": "0.7",
+    "Tenure 0 - 1 Years Index Score": "1.7",
+    "Tenure 2 - 4 Years Index Score": "1.4",
+    "Tenure 5 -8 Years Index Score": "0.9",
+    "Tenure 9 - 12 Years Index Score": "0.7",
+    "Tenure 13 - 20 Years Index Score": "0.6",
+    "Tenure 21+ Years Index Score": "0.6",
+    "2024 Churn": "1.5",
+    "2025 Attendance Index Score": "1.2",
+    "2025 MCC Index Score": "NA",
+    "2025 Non-Access Index Score": "1.11005760528145",
+    "2025 Attendance 0 games Index Score": "1.17790722487845",
+    "2025 Attendance 1-4 Games Index Score": "1.25983597629337",
+    "2025 Attendance 5 - 8 games Index Score": "0.815843946475717",
+    "2025 Attendance 9 - 10 games Index Score": "0.662975265511753",
+    "2025 Attendance 11+ Games Index Score": "0.718783322152954",
+    "Opt-in-to Email Index Score": "0.909146719080875",
+    "Opt-in-to SMS": "0.994726091404137",
+    "Top Memberships by %": "Season Reserved Seat 28%; 3 Game Pass 13%; Melbourne 3%; 5MONEYP 4%; Purple Army 3%",
+    "Top Price Codes by %": "Category 4 Adult 10%; GA 3 Adult 10%; Category 2 Adult 6%; Category 3 Adult 4%; Melbourne Adult 3%",
+    "Event Index Score": "Non-Access (1.0x); Premium (1.0x); Purple Army (0.8x); Category 3 (0.7x); Category 2 (0.6x)",
+    "Merchandise Purchase Propensity Index": "1.4",
+    "Merchandise Orders Per Annum Index": "0.9",
+    "Merchandise Cart Size Index": "1.1",
+    "Merchandise Wishist Index": "NA",
+    "Merchandise Abandoned Cart Index": "NA",
+    "% Purchased Merch": "0.0974486180014171",
+    "Average Merch Order per Year": "1.53068592057761",
+    "$ Spent on Merch where Purchased": "179.715072202166",
+    "Merch per Member (Propensity x Value)": "17.512985420126",
+    "Average Years Tenure": "8.25041911148365",
+    "% Tenure 0-1 Years": "0.323370543752251",
+    "% Tenure 2-4 Years": "0.238926899531869",
+    "% Tenure 5-8 Years": "0.136838314728124",
+    "% Tenure 9-12 Years": "0.0923658624414836",
+    "% Tenure 13-20 Years": "0.13611811307166",
+    "% Tenure 21+ Years": "0.0723802664746129",
+    "% 2025 MCC": "NA",
+    "% 2025 Non-Access": "0.0524450744153083",
+    "% 2025 No Attendance": "0.283132530120482",
+    "% 2025 Attendance 1 - 4 games": "0.326541459957477",
+    "% 2025 Attendance 5 - 8 games": "0.167434443656981",
+    "% 2025 Attendance 9 - 10 games": "0.092487597448618",
+    "% 2025 Attendance 11+ games": "0.0779588944011339",
+    "% 2022 Members": "0.388022678951096",
+    "% 2023 Members": "0.431963146704461",
+    "% 2024 Members": "0.505846917080081",
+    "Email Open Rate % If Opted In": "0.318029767315398",
+    "Email Click Rate if Opted In": "0.051647979798281",
+    "Lifestyle Interests": "Dating; Playing Sport; Video Games; Gym & Fitness; Self or further education; Board Games; Blogging or Social Media; Entertaining at Home; Going to Pubs or Bars",
+    "Media Exposure": "Podcasts; Public Transport; Cinema; Online Magazines; Streaming Music App; Drive; Video games; Pay TV",
+    "Social Platforms": "Reddit; LinkedIn; Telegram; TikTok; X / Twitter; YouTube; WhatsApp",
+    "Social Media Check Frequency": "1.3x",
+    "Social Media Post Frequency": "1.5x",
+    "Buying Drivers": "Most popular; Most exclusive; Most stylish; Most technically advanced; Most reward points",
+    "Buying Intentions": "Ethical / ESG Investment; Mortgage Refinancing; Share Trading App; Luxury brand item; Cryptocurrency; Cosmetic procedure; Investment in shares or similar; Buying an investment property",
+    "Buying Behaviour": "Best quality, regardless of price; Like to see others with new technology before buying; Most Technically advanced; Online reviews as a guide; Uses BNPL",
+    "Email Opted-In %": "0.566087880935506",
+    "SMS Opted-In %": "0.927356484762579",
+    "Email Opens (if in email data)": "0.318029767315398",
+    "Email Click (if in email data)": "0.051647979798281",
+    "Engaged in Competition": "0.607547838412471",
+    "Completed Survey": "0.0265768958185683",
+    "Cultural Diversity": "Moderate to High: Urban Hipsters members have a moderate to high level of cultural diversity with good representation of people born outside Australia, second generation Australians, and / or have worked overseas. Urban Hipsters have a higher percentage of males to the Australian population and slightly more than the Fremantle member base. Religious affiliations are also diverse which is consistent with the cultural background of Urban Hipsters members.",
+    "Sustainability": "High: Urban Hipsters members have a high level of awareness and interest in Sustainability and invest time to ensure they are well informed. Socially aware and environmentally conscious, they are most likely to volunteer, join environmental movements, and back politicians on their green credentials - extending their values into ethical investing, structured fitness, and mindful practices like yoga and meditation.",
+    "Political Values": "Moderate to Progressive: Urban Hipsters members take a genuine but measured interest in politics - progressive in outlook and drawn to parties with strong environmental and social credentials, without being vocal or dogmatic about their views. When it comes to casting a vote, backing politicians who champion green policy and deliver meaningful social good is what matters most to this segment.",
+    "Outlook on Life": "Positive: Urban Hipsters members have a pretty positive Outlook on Life and see themselves as generally pretty lucky to enjoy the life they lead, which they think is better off than others. They are generally very good in health and lead an active and healthy lifestyle. Urban Hipsters members are optimistic about the future both for themselves and the world and look forward to what's ahead."
+  },
+  "spend_propensity": {
+    "Retail & Supermarkets": {
+      "Book Stores": "1.1x",
+      "Building / Hardware": "1.0x",
+      "Clothing Stores": "1.1x",
+      "Gardening / Nursery": "0.6x",
+      "Florists": "1.0x",
+      "Homewares / Furniture": "0.9x",
+      "Health Food": "1.5x",
+      "Liquor Stores": "1.1x",
+      "Newsagencies": "1.0x",
+      "Office & Printing": "1.2x",
+      "PO & Parcel Delivery": "0.7x",
+      "Online Marketplace": "0.9x",
+      "Amazon": "0.9x",
+      "Catch of the Day": "0.3x",
+      "eBay": "0.7x",
+      "Kogan": "0.7x",
+      "Temu": "0.8x",
+      "Outdoor / Camping": "1.0x",
+      "Pharmacies": "0.9x",
+      "Photo & Camera": "0.9x",
+      "Second Hand / Thrift": "0.8x",
+      "Shoe Stores": "1.1x",
+      "Sports Stores": "1.2x",
+      "Supermarket": "1.0x",
+      "Toy & Games Stores": "1.1x",
+      "Vineyards": "1.1x",
+      "ALDI": "0.7x",
+      "Autobarn": "0.7x",
+      "Best & Less": "0.8x",
+      "BIG W": "0.9x",
+      "The Bottle-O": "1.2x",
+      "Bunnings": "1.0x",
+      "BWS": "1.0x",
+      "Cellarbrations": "2.3x",
+      "City Beach": "2.4x",
+      "Coles": "1.0x",
+      "Costco": "1.5x",
+      "Cotton On": "1.2x",
+      "Dan Murphy's": "1.0x",
+      "David Jones": "1.0x",
+      "First Choice Liquor": "1.1x",
+      "The Good Guys": "1.2x",
+      "Harvey Norman": "0.8x",
+      "IGA": "1.6x",
+      "Ikea": "1.5x",
+      "JB Hi-Fi": "1.4x",
+      "Kmart": "1.1x",
+      "Liquorland": "1.2x",
+      "Mecca": "1.3x",
+      "Myer": "1.3x",
+      "OnePass": "0.8x",
+      "Petbarn": "1.2x",
+      "PETstock": "0.7x",
+      "SHEIN": "1.0x",
+      "Supercheap Auto": "1.0x",
+      "Target": "1.1x",
+      "TK Maxx": "0.4x",
+      "Uniqlo": "1.7x",
+      "Vintage Cellars": "1.9x",
+      "Woolworths": "0.9x"
+    },
+    "Tourism & Travel": {
+      "Airlines": "1.4x",
+      "Jetstar": "1.0x",
+      "Qantas": "1.4x",
+      "Virgin Australia": "1.5x",
+      "Caravan & Camping": "1.1x",
+      "Duty Free": "1.6x",
+      "EV Charging Station": "0.7x",
+      "Fuel": "1.0x",
+      "Hotels & Resorts": "1.3x",
+      "Motels & Apartments": "0.7x",
+      "Public Transport": "1.7x",
+      "Rideshare Services": "1.7x",
+      "DiDi": "2.6x",
+      "Uber": "1.6x",
+      "Road Tolls": "0.2x",
+      "Scooter Rental Services": "1.1x",
+      "Taxi Services": "0.6x",
+      "Travel Agency": "1.9x",
+      "Airbnb": "1.4x",
+      "Booking.com": "1.2x",
+      "Streaming Services": "Index",
+      "Streaming Service Provider": "1.0x",
+      "Amazon Prime": "1.0x",
+      "Apple": "1.1x",
+      "Audible": "1.0x",
+      "Binge": "1.0x",
+      "BritBox": "0.3x",
+      "Candy Crush": "0.6x",
+      "Crunchyroll": "1.9x",
+      "Disney Plus": "1.1x",
+      "Foxtel": "0.3x",
+      "Hayu": "1.3x",
+      "Kayo Sports": "1.2x",
+      "Netflix": "1.1x",
+      "OnlyFans": "1.7x",
+      "Paramount Plus": "0.8x",
+      "Roblox": "1.0x",
+      "Spotify": "1.3x",
+      "Stan": "0.9x",
+      "Steam": "1.4x",
+      "TikTok": "1.6x"
+    },
+    "QSR & Dining": {
+      "Convenience Stores": "1.1x",
+      "7-Eleven": "1.0x",
+      "EzyMart": "0.3x",
+      "NightOwl": "0.9x",
+      "Eating Out": "1.0x",
+      "Bakery": "0.8x",
+      "Cafes": "1.1x",
+      "Hotels & Bars": "1.2x",
+      "Leagues & Clubs": "0.4x",
+      "Restaurants": "1.2x",
+      "Vegan / Veg Rest.": "1.6x",
+      "Chatime": "1.1x",
+      "The Coffee Club": "1.3x",
+      "Dome Cafe": "6.5x",
+      "Gloria Jean's Coffees": "0.5x",
+      "Jamaica Blue": "2.8x",
+      "me&u": "1.6x",
+      "Soul Origin": "1.2x",
+      "Starbucks": "1.2x",
+      "Zarraffas Coffee": "0.2x",
+      "Sporting Globe Bar & Grill": "1.8x",
+      "Takeaway & Fast Food": "1.0x",
+      "Baker's Delight": "0.6x",
+      "Boost Juice": "1.4x",
+      "Breadtop": "1.1x",
+      "Brumby's Bakeries": "0.5x",
+      "Domino's": "1.2x",
+      "Donut King": "0.4x",
+      "El Jannah": "0.2x",
+      "Fish and Chips": "1.0x",
+      "Grill'd": "1.8x",
+      "Guzman y Gomez": "0.8x",
+      "Hungry Jack's": "1.4x",
+      "KFC": "0.9x",
+      "Krispy Kreme": "1.4x",
+      "McDonald's": "1.0x",
+      "Muffin Break": "1.5x",
+      "Nando's": "3.0x",
+      "Nespresso": "1.3x",
+      "Oporto": "0.6x",
+      "Pizza Hut": "1.1x",
+      "Red Rooster": "1.6x",
+      "Schnitz": "0.3x",
+      "Subway": "1.2x",
+      "Sushi": "1.0x",
+      "Zambrero": "2.6x",
+      "Tea, Juice & Yoghurt Bars": "1.2x",
+      "Food Delivery": "1.4x",
+      "DoorDash": "1.5x",
+      "MILKRUN": "1.6x",
+      "Uber Eats": "1.5x",
+      "Meal Plan Provider": "0.8x",
+      "HelloFresh": "1.0x",
+      "Lite'N'Easy": "0.3x",
+      "Youfoodz": "0.8x",
+      "Vending Machines": "1.0x"
+    },
+    "Lifestyle & Entertainment": {
+      "Leisure": "1.2x",
+      "Adult Entertainment": "1.4x",
+      "Amusement Centres & Rides": "1.3x",
+      "Timezone": "1.5x",
+      "Amusement Parks": "1.0x",
+      "Cinema / Movie Theatre": "1.4x",
+      "HOYTS Cinemas": "2.0x",
+      "Village Cinemas": "0.6x",
+      "Exhibitions": "1.1x",
+      "Golf Club": "1.0x",
+      "Hobby Centres": "1.7x",
+      "Lawn Bowls": "0.9x",
+      "Lifestyle Clubs": "1.0x",
+      "Live Entertainment": "1.3x",
+      "Ticketek": "0.9x",
+      "Ticketmaster": "1.7x",
+      "Memberships": "1.2x",
+      "Online Dating": "1.4x",
+      "Outdoor Entertainment": "1.0x",
+      "Sports Clubs": "0.8x",
+      "Sports Entertainment": "1.2x",
+      "Wildlife Parks": "1.1x",
+      "Gambling": "1.0x",
+      "Online Casinos": "1.0x",
+      "Online Gambling": "1.1x",
+      "Bet365": "2.0x",
+      "Dabble": "1.5x",
+      "Neds": "1.3x",
+      "PointsBet": "1.5x",
+      "Sportsbet": "1.2x",
+      "Tabcorp": "1.1x",
+      "Tatts Online": "0.1x",
+      "EB Games": "1.4x",
+      "Nintendo": "1.4x",
+      "Sony PlayStation": "1.2x",
+      "Trade Unions": "0.7x",
+      "Vehicle Maintenance": "0.9x",
+      "Car Detailing & Wash": "1.1x",
+      "Cleaning & Home Maintenance Service Provider": "0.6x",
+      "Dry Cleaners & Laundromats": "1.3x",
+      "Personal Care": "1.2x",
+      "Alternative Medicine Clinics": "1.0x",
+      "Beauty Salons": "1.1x",
+      "Charitable Donations": "0.5x",
+      "Childcare": "1.5x",
+      "Dental Clinics": "0.9x",
+      "Fitness Centres": "1.4x",
+      "Hairdressers": "1.2x",
+      "Medical Clinics": "1.2x",
+      "Medical Specialist": "1.1x",
+      "Pet Care": "0.8x",
+      "Optical Stores": "1.0x",
+      "Optometrists": "0.5x",
+      "OPSM": "0.9x",
+      "Specsavers": "0.8x",
+      "Sports & Aquatic Centres": "1.0x",
+      "Tattoo & Piercing Studios": "0.9x",
+      "Tobacconists": "0.8x"
+    },
+    "Govt, Telco & Utilities": {
+      "Digital Service Provider": "1.1x",
+      "Internet Service Provider": "1.1x",
+      "Aussie Broadband": "1.3x",
+      "Belong": "1.0x",
+      "Dodo": "0.7x",
+      "iiNet": "1.7x",
+      "Starlink": "0.5x",
+      "TPG": "0.9x",
+      "Telecommunications": "1.0x",
+      "ALDImobile": "0.4x",
+      "amaysim": "0.9x",
+      "Boost mobile": "1.1x",
+      "Optus": "0.9x",
+      "Telstra": "1.1x",
+      "Vodafone": "1.2x",
+      "Online VPN": "1.9x",
+      "Product Subscription Provider": "0.9x",
+      "Software Subscription Provider": "1.3x",
+      "Adobe Creative Cloud": "1.2x",
+      "ChatGPT": "1.4x",
+      "Google": "1.2x",
+      "LinkedIn": "0.8x",
+      "LMCT Plus": "1.0x",
+      "Microsoft": "1.2x",
+      "Ring": "1.5x",
+      "Xero": "0.8x",
+      "Utilities": "0.8x",
+      "AGL Energy": "0.4x",
+      "Alinta Energy": "2.3x",
+      "EnergyAustralia": "0.1x",
+      "Ergon Energy": "0.1x",
+      "Origin Energy": "0.2x",
+      "Red Energy": "0.1x",
+      "Synergy": "6.2x",
+      "Rent": "0.9x",
+      "City & Shire Council Office": "1.4x",
+      "State Government Office": "0.9x",
+      "State Revenue Office": "0.2x"
+    },
+    "Insurance & Banking": {
+      "Buy Now Pay Later Provider": "1.0x",
+      "Credit Card": "0.8x",
+      "Cryptocurrency": "1.5x",
+      "Share & Investment Service Provider": "1.5x",
+      "Afterpay": "0.9x",
+      "American Express": "0.9x",
+      "ANZ": "0.6x",
+      "Apple Pay": "1.7x",
+      "Bankwest": "0.7x",
+      "Beforepay": "1.2x",
+      "Citibank": "0.7x",
+      "Coles Mastercard": "0.4x",
+      "Commonwealth Bank": "0.9x",
+      "Jacaranda Finance": "0.7x",
+      "Klarna": "1.0x",
+      "Latitude Finance": "0.7x",
+      "Lazer Money": "0.8x",
+      "Money3": "0.8x",
+      "MoneyMe": "1.1x",
+      "Moneyspot": "0.9x",
+      "MyPayNow": "1.0x",
+      "National Australia Bank": "0.7x",
+      "PayPal": "0.9x",
+      "PayPal Pay in 4": "0.8x",
+      "Remitly": "1.6x",
+      "Revolut": "2.1x",
+      "Spriggy": "1.4x",
+      "StepPay": "1.4x",
+      "Sunshine Loans": "0.9x",
+      "Swoosh": "0.7x",
+      "Wallet Wizard": "0.9x",
+      "Westpac Banking": "1.0x",
+      "Wise": "1.9x",
+      "Zip Money": "1.0x",
+      "Zip Pay": "0.9x",
+      "Insurance": "0.9x",
+      "General & Property Insurance": "0.8x",
+      "Health Insurance": "1.4x",
+      "Life & Income Insurance": "0.2x",
+      "AAMI": "0.5x",
+      "ahm": "1.1x",
+      "AIA Insurance": "0.8x",
+      "Allianz Insurance": "0.5x",
+      "APIA": "0.2x",
+      "Budget Direct": "0.5x",
+      "Bupa": "1.1x",
+      "CGU Insurance": "0.4x",
+      "HCF": "0.8x",
+      "Hollard Insurance": "0.5x",
+      "Medibank Private": "1.4x",
+      "MLC": "0.2x",
+      "nib Health Funds": "1.0x",
+      "NRMA Insurance": "0.3x",
+      "QBE Insurance": "0.2x",
+      "RAC Insurance": "2.4x",
+      "Shannons": "0.5x",
+      "Suncorp Insurance": "0.3x",
+      "Youi": "0.4x"
+    }
+  },
+  "knowledge": [
+    {
+      "id": 0,
+      "category": "identity",
+      "title": "Identity & demographics",
+      "text": "Persona: Urban Hipster (representative member: Rebecca)\nProfile: \"Urban Hipster\" fans are socially active, trend-conscious individuals who enjoy exploring new experiences and maintaining a stylish, modern lifestyle. They are career-focused and value independence, often spending on dining out, fitness, travel, and technology that enhances their image and convenience. With a strong preference for authenticity, they favour brands that align with their values of sustainability and creativity.\nConsumer attributes: \"Urban Hipster\" fans:\nTrend-Conscious: Keeps up with the latest fashion, technology, and cultural trends, often setting themselves apart with a distinctive style.\nExperience-Seeking: Prefers spending on experiences like dining out, live music, and travel rather than material possessions.\nSocially Active: Highly engaged in social activities, both in-person and online, valuing connections and building their personal brand.\nCareer-Driven: Focused on professional growth and financial independence, often investing in further education or career-enhancing tools.\nSustainability-Oriented: Favours brands and products that are environmentally friendly, ethically produced, and socially conscious.\nTech-Savvy: Quick to adopt new technology, especially if it enhances their lifestyle or aligns with their interests in creativity and convenience.\nUrban Lifestyle: Enjoys the perks of inner-city living, such as proximity to cafes, cultural events, and boutique shopping.\nAuthenticity-Focused: Values originality and uniqueness in brands, favouring local, artisanal, or niche offerings over mainstream options.\nAverage age: 31 (segment skews 25-34)\nRelationship: Single or Couple without kids\nAverage SES: 66 / 100\nOccupation: Business professional, manager student\nLocation: Inner urban reasonably affluent area living in a house\nLifestyle: Exercises at gym regularly; Uses ride share / taxis; Invests in further education; Holiday Traveler; Career oriented\nShare of Fremantle members: 13%\nGender skew: 40% female\nState distribution - WA 0.849397590361446, VIC 0.0643160878809355, NSW 0.0111622962437987, QLD 0.00779588944011339, SA 0.00797306874557052, TAS 0.000531537916371368, ACT 0.00460666194188519, NT 0.00141743444365698"
+    },
+    {
+      "id": 1,
+      "category": "bio",
+      "title": "Bio - Rebecca",
+      "text": "Rebecca was introduced to the Dockers by her dad Steve when she was 5 years old, and it quickly became part her DNA. She loves the club and loves the social side of being part of the Purple army and attending most games with her best mates. But sometimes work and life can get so busy that there just isn't enough time to go to the footy. Rebecca worked in Melbourne for a few years after graduating, before heading back to her beloved Fremantle, away from Melbourne winters and back with family and friends. Working as a People & Culture manager in an ad agency keeps Rebecca very busy, but not so busy that she doesn't have time for fun with friends and exploring new life experiences. Rebecca is a career woman who enjoys being financially independent and in control over her future. Rebecca rents an apartment in Northbridge close to work, her gym, pubs, bars, restaurants, and most importantly the beach. Life is good and the only thing that could make it better would be a Freo premiership!"
+    },
+    {
+      "id": 2,
+      "category": "voice",
+      "title": "About me (first-person voice)",
+      "text": "I love being part of the Purple Army\nI enjoy being the centre of attention \nI'm always looking for new things to experience\nI set ambitious personal goals\nBeing able to enjoy the finer things in life is important to me."
+    },
+    {
+      "id": 3,
+      "category": "attitudes",
+      "title": "Personal attitudes & values",
+      "text": "I want the feeling of power that having money can bring; I like to impress others by displaying signs of affluence; I pursue status and power; I am still trying to work out what I want from life; I want to be admired for my achievements; I can be a bit unreliable at times; I adopt the latest technologies and use them easily; I want my life to be full of excitement; I maintain a high level of physical fitness; I enjoy doing things that are risky or extreme; I try to get as much as I can while putting in the least possible effort; I go out of my way to look stylish and attractive"
+    },
+    {
+      "id": 4,
+      "category": "membership",
+      "title": "Membership & engagement metrics",
+      "text": "Churn propensity: High (segment churn 47% vs club baseline 22% - the HIGHEST of all segments; only segment to record a net contraction)\nEngagement score: Low to Moderate\n2024 membership index: 0.8\nAverage years tenure: 8.25041911148365 (index 0.7)\n2025 attendance index: 1.2\nMCC index: NA\nNon-access index: 1.11005760528145\nEvent index score: Non-Access (1.0x); Premium (1.0x); Purple Army (0.8x); Category 3 (0.7x); Category 2 (0.6x)"
+    },
+    {
+      "id": 5,
+      "category": "tenure_attendance",
+      "title": "Tenure & attendance breakdown",
+      "text": "Tenure distribution: 0-1yr 0.323370543752251, 2-4yr 0.238926899531869, 5-8yr 0.136838314728124, 9-12yr 0.0923658624414836, 13-20yr 0.13611811307166, 21+yr 0.0723802664746129\n2025 attendance distribution: non-access 0.0524450744153083, 0 games 0.283132530120482, 1-4 games 0.326541459957477, 5-8 games 0.167434443656981, 9-10 games 0.092487597448618, 11+ games 0.0779588944011339\nMembership retention: 0.388022678951096 were 2022 members, 0.431963146704461 2023, 0.505846917080081 2024"
+    },
+    {
+      "id": 6,
+      "category": "comms",
+      "title": "Communications & digital behaviour",
+      "text": "Email opted-in: 57%\nSMS opted-in: 93%\nEmail open rate (if in email data): 32%\nEmail click rate (if in email data): 5%\nEngaged in competition: 61%\nCompleted survey: 3%\nOpt-in email index: 0.909146719080875, opt-in SMS index: 0.994726091404137\nMedia exposure is heavily digital with very low traditional media exposure; low engagement across the club's key media channels (email/SMS open and click rates are low)."
+    },
+    {
+      "id": 7,
+      "category": "merchandise",
+      "title": "Merchandise behaviour",
+      "text": "Purchase propensity index: 1.4\nOrders per annum index: 0.9\nCart size index: 1.1\n% purchased merch: 0.0974486180014171\nAverage merch orders per year: 1.53068592057761\n$ spent on merch where purchased: 179.715072202166\nMerch per member (propensity x value): 17.512985420126"
+    },
+    {
+      "id": 8,
+      "category": "lifestyle",
+      "title": "Lifestyle interests",
+      "text": "Dating; Playing Sport; Video Games; Gym & Fitness; Self or further education; Board Games; Blogging or Social Media; Entertaining at Home; Going to Pubs or Bars"
+    },
+    {
+      "id": 9,
+      "category": "media",
+      "title": "Media exposure",
+      "text": "Top media channels: Podcasts; Public Transport; Cinema; Online Magazines; Streaming Music App; Drive; Video games; Pay TV\nMedia index scores: Streaming: 1.1X; Subscription TV: 0.7X; FTA TV: 0.5X; Radio: 0.5X; Internet Browse: 0.9X; Podcasts: 1.5X; Social media: 1.2X"
+    },
+    {
+      "id": 10,
+      "category": "social",
+      "title": "Social platforms",
+      "text": "Platforms: Reddit; LinkedIn; Telegram; TikTok; X / Twitter; YouTube; WhatsApp\nCheck frequency index: 1.3x, post frequency index: 1.5x"
+    },
+    {
+      "id": 11,
+      "category": "buying",
+      "title": "Buying intentions, behaviour & drivers",
+      "text": "Buying intentions: Ethical / ESG Investment; Mortgage Refinancing; Share Trading App; Luxury brand item; Cryptocurrency; Cosmetic procedure; Investment in shares or similar; Buying an investment property\nBuying behaviour: Best quality, regardless of price; Like to see others with new technology before buying; Most Technically advanced; Online reviews as a guide; Uses BNPL\nBuying drivers: Most popular; Most exclusive; Most stylish; Most technically advanced; Most reward points\nHigh spend categories: Body Corp / Rent Fees; Tertiary Education Fees; Sports participation; Public Transport / Taxis; Gym Health Club Fees; Overseas / Local holidays"
+    },
+    {
+      "id": 12,
+      "category": "values",
+      "title": "Cultural, sustainability & outlook",
+      "text": "Cultural diversity: Moderate to High: Urban Hipsters members have a moderate to high level of cultural diversity with good representation of people born outside Australia, second generation Australians, and / or have worked overseas. Urban Hipsters have a higher percentage of males to the Australian population and slightly more than the Fremantle member base. Religious affiliations are also diverse which is consistent with the cultural background of Urban Hipsters members.\nSustainability: High: Urban Hipsters members have a high level of awareness and interest in Sustainability and invest time to ensure they are well informed. Socially aware and environmentally conscious, they are most likely to volunteer, join environmental movements, and back politicians on their green credentials - extending their values into ethical investing, structured fitness, and mindful practices like yoga and meditation.\nPolitical values: Moderate to Progressive: Urban Hipsters members take a genuine but measured interest in politics - progressive in outlook and drawn to parties with strong environmental and social credentials, without being vocal or dogmatic about their views. When it comes to casting a vote, backing politicians who champion green policy and deliver meaningful social good is what matters most to this segment.\nOutlook on life: Positive: Urban Hipsters members have a pretty positive Outlook on Life and see themselves as generally pretty lucky to enjoy the life they lead, which they think is better off than others. They are generally very good in health and lead an active and healthy lifestyle. Urban Hipsters members are optimistic about the future both for themselves and the world and look forward to what's ahead."
+    },
+    {
+      "id": 13,
+      "category": "commercial_value",
+      "title": "Lifetime value, annual spend & fan passion score",
+      "text": "From the member analytics (Urban Hipster):\nLifetime Value Estimate - Minimum $3,100, Maximum $345,350, Average $29,350, Median $31,250.\nAnnual Membership Spend - Minimum $23, Maximum $3,600, Average $297, Median $318.\nFan Passion Score (FPS): 5.0 (indicative score most highly indexed for this group).\nAverage membership tenure 8.3 years (0.7x). Average attendance 2025: 4 to 7 games.\nTop memberships: Season Reserved Seat 28%, 3 Game Pass 13%, 5MONEYP 4%, Melbourne 3%, Purple Army 3%.\nTop price codes: Category 4 Adult 10%, GA 3 Adult 10%, Category 2 Adult 6%, Category 3 Adult 4%, Melbourne Adult 3%."
+    },
+    {
+      "id": 14,
+      "category": "movement",
+      "title": "Membership movement 2024-2025",
+      "text": "Urban Hipsters\nCommercial In Confidence\nUrban Hipsters demonstrated the most amount of movement with the highest percentage of non-renewing members overall recording a net decline of 2%.\nGrowth in new and/or returning members was comparable with the volume of members who churned. \nUrban Hipsters recorded the highest churn of all segments at 47%, more than double the club baseline (22%).\nThis segment has shown YOY decline as a % of the base, suggesting deeper analysis of the causal factors driving churn is required.\nI'm Rebecca...\nMembership Movements from 2024 - 2025"
+    },
+    {
+      "id": 15,
+      "category": "media_exposure_chart",
+      "title": "Media exposure index - full 20-channel chart (slide 69)",
+      "text": "Urban Hipster media exposure index by channel. Positive = over-indexed (consume more than average); negative = under-indexed (less than average):\nCinema: 39.1\nDrive: -6.3\nEmail Promotions: 10.9\nFree Subscription TV: -30.9\nFTA TV: -46.0\nInternet Browse: -11.0\nMusic/ Audio App: 48.2\nOnline Magazines: 16.8\nOnline Newspapers: -22.5\nPlay video games: 41.3\nPodcasts: 45.9\nPrint Magazines: -4.2\nPrint Newspapers: -31.9\nPublic Transport: 59.5\nRadio: -46.7\nShopping Centre: 2.2\nSocial Media: 22.1\nSocialising with Friends: 1.6\nStreaming & Pay TV: 9.4\nWalk: 5.2"
+    },
+    {
+      "id": 16,
+      "category": "movement_chart",
+      "title": "Membership movement 2024-2025 - member counts (slide 63)",
+      "text": "Urban Hipster segment member movement (counts):\n2024 Members: 5788\nNew members: 2726\nFrom other segment: 299\nMoved to other segment: -450\nLost / Did not renew: -2719"
+    },
+    {
+      "id": 17,
+      "category": "annual_spend_chart",
+      "title": "Annual membership spend - Urban Hipster vs club (slide 66)",
+      "text": "Urban Hipster annual membership spend: Average $297.0, Median $318.2 (the club/Fremantle population average is HIGHER: Average $442, Median $373 - Urban Hipsters spend below the club average)."
+    },
+    {
+      "id": 18,
+      "category": "spend_propensity",
+      "title": "Spend propensity - Retail & Supermarkets",
+      "text": "Urban Hipster spend propensity index vs population for Retail & Supermarkets (1.0x = average; higher = over-indexed):\nBook Stores: 1.1x\nBuilding / Hardware: 1.0x\nClothing Stores: 1.1x\nGardening / Nursery: 0.6x\nFlorists: 1.0x\nHomewares / Furniture: 0.9x\nHealth Food: 1.5x\nLiquor Stores: 1.1x\nNewsagencies: 1.0x\nOffice & Printing: 1.2x\nPO & Parcel Delivery: 0.7x\nOnline Marketplace: 0.9x\nAmazon: 0.9x\nCatch of the Day: 0.3x\neBay: 0.7x\nKogan: 0.7x\nTemu: 0.8x\nOutdoor / Camping: 1.0x\nPharmacies: 0.9x\nPhoto & Camera: 0.9x\nSecond Hand / Thrift: 0.8x\nShoe Stores: 1.1x\nSports Stores: 1.2x\nSupermarket: 1.0x\nToy & Games Stores: 1.1x\nVineyards: 1.1x\nALDI: 0.7x\nAutobarn: 0.7x\nBest & Less: 0.8x\nBIG W: 0.9x\nThe Bottle-O: 1.2x\nBunnings: 1.0x\nBWS: 1.0x\nCellarbrations: 2.3x\nCity Beach: 2.4x\nColes: 1.0x\nCostco: 1.5x\nCotton On: 1.2x\nDan Murphy's: 1.0x\nDavid Jones: 1.0x\nFirst Choice Liquor: 1.1x\nThe Good Guys: 1.2x\nHarvey Norman: 0.8x\nIGA: 1.6x\nIkea: 1.5x\nJB Hi-Fi: 1.4x\nKmart: 1.1x\nLiquorland: 1.2x\nMecca: 1.3x\nMyer: 1.3x\nOnePass: 0.8x\nPetbarn: 1.2x\nPETstock: 0.7x\nSHEIN: 1.0x\nSupercheap Auto: 1.0x\nTarget: 1.1x\nTK Maxx: 0.4x\nUniqlo: 1.7x\nVintage Cellars: 1.9x\nWoolworths: 0.9x"
+    },
+    {
+      "id": 19,
+      "category": "spend_propensity",
+      "title": "Spend propensity - Tourism & Travel",
+      "text": "Urban Hipster spend propensity index vs population for Tourism & Travel (1.0x = average; higher = over-indexed):\nAirlines: 1.4x\nJetstar: 1.0x\nQantas: 1.4x\nVirgin Australia: 1.5x\nCaravan & Camping: 1.1x\nDuty Free: 1.6x\nEV Charging Station: 0.7x\nFuel: 1.0x\nHotels & Resorts: 1.3x\nMotels & Apartments: 0.7x\nPublic Transport: 1.7x\nRideshare Services: 1.7x\nDiDi: 2.6x\nUber: 1.6x\nRoad Tolls: 0.2x\nScooter Rental Services: 1.1x\nTaxi Services: 0.6x\nTravel Agency: 1.9x\nAirbnb: 1.4x\nBooking.com: 1.2x\nStreaming Services: Index\nStreaming Service Provider: 1.0x\nAmazon Prime: 1.0x\nApple: 1.1x\nAudible: 1.0x\nBinge: 1.0x\nBritBox: 0.3x\nCandy Crush: 0.6x\nCrunchyroll: 1.9x\nDisney Plus: 1.1x\nFoxtel: 0.3x\nHayu: 1.3x\nKayo Sports: 1.2x\nNetflix: 1.1x\nOnlyFans: 1.7x\nParamount Plus: 0.8x\nRoblox: 1.0x\nSpotify: 1.3x\nStan: 0.9x\nSteam: 1.4x\nTikTok: 1.6x"
+    },
+    {
+      "id": 20,
+      "category": "spend_propensity",
+      "title": "Spend propensity - QSR & Dining",
+      "text": "Urban Hipster spend propensity index vs population for QSR & Dining (1.0x = average; higher = over-indexed):\nConvenience Stores: 1.1x\n7-Eleven: 1.0x\nEzyMart: 0.3x\nNightOwl: 0.9x\nEating Out: 1.0x\nBakery: 0.8x\nCafes: 1.1x\nHotels & Bars: 1.2x\nLeagues & Clubs: 0.4x\nRestaurants: 1.2x\nVegan / Veg Rest.: 1.6x\nChatime: 1.1x\nThe Coffee Club: 1.3x\nDome Cafe: 6.5x\nGloria Jean's Coffees: 0.5x\nJamaica Blue: 2.8x\nme&u: 1.6x\nSoul Origin: 1.2x\nStarbucks: 1.2x\nZarraffas Coffee: 0.2x\nSporting Globe Bar & Grill: 1.8x\nTakeaway & Fast Food: 1.0x\nBaker's Delight: 0.6x\nBoost Juice: 1.4x\nBreadtop: 1.1x\nBrumby's Bakeries: 0.5x\nDomino's: 1.2x\nDonut King: 0.4x\nEl Jannah: 0.2x\nFish and Chips: 1.0x\nGrill'd: 1.8x\nGuzman y Gomez: 0.8x\nHungry Jack's: 1.4x\nKFC: 0.9x\nKrispy Kreme: 1.4x\nMcDonald's: 1.0x\nMuffin Break: 1.5x\nNando's: 3.0x\nNespresso: 1.3x\nOporto: 0.6x\nPizza Hut: 1.1x\nRed Rooster: 1.6x\nSchnitz: 0.3x\nSubway: 1.2x\nSushi: 1.0x\nZambrero: 2.6x\nTea, Juice & Yoghurt Bars: 1.2x\nFood Delivery: 1.4x\nDoorDash: 1.5x\nMILKRUN: 1.6x\nUber Eats: 1.5x\nMeal Plan Provider: 0.8x\nHelloFresh: 1.0x\nLite'N'Easy: 0.3x\nYoufoodz: 0.8x\nVending Machines: 1.0x"
+    },
+    {
+      "id": 21,
+      "category": "spend_propensity",
+      "title": "Spend propensity - Lifestyle & Entertainment",
+      "text": "Urban Hipster spend propensity index vs population for Lifestyle & Entertainment (1.0x = average; higher = over-indexed):\nLeisure: 1.2x\nAdult Entertainment: 1.4x\nAmusement Centres & Rides: 1.3x\nTimezone: 1.5x\nAmusement Parks: 1.0x\nCinema / Movie Theatre: 1.4x\nHOYTS Cinemas: 2.0x\nVillage Cinemas: 0.6x\nExhibitions: 1.1x\nGolf Club: 1.0x\nHobby Centres: 1.7x\nLawn Bowls: 0.9x\nLifestyle Clubs: 1.0x\nLive Entertainment: 1.3x\nTicketek: 0.9x\nTicketmaster: 1.7x\nMemberships: 1.2x\nOnline Dating: 1.4x\nOutdoor Entertainment: 1.0x\nSports Clubs: 0.8x\nSports Entertainment: 1.2x\nWildlife Parks: 1.1x\nGambling: 1.0x\nOnline Casinos: 1.0x\nOnline Gambling: 1.1x\nBet365: 2.0x\nDabble: 1.5x\nNeds: 1.3x\nPointsBet: 1.5x\nSportsbet: 1.2x\nTabcorp: 1.1x\nTatts Online: 0.1x\nEB Games: 1.4x\nNintendo: 1.4x\nSony PlayStation: 1.2x\nTrade Unions: 0.7x\nVehicle Maintenance: 0.9x\nCar Detailing & Wash: 1.1x\nCleaning & Home Maintenance Service Provider: 0.6x\nDry Cleaners & Laundromats: 1.3x\nPersonal Care: 1.2x\nAlternative Medicine Clinics: 1.0x\nBeauty Salons: 1.1x\nCharitable Donations: 0.5x\nChildcare: 1.5x\nDental Clinics: 0.9x\nFitness Centres: 1.4x\nHairdressers: 1.2x\nMedical Clinics: 1.2x\nMedical Specialist: 1.1x\nPet Care: 0.8x\nOptical Stores: 1.0x\nOptometrists: 0.5x\nOPSM: 0.9x\nSpecsavers: 0.8x\nSports & Aquatic Centres: 1.0x\nTattoo & Piercing Studios: 0.9x\nTobacconists: 0.8x"
+    },
+    {
+      "id": 22,
+      "category": "spend_propensity",
+      "title": "Spend propensity - Govt, Telco & Utilities",
+      "text": "Urban Hipster spend propensity index vs population for Govt, Telco & Utilities (1.0x = average; higher = over-indexed):\nDigital Service Provider: 1.1x\nInternet Service Provider: 1.1x\nAussie Broadband: 1.3x\nBelong: 1.0x\nDodo: 0.7x\niiNet: 1.7x\nStarlink: 0.5x\nTPG: 0.9x\nTelecommunications: 1.0x\nALDImobile: 0.4x\namaysim: 0.9x\nBoost mobile: 1.1x\nOptus: 0.9x\nTelstra: 1.1x\nVodafone: 1.2x\nOnline VPN: 1.9x\nProduct Subscription Provider: 0.9x\nSoftware Subscription Provider: 1.3x\nAdobe Creative Cloud: 1.2x\nChatGPT: 1.4x\nGoogle: 1.2x\nLinkedIn: 0.8x\nLMCT Plus: 1.0x\nMicrosoft: 1.2x\nRing: 1.5x\nXero: 0.8x\nUtilities: 0.8x\nAGL Energy: 0.4x\nAlinta Energy: 2.3x\nEnergyAustralia: 0.1x\nErgon Energy: 0.1x\nOrigin Energy: 0.2x\nRed Energy: 0.1x\nSynergy: 6.2x\nRent: 0.9x\nCity & Shire Council Office: 1.4x\nState Government Office: 0.9x\nState Revenue Office: 0.2x"
+    },
+    {
+      "id": 23,
+      "category": "spend_propensity",
+      "title": "Spend propensity - Insurance & Banking",
+      "text": "Urban Hipster spend propensity index vs population for Insurance & Banking (1.0x = average; higher = over-indexed):\nBuy Now Pay Later Provider: 1.0x\nCredit Card: 0.8x\nCryptocurrency: 1.5x\nShare & Investment Service Provider: 1.5x\nAfterpay: 0.9x\nAmerican Express: 0.9x\nANZ: 0.6x\nApple Pay: 1.7x\nBankwest: 0.7x\nBeforepay: 1.2x\nCitibank: 0.7x\nColes Mastercard: 0.4x\nCommonwealth Bank: 0.9x\nJacaranda Finance: 0.7x\nKlarna: 1.0x\nLatitude Finance: 0.7x\nLazer Money: 0.8x\nMoney3: 0.8x\nMoneyMe: 1.1x\nMoneyspot: 0.9x\nMyPayNow: 1.0x\nNational Australia Bank: 0.7x\nPayPal: 0.9x\nPayPal Pay in 4: 0.8x\nRemitly: 1.6x\nRevolut: 2.1x\nSpriggy: 1.4x\nStepPay: 1.4x\nSunshine Loans: 0.9x\nSwoosh: 0.7x\nWallet Wizard: 0.9x\nWestpac Banking: 1.0x\nWise: 1.9x\nZip Money: 1.0x\nZip Pay: 0.9x\nInsurance: 0.9x\nGeneral & Property Insurance: 0.8x\nHealth Insurance: 1.4x\nLife & Income Insurance: 0.2x\nAAMI: 0.5x\nahm: 1.1x\nAIA Insurance: 0.8x\nAllianz Insurance: 0.5x\nAPIA: 0.2x\nBudget Direct: 0.5x\nBupa: 1.1x\nCGU Insurance: 0.4x\nHCF: 0.8x\nHollard Insurance: 0.5x\nMedibank Private: 1.4x\nMLC: 0.2x\nnib Health Funds: 1.0x\nNRMA Insurance: 0.3x\nQBE Insurance: 0.2x\nRAC Insurance: 2.4x\nShannons: 0.5x\nSuncorp Insurance: 0.3x\nYoui: 0.4x"
+    }
+  ],
+  "charts": [
+    {
+      "slide": 63,
+      "title": "Members",
+      "points": [
+        {
+          "label": "2024 Members",
+          "value": 5788.0
+        },
+        {
+          "label": "New members",
+          "value": 2726.0
+        },
+        {
+          "label": "From other segment",
+          "value": 299.0
+        },
+        {
+          "label": "Moved to other segment",
+          "value": -450.0
+        },
+        {
+          "label": "Lost / Did not renew",
+          "value": -2719.0
+        }
+      ]
+    },
+    {
+      "slide": 65,
+      "title": "Fremantle",
+      "points": [
+        {
+          "label": "Male",
+          "value": 0.6
+        },
+        {
+          "label": "Female",
+          "value": 0.4
+        }
+      ]
+    },
+    {
+      "slide": 65,
+      "title": "Urban Hipster",
+      "points": [
+        {
+          "label": "Male",
+          "value": 0.6
+        },
+        {
+          "label": "Female",
+          "value": 0.4
+        }
+      ]
+    },
+    {
+      "slide": 66,
+      "title": "Urban",
+      "points": [
+        {
+          "label": "Average",
+          "value": 297.0
+        },
+        {
+          "label": "Median",
+          "value": 318.2
+        }
+      ]
+    },
+    {
+      "slide": 66,
+      "title": "Freo",
+      "points": [
+        {
+          "label": "Average",
+          "value": 442.0
+        },
+        {
+          "label": "Median",
+          "value": 372.7
+        }
+      ]
+    },
+    {
+      "slide": 69,
+      "title": "Index",
+      "points": [
+        {
+          "label": "Cinema",
+          "value": 39.1
+        },
+        {
+          "label": "Drive",
+          "value": -6.3
+        },
+        {
+          "label": "Email Promotions",
+          "value": 10.9
+        },
+        {
+          "label": "Free Subscription TV",
+          "value": -30.9
+        },
+        {
+          "label": "FTA TV",
+          "value": -46.0
+        },
+        {
+          "label": "Internet Browse",
+          "value": -11.0
+        },
+        {
+          "label": "Music/ Audio App",
+          "value": 48.2
+        },
+        {
+          "label": "Online Magazines",
+          "value": 16.8
+        },
+        {
+          "label": "Online Newspapers",
+          "value": -22.5
+        },
+        {
+          "label": "Play video games",
+          "value": 41.3
+        },
+        {
+          "label": "Podcasts",
+          "value": 45.9
+        },
+        {
+          "label": "Print Magazines",
+          "value": -4.2
+        },
+        {
+          "label": "Print Newspapers",
+          "value": -31.9
+        },
+        {
+          "label": "Public Transport",
+          "value": 59.5
+        },
+        {
+          "label": "Radio",
+          "value": -46.7
+        },
+        {
+          "label": "Shopping Centre",
+          "value": 2.2
+        },
+        {
+          "label": "Social Media",
+          "value": 22.1
+        },
+        {
+          "label": "Socialising with Friends",
+          "value": 1.6
+        },
+        {
+          "label": "Streaming & Pay TV",
+          "value": 9.4
+        },
+        {
+          "label": "Walk",
+          "value": 5.2
+        }
+      ]
+    }
+  ],
+  "raw_slides": [
+    {
+      "slide": 4,
+      "text": "executive summary\nThe Fremantle Dockers member base is large, loyal at its core, and growing - but unevenly. Seven distinct segments reveal meaningful differences in tenure, attendance, churn risk and commercial value. Overall membership grew strongly in 2025, yet the growth masks a critical divide: three segments are delivering stability and value while two high-volume younger segments are leaking members at rates that significantly exceed the club baseline. Retention is the defining challenge and clearest commercial opportunity.\nSegmentation is a growth and risk-management tool designed to enable smarter acquisition, stronger retention and develop more valuable partnerships.\nWhat we found\nWhat this means\nStrategic Priorities\nMember value, loyalty and engagement are not evenly distributed across the base\nOverall membership grew, but Urban Hipster declined in share as churn outpaced acquisition\nA quarter of members with game access attended zero games presenting a potential retention risk\nFremantle members over-index on EV, financial services, travel, and premium lifestyle spend - high-value partner territory\nA single retention strategy is insufficient. Each member segment requires different interventions at different lifecycle stages\nUrban Hipsters and Gen Fun members cannot be treated as a single acquisition pipeline - they need early, personalised engagement before they lapse\nNon-attending members require a non-match value proposition\nThe commercial audience is valuable and highly targetable\nProtect the base: Implement early-tenure intervention programs targeting high churn segments\nEngage non-attenders: Build a demonstrable non-match value offer\nGrow the engine: Prioritise retention in core segments - Modern Families and Happy Suburbanites \nSell smarter: Use segment-level spend propensity and lifestyle alignment to build evidence-based partner propositions"
+    },
+    {
+      "slide": 6,
+      "text": "Founding Faithfuls\n22%\nModern Families\n14%\nUrban Hipster\n13%\nHappy Suburbanites\n11%\nComfortable Crowd\n8%\nBreezy Boomers\n22%\nGen Fun\n10%"
+    },
+    {
+      "slide": 8,
+      "text": "AMPPI: Aggregate Member Purchase Price Index: The averaged total of Purchase Price data compared to baseline average Purchase Price across all matched Members. \npersona attributes\nVALUE (AMPPI*)\nLOWER\nHIGHER\nSHORTER\nLONGER\nMEMBERSHIP TENURE\nComfortable\nCrowd1.33x\nBreezy Boomers\n1.33x\nGen Fun\n0.61x\nBreezy Boomers\n16.9years\nGen Fun\n8.1 years\n12.3 yearsaverage\nHappy Suburbanite\n12.1 years\nFounding Faithfuls\n13.2 years\nModern Families\n10.2 years\nComfortable Crowd12.5 years\nFounding Faithfuls\n1.01x\nHappy Suburbanite\n0.98x\nModern Families\n0.88x\nUrban Hipster\n8.3 years\nUrban Hipster\n0.67x"
+    },
+    {
+      "slide": 62,
+      "text": "Urban Hipsters\nCommercial In Confidence\n\"Urban Hipster\" fans are socially active, trend-conscious individuals who enjoy exploring new experiences and maintaining a stylish, modern lifestyle. They are career-focused and value independence, often spending on dining out, fitness, travel, and technology that enhances their image and convenience. With a strong preference for authenticity, they favour brands that align with their values of sustainability and creativity.\nI'm Rebecca...\n\"Urban Hipster\" fans:\nTrend-Conscious: Keeps up with the latest fashion, technology, and cultural trends, often setting themselves apart with a distinctive style.\nExperience-Seeking: Prefers spending on experiences like dining out, live music, and travel rather than material possessions.\nSocially Active: Highly engaged in social activities, both in-person and online, valuing connections and building their personal brand.\nCareer-Driven: Focused on professional growth and financial independence, often investing in further education or career-enhancing tools.\nSustainability-Oriented: Favours brands and products that are environmentally friendly, ethically produced, and socially conscious.\nTech-Savvy: Quick to adopt new technology, especially if it enhances their lifestyle or aligns with their interests in creativity and convenience.\nUrban Lifestyle: Enjoys the perks of inner-city living, such as proximity to cafes, cultural events, and boutique shopping.\nAuthenticity-Focused: Values originality and uniqueness in brands, favouring local, artisanal, or niche offerings over mainstream options."
+    },
+    {
+      "slide": 63,
+      "text": "Urban Hipsters\nCommercial In Confidence\nUrban Hipsters demonstrated the most amount of movement with the highest percentage of non-renewing members overall recording a net decline of 2%.\nGrowth in new and/or returning members was comparable with the volume of members who churned. \nUrban Hipsters recorded the highest churn of all segments at 47%, more than double the club baseline (22%).\nThis segment has shown YOY decline as a % of the base, suggesting deeper analysis of the causal factors driving churn is required.\nI'm Rebecca...\nMembership Movements from 2024 - 2025"
+    },
+    {
+      "slide": 64,
+      "text": "Membership Movements from 2024 - 2025 \nFurther analysis of the changes in the rban Hipsters segment identified a small shift in composition of members by age, with many more members now having an age.\nThe table to the right highlights the change in age composition within this segment showing a slight influx of older members.\nThis segment is still heavily centred on 25 to 34-year-olds. \nAge Band | % Change from 2024 | Comments\n< 25 | +3.6% | The increase in younger segments is consistent with the theory that most new member sign-ups are a younger profile.\nWe saw some migrations from the Urban Hipster segment with additional information including age being appended during the year.\nThis explains why there were some migrations from the Urban Hipsters segment to the Gen Fun segment.\n25 - 34 | +18.1% | \n35 - 44 | +4.2% | \n45 - 54 | +1.9% | \n55 - 64 | +1.5% | \n65+ | +1.1% | \nMissing | -29.3% | \nUrban Hipsters\nCommercial In Confidence\nI'm Rebecca..."
+    },
+    {
+      "slide": 65,
+      "text": "I'm Rebecca...\nBIO\nRebecca was introduced to the Dockers by her dad Steve when she was 5 years old, and it quickly became part her DNA. She loves the club and loves the social side of being part of the Purple army and attending most games with her best mates. But sometimes work and life can get so busy that there just isn't enough time to go to the footy. Rebecca worked in Melbourne for a few years after graduating, before heading back to her beloved Fremantle, away from Melbourne winters and back with family and friends. Working as a People & Culture manager in an ad agency keeps Rebecca very busy, but not so busy that she doesn't have time for fun with friends and exploring new life experiences. Rebecca is a career woman who enjoys being financially independent and in control over her future. Rebecca rents an apartment in Northbridge close to work, her gym, pubs, bars, restaurants, and most importantly the beach. Life is good and the only thing that could make it better would be a Freo premiership!\nUrban Hipsters\nDEMOGRAPHICS:\nAge: 25 - 34 (Average Age 32)\nRelationship: Single or Couple without kids \nSES: 66 / 100\nOccupation: Business professional, manager student\nLocation: Inner urban reasonably affluent area living in a house\nLIFESTYLE:\nExercises at gym regularly\nUses ride share / taxis\nInvests in further education\nHoliday Traveler \nCareer oriented\nBRANDS:\nHIGH SPEND CATEGORIES:\nBody Corp / Rent Fees\nTertiary Education Fees\nSports participation\nPublic Transport / Taxis\nGym Health Club Fees\nOverseas / Local holidays\nWHO I AM\nABOUT ME\nI love being part of the Purple Army\nI enjoy being the centre of attention \nI'm always looking for new things to experience\nI set ambitious personal goals\nBeing able to enjoy the finer things in life is important to me.\nFashion conscious\nNo mortgage\nLikes to eat / drink out\nBrand conscious\nOwns a car\nHas health insurance\nPubs and bars\nEating out / Restaurants\nTake-away coffee / food\nComputer / Technology\nUtilities & Internet\nOverseas / Local holidays\nA BIT ABOUT ME\nMEDIA:\nStreaming: 1.1X\nSubscription TV: 0.7X\nFTA TV: 0.5X\nRadio: 0.5X\nInternet Browse: 0.9X\nPodcasts: 1.5X\nSocial media: 1.2X\nPERSONAL ATTITUDES:\nI want the feeling of power that having money can bring\nI like to impress others by displaying signs of affluence\nI pursue status and power\nI am still trying to work out what I want from life\nI want to be admired for my achievements\nI can be a bit unreliable at times\nI adopt the latest technologies and use them easily\nI want my life to be full of excitement\nI maintain a high level of physical fitness \nI enjoy doing things that are risky or extreme\nI try to get as much as I can while putting in the least possible effort\nI go out of my way to look stylish and attractive\nHEALTH STATUS:\nGood\nFollows healthy diet\nExercises regularly\nCommercial In Confidence\nWHERE I AM\nMore likely to be male\nHighest representation in Vic\nSlightly lower % of females to club average\n5.3% missing State\nUrban Hipsters\nFreo Population\n% of Members: 13%\n% Estimate of Population: 16 - 18%\n% Estimate of WA Population: 14 - 16%\nVIC: 6%\nNSW: 1%\nQLD: 1%\nWA: 85%\nNT: <1%\nSA: 1%\nACT: <1%\nTAS: <1%"
+    },
+    {
+      "slide": 66,
+      "text": "I'm Rebecca ...\nUrban Hipsters\nMY MEMBERSHIP\nLow\nHigh\nATTENDANCE\n$0\n$800\nSPEND\nLow\nHigh\nSOCIAL\nLow\nHigh\nEMAIL\nME AS A MEMBER\nENGAGEMENT PROFILE:\nAverage membership 8.3 years (0.7X)\nAverage attendance 2025 4 to 7 games \n 5% Non-Access 0 Games\n 28% Attended 0 Games\n 33% Attended 1 - 4 Games\n 17% Attended 5 - 8 Games\n 9% Attended 9 - 10 Games\n 8% Attended 11+ Games\n51% had a 2024 membership\n32% email open rate\n 5% email click rate\nUrban Hipster\nAll Members Average\nCommercial In Confidence\nMY LOYALTY \nLIFETIME VALUE ESTIMATE:\nMinimum: $ 3,100 Maximum: $345,350\nAverage: $29,350 Median: $ 31,250\nFAN PASSION SCORE®\nLow spend profile\nAvg attendance profile\nAvg tenure profile\nResponsive to marketing\nANNUAL MEMBERSHIP SPEND:\nMinimum: $ 23 Maximum: $3,600\nAverage: $297 Median: $ 318\nFremantle Population\n5.0\n$0\n$240\nMERCHANDISE\nThe FPS is indicative of the score expected to be most highly indexed for this group. \nENGAGEMENT SCORE:\nHigh\nLow to Moderate\nCHURN PROPENSITY:\nMERCHANDISE\nPurchased (1.4x)\nOrders p.a. (1.1x)\nSpend value (1.1x)\n2024 Membership (0.8x)\nTenure (0.7x)\n0 - 1 Years (1.7x)\n2 - 4 Years (1.4x)\n5 - 8 Years (0.9x)\n9 - 12 Years (0.7x)\n13 - 20 Years (0.6x)\n21+ Years (0.6x)\n2024 Churn % (1.5x)\nTOP MEMBERSHIPS:\nSeason Reserved Seat 28%\n3 Game Pass 13%\nMelbourne 3%\n5MONEYP 4%\nPurple Army 3%\nTOP PRICE CODES:\nCategory 4 Adult 10%\nGA 3 Adult 10%\nCategory 2 Adult 6%\nCategory 3 Adult 4%\nMelbourne Adult 3%\nEVENT INDEX SCORE:\nNon-Access (1.0x)\nPremium (1.0x)\nPurple Army (0.8x)\nCategory 3 (0.7x)\nCategory 2 (0.6x)\nMERCHANDISE\nPurchase Propensity (1.4x)\nOrders p.a. (0.9x)\nSpend value (1.1x)\nHas Wishlist (N.A)\nHas Abandoned Cart (N.A)\nAttendance 2025 (1.2x)\nNon-Access (1.1x)\n0 Games (1.2x)\n1 - 4 Games (1.3x)\n5 - 8 Games (0.8x)\n9 - 10 Games (0.7x)\n11+ Games (0.7x)\nOpt-in-to Email (0.9x)\nOpt-in-to SMS (1.0x)\nCompleted Survey 2025 (0.4x)"
+    },
+    {
+      "slide": 67,
+      "text": "I'm Rebecca ...\nUrban Hipsters\nBUYING INTENTIONS\nEthical / ESG Investment\nMortgage Refinancing \nShare Trading App\nLuxury brand item\nCryptocurrency\nCosmetic procedure\nInvestment in shares or similar\nBuying an investment property\nBUYING BEHAVIOUR\nBest quality, regardless of price\nLike to see others with new technology before buying\nMost Technically advanced\nOnline reviews as a guide\nUses BNPL\nLIFESTYLE INTERESTS\nDating\nPlaying Sport\nVideo Games\nGym & Fitness\nSelf or further education\nBoard Games\nBlogging or Social Media\nEntertaining at Home\nGoing to Pubs or Bars\nMEDIA EXPOSURE\nPodcasts\nPublic Transport\nCinema\nOnline Magazines\nStreaming Music App\nDrive\nVideo games\nPay TV\nBUYING DRIVERS\nMost popular\nMost exclusive\nMost stylish\nMost technically advanced\nMost reward points\nSOCIAL PLATFORMS\nReddit\nLinkedIn\nTelegram\nTikTok\nX / Twitter\nYouTube\nWhatsApp\nCommercial In Confidence\nPost Frequency\n1.5x\nCheck Frequency\n1.3x"
+    },
+    {
+      "slide": 68,
+      "text": "Tourism & Travel\nQSR & Dining\nRetail & Supermarkets\nStreaming Services\nLifestyle & Entertainment\nInsurance & Banking\nTelco & Utilities \nSpend Propensity\nI'm Rebecca ...\nUrban Hipster\nCommercial In Confidence\nBook Stores\nBuilding / Hardware\nClothing Stores\nGardening / Nursery\nFlorists\nHomewares / Furniture\nHealth Food\nLiquor Stores\nNewsagencies\nOffice & Printing \nPO & Parcel Delivery\nOnline Marketplace\nAmazon\nCatch of the Day\neBay\nKogan\nTemu\nOutdoor / Camping\nPharmacies\nPhoto & Camera | 1.1x\n1.0x\n1.1x\n0.6x\n1.0x\n0.9x\n1.5x\n1.1x\n1.0x\n1.2x\n0.7x\n0.9x\n0.9x\n0.3x\n0.7x\n0.7x\n0.8x\n1.0x\n0.9x\n0.9x\nSecond Hand / Thrift\nShoe Stores\nSports Stores\nSupermarket\nToy & Games Stores\nVineyards\nALDI\nAutobarn\nBest & Less\nBIG W\nThe Bottle-O\nBunnings \nBWS\nCellarbrations\nCity Beach\nColes\nCostco\nCotton On\nDan Murphy's\nDavid Jones | 0.8x\n1.1x\n1.2x\n1.0x\n1.1x\n1.1x\n0.7x\n0.7x\n0.8x\n0.9x\n1.2x\n1.0x\n1.0x\n2.3x\n2.4x\n1.0x\n1.5x\n1.2x\n1.0x\n1.0x\nFirst Choice Liquor\nThe Good Guys\nHarvey Norman\nIGA\nIkea\nJB Hi-Fi\nKmart\nLiquorland\nMecca\nMyer\nOnePass\nPetbarn\nPETstock\nSHEIN\nSupercheap Auto\nTarget\nTK Maxx\nUniqlo\nVintage Cellars\nWoolworths | 1.1x\n1.2x\n0.8x\n1.6x\n1.5x\n1.4x\n1.1x\n1.2x\n1.3x\n1.3x\n1.0x\n0.8x\n1.2x\n1.0x\n1.0x\n1.0x\n0.4x\n1.7x\n1.9x\n0.9x\nAirlines\nJetstar\nQantas\nVirgin Australia\nCaravan & Camping\nDuty Free\nEV Charging Station\nFuel\nHotels & Resorts\nMotels & Apartments\nPublic Transport\nRideshare\nDiDi\nUber\nRoad Tolls\nScooter Rental\nTaxi Services\nTravel Agency\nAirbnb\nBooking.com | 1.4x\n1.0x\n1.4x\n1.5x\n1.1x\n1.6x\n0.7x\n1.0x\n1.3x\n0.7x\n1.7x\n1.7x\n2.6x\n1.6x\n0.2x\n1.1x\n0.6x\n1.9x\n1.4x\n1.2x\nStreaming Service\nAmazon Prime\nApple\nAudible\nBinge\nBritBox\nCandy Crush\nCrunchyroll\nDisney Plus\nFoxtel\nHayu\nKayo Sports\nNetflix\nOnlyFans\nParamount Plus\nRoblox\nSpotify\nStan\nSteam\nTikTok | 1.0x\n1.0x\n1.1x\n1.0x\n1.0x\n0.3x\n0.6x\n1.9x\n1.1x\n0.3x\n1.3x\n1.2x\n1.1x\n1.7x\n0.8x\n1.0x\n1.3x\n0.9x\n1.4x\n1.6x\nConvenience Stores\n7-Eleven\nEzyMart\nNightOwl\nEating Out\nBakery\nCafes\nHotels & Bars\nLeagues & Clubs\nRestaurants\nVegan / Veg Rest.\nChaTime\nDome Cafe\nGloria Jean's Coffee\nJamaica Blue\nme&u\nSoul Origin\nStarbucks\nThe Coffee Club\nZarraffas Coffee | 1.1x\n1.0x\n0.3x\n0.9x\n1.0x\n0.8x\n1.1x\n1.2x\n0.4x\n1.2x\n1.6x\n1.1x\n5.0x\n0.5x\n2.8x\n1.6x\n1.2x\n1.2x\n1.3x\n0.2x\nSporting Globe Bar & Grill\nTakeaway & Fast Food\nBaker's Delight\nBoost Juice\nBreadtop\nBrumby's Bakeries\nDomino's\nDonut King\nEl Jannah\nFish and Chips\nGrill'd\nGuzman y Gomez\nHungry Jack's\nKFC\nKrispy Kreme\nMcDonald's\nMuffin Break\nNando's\nNespresso\nOporto | 1.8x\n1.0x\n0.6x\n1.4x\n1.1x\n0.5x\n1.2x\n0.4x\n0.2x\n1.0x\n1.8x\n0.8x\n1.4x\n0.9x\n1.4x\n1.0x\n1.5x\n3.0x\n1.3x\n0.6x\nPizza Hut\nRed Rooster\nSchnitz\nSubway\nSushi\nZambrero\nTea, Juice & Yoghurt\nFood Delivery\nDoorDash\nMILKRUN\nUber Eats\nMeal Plan Provider\nHelloFresh\nLite'N'Easy\nYoufoodz\nVending Machines | 1.1x\n1.6x\n0.3x\n1.2x\n1.0x\n2.6x\n1.2x\n1.4x\n1.5x\n1.6x\n1.5x\n0.8x\n1.0x\n0.3x\n0.8x\n1.0x\nLeisure\nAdult Entertainment\nAmusement Centres\nTimezone\nAmusement Parks\nCinema / Theatre\nHOYTS Cinemas\nVillage Cinemas\nExhibitions\nGolf Club\nHobby Centres\nLawn Bowls\nLifestyle Clubs\nLive Entertainment\nTicketek\nTicketmaster\nMemberships\nOnline Dating | 1.2x\n1.4x\n1.3x\n1.5x\n1.0x\n1.4x\n2.0x\n0.6x\n1.1x\n1.0x\n1.7x\n0.9x\n1.0x\n1.3x\n0.9x\n1.7x\n1.2x\n1.4x\nOutdoor Entertainment\nSports Clubs\nSports Entertainment\nWildlife Parks\nGambling\nOnline Casinos\nOnline Gambling\nBet365\nDabble\nNeds\nPointsBet\nSportsbet\nTabcorp\nTatts Online\nEB Games\nNintendo\nSony PlayStation\nTrade Unions\nVehicle Maintenance\nCar Detailing & Wash | 1.0x\n0.8x\n1.2x\n1.1x\n1.0x\n1.0x\n1.1x\n2.0x\n1.5x\n1.3x\n1.5x\n1.2x\n1.1x\n0.1x\n1.4x\n1.4x\n1.2x\n0.7x\n0.9x\n1.1x\nCleaning & Home Maint.\nDry Cleaners & Laundry\nPersonal Care\nAlt. Medicine Clinics\nBeauty Salons\nCharitable Donations\nChildcare\nDental Clinics\nFitness Centres\nHairdressers\nMedical Clinics\nMedical Specialists\nPet Care\nOptical Stores\nOptometrists\nOPSM\nSpecsavers\nSports & Aquatic Centres\nTattoo & Piercing Studios\nTobacconists | 0.6x\n1.3x\n1.2x\n1.0x\n1.1x\n0.5x\n1.5x\n0.9x\n1.4x\n1.2x\n1.2x\n1.1x\n0.8x\n1.0x\n0.5x\n0.9x\n0.8x\n1.0x\n0.9x\n0.8x\nDigital Service Provider\nInternet Service Provider\nAussie Broadband\nBelong\nDodo\niiNet\nStarlink\nTPG\nTelecommunications\nALDImobile\namaysim\nBoost mobile\nOptus\nTelstra\nVodafone\nOnline VPN\nProduct Subscription\nSoftware Subscription\nAdobe Creative Cloud\nChatGPT | 1.1x\n1.1x\n1.3x\n1.0x\n0.7x\n1.7x\n0.5x\n0.9x\n1.0x\n0.4x\n0.9x\n1.1x\n0.9x\n1.1x\n1.2x\n1.9x\n0.9x\n1.3x\n1.2x\n1.4x\nGoogle\nLinkedIn\nLMCT Plus\nMicrosoft\nRing\nXero\nUtilities\nAGL Energy\nAlinta Energy\nEnergy Australia\nErgon Energy\nOrigin Energy\nRed Energy\nSynergy\nRent\nCity & Shire Council Office\nState Government Office\nState Revenue Office | 1.2x\n0.8x\n1.0x\n1.2x\n1.5x\n0.8x\n0.8x\n0.4x\n2.3x\n0.1x\n0.1x\n0.2x\n0.1x\n5.0x\n0.9x\n1.4x\n0.9x\n0.2x\nBNPL Provider\nCredit Card\nCryptocurrency\nShare & Investment\nAfterpay\nAmerican Express\nANZ\nApple Pay\nBankwest\nBeforepay\nCitibank\nColes Mastercard\nCBA\nJacaranda Finance\nKlarna\nLatitude Finance\nLazer Money\nMoney3 | 1.0x\n0.8x\n1.5x\n1.5x\n0.9x\n0.9x\n0.6x\n1.7x\n0.7x\n1.2x\n0.7x\n0.4x\n0.9x\n0.7x\n1.0x\n0.7x\n0.8x\n0.8x\nMoneyMe\nMoneyspot\nMyPayNow\nNAB\nPayPal\nPayPal Pay in 4\nRemitly\nRevolut\nSpriggy\nStepPay\nSunshine Loans\nSwoosh\nWallet Wizard\nWestpac Banking\nWise\nZip Money\nZip Pay\nInsurance\nGeneral & Property\nHealth Insurance | 1.1x\n0.9x\n1.0x\n0.7x\n0.9x\n0.8x\n1.6x\n2.1x\n1.4x\n1.4x\n0.9x\n0.7x\n0.9x\n1.0x\n1.9x\n1.0x\n0.9x\n0.9x\n0.8x\n1.4x\nLife & Income Insurance\nAAMI\nahm\nAIA Insurance\nAllianz Insurance\nAPIA\nBudget Direct\nBupa\nCGU Insurance\nHCF\nHollard Insurance\nMedibank Private\nMLC\nnib Health Funds\nNRMA Insurance\nQBE Insurance\nRAC Insurance\nShannons\nSuncorp Insurance\nYoui | 0.2x\n0.5x\n1.1x\n0.8x\n0.5x\n0.2x\n0.5x\n1.1x\n0.4x\n0.8x\n0.5x\n1.4x\n0.2x\n1.0x\n0.3x\n0.2x\n2.4x\n0.5x\n0.3x\n0.4x"
+    },
+    {
+      "slide": 69,
+      "text": "Media Exposure\nUrban Hipsters members media exposure is heavily digital with very low traditional media exposure. They have low engagement across the key media channels of the club with 57% opted in for email, 32% open rate and a 5% click rate.\nUrban Hipsters\nCommercial In Confidence\nI'm Rebecca...\nEmail Opted In | 57%\nSMS Opted In | 93%\nEmail Opens (if in email data) | 32%\nEmail Click (if in email data) | 5%\nEngaged in Competition | 61%\nCompleted Survey | 3%"
+    },
+    {
+      "slide": 70,
+      "text": "I'm Rebecca ...\nUrban Hipsters\nCommercial In Confidence\nValues and Attitudes Dashboard\nCultural Diversity\nSustainability\nPolitical Values\nOutlook on Life\nUrban Hipsters members have a moderate to high level of cultural diversity with good representation of people born outside Australia, second generation Australians, and / or have worked overseas. Urban Hipsters have a higher percentage of males to the Australian population and slightly more than the Fremantle member base. Religious affiliations are also diverse which is consistent with the cultural background of Urban Hipsters members.\nModerate to High\nHigh\nModerate to Progressive\nUrban Hipsters members have a high level of awareness and interest in Sustainability and invest time to ensure they are well informed. Socially aware and environmentally conscious, they are most likely to volunteer, join environmental movements, and back politicians on their green credentials - extending their values into ethical investing, structured fitness, and mindful practices like yoga and meditation.\nUrban Hipsters members take a genuine but measured interest in politics - progressive in outlook and drawn to parties with strong environmental and social credentials, without being vocal or dogmatic about their views. When it comes to casting a vote, backing politicians who champion green policy and deliver meaningful social good is what matters most to this segment.\nUrban Hipsters members have a pretty positive Outlook on Life and see themselves as generally pretty lucky to enjoy the life they lead, which they think is better off than others. They are generally very good in health and lead an active and healthy lifestyle. Urban Hipsters members are optimistic about the future both for themselves and the world and look forward to what's ahead. \nThe Values and Attitudes Dashboard provides a general overview of this fan segment's views and feelings towards sustainability, their outlook on life, politics and the cultural diversity of the segment.\nCultural Diversity refers to differences among people because of their racial or ethnic backgrounds, language, dress and traditions. The term cultural diversity can also refer to having different cultures respect each other's differences.\nSustainability means a focus on meeting our needs without compromising the ability of future generations to meet their own needs. Sustainability is not just environmentalism it also includes concerns for social equity and economic development.\nPolitical values are what people believe in that relates to how government should operate, whom it should serve or not serve, who pays for it and who benefits. This is normally referenced by a tendency to a political ideology.\nOutlook on Life relates to a person's way of looking at things, their 'point of view' or attitude and how they perceive their life now and how positive they are towards the future, and the factors that impact the way they see the future. \nPositive"
+    },
+    {
+      "slide": 77,
+      "text": "membership movements\nUrban Hipsters\nModern Families\nHappy Suburbanites\nGen Fun\nFounding Faithfuls\nComfortable Crowd\nBreezy Boomers"
+    },
+    {
+      "slide": 78,
+      "text": "membership movements\nSegment | Migrated out | Lost Members | Migrated In | New / Returning Members | Net Change Excl. Migrations | Overall Net Growth\nBreezy Boomers | -0.8% | -10.4% | +6.2% | +20.9% | +10.5% | +15.9%\nComfortable Crowd | -10.7% | -13.7% | +7.3% | +34.8% | +21.1% | +17.7%\nFounding Faithfuls | -2.5% | -21.3% | +3.6% | +39.2% | +17.9% | +19.0%\nGen Fun | -9.4% | -26.6% | +0.6% | +88.8% | +62.2% | +53.4%\nHappy Suburbanites | -9.8% | -15.6% | +9.0% | +38.5% | +22.9% | +22.1%\nModern Families | -9.8% | -24.3% | +9.8% | +41.0% | +16.7% | +16.7%\nUrban Hipsters | -7.8% | -47.0% | +5.2% | +47.1% | +0.1% | -2.5%"
+    },
+    {
+      "slide": 79,
+      "text": "membership movements by segment\nAll segments, except Urban Hipsters showed good growth as a percentage of 2024 numbers.\nIn regard to net number growth, Founding Faithfuls has the most new and/or returning members. \nThe bulk of the movements were in and out of the Founding Faithfuls, Gen Fun and Urban Hipster segments.\nAs indicated earlier, Founding Faithfuls new and churning members were younger profile members. \nNew or returning members exceeded lost, or churned members for all segments."
+    },
+    {
+      "slide": 82,
+      "text": "membership composition\nAs can be seen from the pie chart to the left, a significant proportion of members retained the same segment.\n22% of members did not renew.\n6% of members changed segment due to a variety of reasons including:\nChange in age / life-stage\nGeographical move\nAdding new data to members (e.g. age)\nChanges in membership behaviour\nThe table to the right shows some the top migrations.\nFROM... | TO... | % \u000bMigrations\nUrban Hipster | Modern Families | 16%\nModern Families | Happy Suburbanites | 13%\nGen Fun | Urban Hipster | 12%\nHappy Suburbanites | Breezy Boomers | 11%\nComfortable Crowd | Breezy Boomers | 10%\nModern Families | Comfortable Crowd | 8%\nFounding Faithfuls | Modern Families | 6%\nHappy Suburbanites | Founding Faithfuls | 6%\nComfortable Crowd | Founding Faithfuls | 4%"
+    },
+    {
+      "slide": 91,
+      "text": "merchandise profile\nThe Combo chart shows that on average 7% of Fremantle members purchased merchandise online at an annual average spend of $155.\nFamily oriented segments appear to be the most likely to buy merchandise.\nUrban Hipsters, Happy Suburbanites, Founding Faithfuls and Gen Fun are the segments with the highest spend average values, all more than the club average."
+    },
+    {
+      "slide": 93,
+      "text": "media exposure analysis\nMedia Exposure Index | Breezy Boomers | Comfortable Crowd | Founding Faithfuls | Gen Fun | Happy Suburbanites | Modern Families | Urban Hipster \nSocial Media | 68 | 122 | 95 | 135 | 108 | 93 | 122\nPodcasts | 39 | 108 | 83 | 160 | 91 | 140 | 146\nRadio | 136 | 131 | 94 | 27 | 150 | 91 | 53\nSocialising with Friends | 95 | 103 | 105 | 130 | 81 | 90 | 102\nWalk | 98 | 102 | 95 | 106 | 99 | 100 | 105\nCinema | 45 | 149 | 81 | 141 | 81 | 138 | 139\nShopping Centre | 85 | 116 | 88 | 103 | 115 | 118 | 102\nMusic/ Audio App | 26 | 94 | 96 | 204 | 79 | 123 | 148\nPlay video games | 40 | 82 | 100 | 183 | 90 | 115 | 141\nOnline Magazines | 70 | 170 | 69 | 108 | 93 | 139 | 117\nOnline Newspapers | 124 | 137 | 84 | 39 | 123 | 112 | 78\nPrint Magazines | 113 | 141 | 86 | 76 | 82 | 112 | 96\nPrint Newspapers | 150 | 135 | 102 | 60 | 72 | 76 | 68\nEmail Promotions | 88 | 101 | 99 | 116 | 89 | 108 | 111\nInternet Browse | 98 | 127 | 93 | 85 | 114 | 108 | 89\nStreaming & Pay TV | 71 | 106 | 97 | 127 | 105 | 115 | 109\nPublic Transport | 42 | 112 | 79 | 196 | 67 | 119 | 159\nDrive | 79 | 121 | 90 | 95 | 123 | 128 | 94\nFree Subscription TV | 131 | 113 | 103 | 53 | 118 | 88 | 69\nFTA TV | 165 | 92 | 117 | 27 | 106 | 65 | 54\nCommercial In Confidence"
+    },
+    {
+      "slide": 102,
+      "text": "category analysis\nFremantle members related Spend Propensity compared to the Australian population\nIt is estimated that 47% of Fremantle members have spend propensity of at least twice p.a. at Sports Stores.\nThese four Fremantle segments all have a higher spend propensity on Sports Stores than the average of the Australian population.\nUrban Hipsters, Gen Fun and Modern Families also have a higher spend propensity on Fitness Centers than the Australian population.\nCommercial In Confidence\nNAT | Brand / Category | WA\n1.1x | Adidas | 1.0x\n0.2x | ASICS | 1.2x\n2.8x | Footlocker | 1.0x\n1.9x | HOKA | 1.2x\n1.1x | JD Sports | 0.9x\n1.0x | New Balance | 1.2x\n0.8x | Nike | 1.1x\n0.9x | Rebel Sport | 0.9x\n1.0x | Skechers | 0.8x\n2.6x | The AFL Store | 0.9x\n1.7x | The Athlete's Foot | 1.1x\nNAT | Category | WA\n0.9x | Fitness Centres | 1.0x\n0.9x | Golf Clubs | 1.2x\n0.9x | Sports & Aquatic Ctrs | 1.0x\n0.8x | Sports Clubs | 0.9x\n1.1x | Sports Entertainment | 1.0x\nSports Stores\n$243\nEstimated Avg spend in month\nSpend Propensity \n1.0x Aust. Pop'n\n0.9x WA Pop'n\n0.9x Adj Aust. Pop'n"
+    },
+    {
+      "slide": 103,
+      "text": "Fremantle members are more likely to own an EV car based on charging station spend propensity, which is slightly higher than the average West Australian.\nThey have a considerably higher spend propensity on EV Charging Stations than the average West Australian.\nThe Fremantle members most likely to own a Tesla compared to the West Australian average are:\nComfortable Crowd 3.2x\nModern Families 1.7x\nHappy Suburbanites 1.3x\nUrban Hipsters 1.2x\nEV analysis\nSpend Propensity \n0.6x Aust. Pop'n\n1.2x WA Pop'n\n1.2x Adj Aust Pop'n\nEV Charging Station \nSpend Propensity\nNAT: 0.6x\nWA: 1.1x\nNAT: 1.4x\nWA: 2.8x\nNAT: 0.4x\nWA: 0.7x\nNAT: 0.3x\nWA: 0.5x\nNAT: 0.7x\nWA: 1.4x\nNAT: 0.8x\nWA: 1.6x\nNAT: 0.7x\nWA: 1.3x"
+    },
+    {
+      "slide": 111,
+      "text": "membership opportunities\nRetention-Dependent Growth\nThe continued growth of Modern Families and Happy Suburbanites is essential for Fremantle's long-term membership stability.\nAs members age, they naturally migrate into Comfortable Crowd, Founding Faithfuls, or Breezy Boomers. Without strong retention in these middle-life segments, the pipeline into older loyal groups weakens.\nNatural Decline of Older Cohorts\nSegments like Breezy Boomers, Founding Faithfuls and (to a lesser extent) Comfortable Crowd include members reaching the later stages of the membership lifecycle and will experience gradual attrition over the next 10-20 years.\nUnless actively replenished from younger feeder segments, the club risks a decline in overall stability and lifetime value.\nGen Fun & Urban Hipsters Can't Do It Alone\nDespite good growth rates and strong inflows, both Gen Fun and Urban Hipsters are marked by higher churn percentages suggesting lower stickiness.\nThese segments are vital feeders into Fremantle's family and mid-life tiers but require sustained investment to improve retention and long-term engagement.\nExperience-building and early value delivery will be key to ensuring these members don't lapse before progressing through the lifecycle."
+    },
+    {
+      "slide": 113,
+      "text": "key observations\nUrban Hipsters are the most dynamic and volatile segment, with the highest churn and migration out but also the largest intake of new members. Despite strong recruitment, the segment experienced a net contraction, reinforcing the need for personalised onboarding and early engagement.\nModern Families and Happy Suburbanites are crucial growth bridges, showing high inbound migration and strong overall net growth. These are the engine rooms of Fremantle's mid-lifecycle fan base, benefiting from both migration and new acquisition.\nGen Fun is a high-potential development segment, with the second-highest new member rate. With a net growth, this segment is critical for capturing early fandom and building identity but requires nurture to avoid early drop-off.\nFounding Faithfuls is a unique hybrid segment - skewing older but also housing younger adults in multi-generational households. It is one of Fremantle's most stable cohorts, with low migration and moderate churn, making it a reliable membership anchor. Its strength lies in loyalty and continuity, rather than growth - and it plays a vital role in maintaining generational links with the club.\nBreezy Boomers is a stable, late-lifecycle segment, with modest churn and minimal migration out. Their net growth is largely supported by strong in-flows from Comfortable Crowd and Happy Suburbanites, rather than new member acquisition."
+    },
+    {
+      "slide": 115,
+      "text": "members on the move\nNurture & Develop segment\nUrban Hipster is Fremantle's most dynamic segment; it's where most new members join, but also where the highest volume of churn occurs. This volatility highlights the need for targeted nurturing and development to improve retention and lift engagement.\nThese members typically show lower overall engagement: shorter tenure, reduced match attendance, and low interaction with club communications, including email open rates and survey participation.\nDeeper consideration of the value proposition to this segment is required to ensure their broader more diverse needs and expectations are being met.\nOutlook: Without sustained and personalised engagement, this group is at high risk of churn. However, when nurtured effectively, Urban Hipsters can become a valuable feeder segment for future Fremantle families such as Modern Families - with strong potential for long-term value."
+    },
+    {
+      "slide": 116,
+      "text": "members on the move\nGrowth segment\nModern Families often evolve from earlier-stage segments like Urban Hipster or (slightly less commonly) Gen Fun. As they settle into family life, they tend to progress into Happy Suburbanite or Comfortable Crowd segments over time but also have a high churn rate.\nThey currently represent 14% of the Fremantle base which is a smaller share than their representation in the broader WA and national population. Their engagement levels, including match attendance and responsiveness to marketing, sit below the club average.\nOutlook: A growth-oriented segment with room to expand. Unlocking their value depends on bridging lifestyle needs with relevant products and communications, helping them stay engaged through key family life stages as they navigate competing priorities and stretched discretionary budgets, both in time and finances. Reducing churn in this segment is key to generating growth in members."
+    },
+    {
+      "slide": 117,
+      "text": "members on the move\nAnchor segment\nHappy Suburbanite members primarily arrive from Modern Families and Urban Hipster segments, but they also flow onward into older, more established groups like Comfortable Crowd (which is slightly older), Breezy Boomers and potentially Founding Faithful. While churn is relatively low, migration in and out is high - particularly inbound.\nThis is a transitional middle-aged segment that carries high financial and strategic value. It plays a dual role: contributing meaningfully to the club now, while also nurturing the next generation of long-term loyal fans.\nOutlook: Members don't typically stay here long-term; it's a pipeline segment into Fremantle's older, more rusted-on supporter groups. Nonetheless, it remains critical for growing and stabilising the base during key life-stage transitions."
+    },
+    {
+      "slide": 121,
+      "text": "The Fremantle member base is growing, diverse, and increasingly polarised between loyalty and volatility. Seven segments show meaningfully different profiles across tenure, attendance, churn and commercial value. Overall membership grew in 2025, driven by strong new member acquisition across multiple segments - but this growth co-exists with a club baseline churn rate of 22% and a highest-segment churn rate of 47% (Urban Hipsters), creating a pattern of high-volume churn and high-volume replacement that is commercially inefficient and structurally fragile.\nValue is concentrated in older, longer-tenured segments. Breezy Boomers and Comfortable Crowd carry the highest average value, and the longest average tenures. Their stability is real but finite - their contribution will naturally decline over time unless mid-lifecycle segments are actively retained and converted.\nEngagement does not reliably track with value or tenure. Gen Fun shows the highest new member growth but the second-highest churn. Urban Hipsters attract the largest volume of new members but also recorded a net contraction - the only segment to do so. Email engagement ranges from 52% open rates in Breezy Boomers to just 19% in Gen Fun and 32% in Urban Hipsters, reinforcing that broadcast communications are ineffective across the segments that need them most.\nFremantle members over-index on commercially significant spend categories. Spend propensity data shows clear alignment across EV charging and vehicles, financial services, travel, premium dining, and insurance - categories that support targeted, evidence-based partner propositions that move the club beyond generic audience reach.\nsummary of findings"
+    },
+    {
+      "slide": 122,
+      "text": "key observations\nThese observations surface the behaviours that matter most for driving retention, value growth and commercial outcomes across the Fremantle Dockers member base.\nEngagement\nEmail performance is weakest precisely where it matters most. Gen Fun members open just 19% of emails and click at 2% - the lowest of all segments and a clear signal that broadcast communications are not reaching this cohort with relevant content or timing.\nOne in four members with game access attended no events in 2025. This non-attending cohort is concentrated in younger segments and is behaviourally indistinct from lapsed members - the difference is they are still paying.\nChurn Risk\nUrban Hipsters churned at 47% - more than double the club baseline of 22% - and recorded the only net contraction of any segment. New member volume is masking an underlying retention failure that will become harder to paper over as acquisition efficiency declines.\nGen Fun grew by 53% in net terms but carried 27% churn. High headline growth and high churn in the same segment is a warning sign: the base is being rebuilt annually rather than compounded.\nLoyalty & Tenure\nBreezy Boomers and Founding Faithfuls members are the club's retention anchors - both grew in 2025, driven by in-migration and securing new and returning lapsed members. Their churn rates are the two lowest of all segments. Their value is structural, not scalable.\nMembers who reach 10+ years tenure show dramatically lower churn propensity. The data consistently points to years 0-4 as the period that determines whether a new member becomes a long-term asset or a replacement cost.\nValue & Share of Wallet\nAMPPI indexing reveals a two-tier commercial base. Breezy Boomers and Comfortable Crowd sit at high value; Urban Hipsters and Gen Fun are the lowest-value segments and are also the highest-churn segments - a combination that makes them costly to retain and difficult to monetise.\nFremantle members over-index on EV, financial services, travel and premium lifestyle spend. This presents a targetable commercial profile that supports segment-aligned partnership propositions rather than broad reach conversations."
+    },
+    {
+      "slide": 123,
+      "text": "recommendations\nWinning New Members | Focus acquisition on lookalike modelling against Founding Faithfuls and Happy Suburbanites - segments with proven lifecycle progression into the club's long-term loyal tiers. Chasing volume in the Urban Hipster profile generates turnover, not members.\nTailor acquisition messaging to segment motivation: belonging and tradition for Founding Faithfuls, family experience for Modern Families, social identity and access for Gen Fun. A single \"become a member\" narrative leaves value on the table.\nReducing Churn | Implement an early-tenure retention program for years 0-4 with clear behavioural triggers: zero attendance, declining email interaction, no merchandise purchase.\nBuild a non-match value proposition for non-attending members. With 24% of game-access members attending zero events, membership needs to feel worth keeping without a seat at the ground.\nIncreasing Share of Wallet | Design progression pathways by segment: GA to reserved seat, flexi to full season, single to family bundle. Modern Families and Happy Suburbanites present the clearest upsell opportunity but remain the least activated.\nTime upgrade offers using behavioural signals - attendance streaks, merchandise activity, email clicks - not blanket renewal windows. Conversion is higher in the fortnight after a strong attendance than during a generic campaign.\nThe following recommendations are informed by the behaviours and patterns observed across the member base. They are not presented as definitive answers, but as a set of informed prompts designed to encourage discussion, prioritisation and alignment on where targeted action could deliver the greatest impact."
+    }
+  ]
+}

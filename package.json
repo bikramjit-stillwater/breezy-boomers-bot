@@ -1,7 +1,7 @@
 {
-  "name": "breezy-boomers-bot",
+  "name": "urban-hipster-bot",
   "version": "2.0.0",
-  "description": "RAG chatbot for the Fremantle Dockers 'Breezy Boomers' member persona — OpenRouter + Claude, JSON vector store, no database.",
+  "description": "RAG chatbot for the Fremantle Dockers 'Urban Hipster' member persona (Rebecca) — OpenRouter + Claude, JSON vector store, no database.",
   "type": "module",
   "scripts": {
     "build-index": "node scripts/buildIndex.js",

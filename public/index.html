@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Breezy Boomers Bot 🏉</title>
+<title>Urban Hipster Bot 🏉</title>
 <style>
   :root{
     --bg:#eceef3; --panel:#ffffff; --panel2:#f6f7fb; --border:#e2e5ee;
@@ -143,11 +143,11 @@
   <div class="topbar">
     <div class="brand">
       <span class="logo">🏉</span>
-      <div><h1>Breezy Boomers Bot</h1><div class="sub">Synthetic member persona · grounded in segment data</div></div>
+      <div><h1>Urban Hipster Bot</h1><div class="sub">Synthetic member persona · grounded in segment data</div></div>
     </div>
     <div class="right">
       <span class="vlabel">Tone</span>
-      <select id="gender" title="Tone of the reply — reads as male or female"><option value="male">Male</option><option value="female">Female</option></select>
+      <select id="gender" title="Tone of the reply — reads as male or female"><option value="female">Female</option><option value="male">Male</option></select>
       <button class="btn" id="resetBtn">Reset</button>
     </div>
   </div>
@@ -166,20 +166,20 @@
       <div class="chat-head">
         <span class="dot"></span>
         <div>
-          <div class="nm">Robert &amp; Susan</div>
-          <div class="desc">Breezy Boomers member — answers in character</div>
+          <div class="nm">Rebecca</div>
+          <div class="desc">Urban Hipster member — answers in character</div>
         </div>
         <div class="tabs" id="tabs">
           <button class="tab active" data-mode="auto" title="Picks member vs analyst voice from your wording">Auto</button>
-          <button class="tab" data-mode="persona" title="Speaks in first person as Robert / Susan">Persona</button>
+          <button class="tab" data-mode="persona" title="Speaks in first person as Rebecca">Persona</button>
           <button class="tab" data-mode="analyst" title="Describes the segment with the data & numbers">Analyst</button>
         </div>
       </div>
-      <div class="lensbar" id="lensbar"><span class="ll" title="A lens just picks each team's suggested questions. It does not change Robert's answers.">Lens</span></div>
+      <div class="lensbar" id="lensbar"><span class="ll" title="A lens just picks each team's suggested questions. It does not change Rebecca's answers.">Lens</span></div>
       <div id="log"></div>
       <div class="tryask" id="starters"><span class="lbl">Try asking</span></div>
       <div class="inputbar">
-        <textarea id="input" rows="1" placeholder="Ask Robert about membership, footy, merch…"></textarea>
+        <textarea id="input" rows="1" placeholder="Ask Rebecca about membership, footy, merch…"></textarea>
         <button id="mic" title="Speak your question">🎤</button>
         <button id="send">Send</button>
       </div>
@@ -356,7 +356,7 @@
     log.innerHTML=""; groundedEl.innerHTML="<div class='ev-empty'>Ask a question and the source chunks that ground the answer appear here.</div>";
     startersEl.style.display=""; renderStarters(); greet(); };
 
-  function greet(){ addBubble("G'day! I'm a Breezy Boomers member — think Robert or Susan. Ask me about my membership, getting to the footy, merch, or anything Freo. The panel on the left is who I am; the panel on the right shows the data behind each answer.","bot"); }
+  function greet(){ addBubble("Hey! I'm Rebecca, an Urban Hipster Freo member. Ask me about my membership, getting to the footy, merch, or anything Freo. The panel on the left is who I am; the panel on the right shows the data behind each answer.","bot"); }
   greet(); input.focus();
 </script>
 </body>

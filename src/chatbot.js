@@ -1,5 +1,5 @@
 /**
- * chatbot.js — BreezyBot orchestrator.
+ * chatbot.js — UrbanHipsterBot orchestrator.
  * retrieve() → getPersonaProfile() → buildSystemPrompt() → OpenRouter.
  * Keeps per-instance conversation history for multi-turn chats.
  */
@@ -7,7 +7,7 @@ import { retrieve, indexExists, getPersonaProfile } from "./rag.js";
 import { buildSystemPrompt, detectMode, mentionsOtherSegment } from "./prompts.js";
 import { chatComplete, chatStream } from "./openrouter.js";
 
-export class BreezyBot {
+export class UrbanHipsterBot {
   constructor({ apiKey, model = "anthropic/claude-sonnet-4-5", topK = 6, mode = "auto", siteUrl = "", siteName = "" }) {
     this.apiKey = apiKey;
     this.model = model;
@@ -20,7 +20,7 @@ export class BreezyBot {
 
   resetHistory() { this.history = []; }
 
-  async chat(userMessage, { stream = false, onToken, onMeta, speaker = "male" } = {}) {
+  async chat(userMessage, { stream = false, onToken, onMeta, speaker = "female" } = {}) {
     if (!indexExists()) throw new Error("RAG index not built. Run: npm run build-index");
 
     const resolvedMode = this.mode === "auto" ? detectMode(userMessage) : this.mode;

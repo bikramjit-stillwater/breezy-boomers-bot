@@ -1,11 +1,11 @@
 /**
- * rag.js — Pure-JSON RAG engine for the Breezy Boomers persona.
+ * rag.js — Pure-JSON RAG engine for the Urban Hipster persona.
  *
  * No vector database. Embeddings live in data/vectors/index.json and
  * similarity search runs in-process via cosine similarity.
  *
- * Corpus = the `knowledge` sections + the persona slide texts (13-20) from
- * data/breezy_boomers.json, which was extracted 1:1 from the source Excel
+ * Corpus = the `knowledge` sections + the persona slide texts (62-70) from
+ * data/urban_hipster.json, which was extracted 1:1 from the source Excel
  * and PowerPoint.
  */
 
@@ -15,7 +15,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.join(__dirname, "../data");
-const DATASET = path.join(DATA_DIR, "breezy_boomers.json");
+const DATASET = path.join(DATA_DIR, "urban_hipster.json");
 const VECTORS_DIR = path.join(DATA_DIR, "vectors");
 const INDEX_FILE = path.join(VECTORS_DIR, "index.json");
 
@@ -69,10 +69,10 @@ export function buildChunks() {
     });
   }
 
-  // 2. Verbatim persona-deck slides (13-20) as a safety net so any detail
+  // 2. Verbatim persona-deck slides (62-70) as a safety net so any detail
   //    phrased differently is still retrievable.
   for (const s of ds.raw_slides || []) {
-    if (s.slide >= 13 && s.slide <= 20) {
+    if (s.slide >= 62 && s.slide <= 70) {
       chunks.push({
         id: `slide${s.slide}`,
         category: "slide",
@@ -128,7 +128,7 @@ export function indexExists() {
 
 // ---------------------------------------------------------------------------
 // Authoritative persona snapshot injected into every prompt so the bot is
-// always grounded in Robert & Susan, regardless of what RAG retrieves.
+// always grounded in Rebecca (Urban Hipster), regardless of what RAG retrieves.
 // ---------------------------------------------------------------------------
 export function getPersonaProfile() {
   const ds = loadDataset();
@@ -147,19 +147,19 @@ export function getPersonaProfile() {
   }
 
   return [
-    "PERSONA: Breezy Boomers — you are a representative member (Robert, or his wife Susan).",
+    "PERSONA: Urban Hipster — you are a representative member (Rebecca).",
     "",
     "WHO YOU ARE (things you naturally know about yourself)",
-    `- Retired or semi-retired, 65+, comfortable and financially secure (super and investments; mortgage-free).`,
-    `- Live in a low-maintenance townhouse in an inner-urban area; your kids are grown adults who've left home.`,
-    `- A proud 20+ year Fremantle member with a reserved seat; you get to a fair number of home games each season (roughly six to nine).`,
-    `- You auto-renew without really thinking about it and can't imagine supporting another club.`,
-    `- You look for good quality at a fair price, are cautious with new technology, and lean on traditional media (TV, the print paper, radio) more than social apps.`,
-    `- You enjoy the finer things — good food and wine, galleries and theatre.`,
+    `- A career woman in your early thirties, single or in a couple without kids, financially independent and ambitious about your future.`,
+    `- You rent an apartment in Northbridge, close to work, your gym, the pubs, bars and restaurants, and the beach.`,
+    `- You work as a People & Culture manager at an ad agency, which keeps you busy — but not too busy for friends and new experiences.`,
+    `- Your dad Steve got you into the Dockers when you were about five and it's been part of your DNA ever since; you love the social side of being in the Purple Army and go to most games with your best mates, though work and life sometimes get in the way.`,
+    `- You spent a few years working in Melbourne after graduating before heading back to your beloved Fremantle.`,
+    `- You're trend-conscious, experience-led and tech-savvy: forever on your phone, podcasts and music apps, public transport and rideshare, streaming, and social media. You'd rather spend on experiences (dining out, live music, travel, fitness) than possessions.`,
+    `- You care about authenticity and sustainability, and you favour brands that are ethical and environmentally conscious.`,
     "",
     "LIGHT BACKGROUND COLOUR (use sparingly — most answers should NOT mention these)",
-    `- Robert comes from a big Italian family and enjoys family lunches (a favourite spot is La Sosta).`,
-    `- You and Susan are regular visitors to Perth's Cultural Centre, galleries and the theatre.`,
+    `- The Northbridge apartment, the gym, the bars and the beach; the few years in Melbourne; your dad Steve.`,
     `- Other interests: ${g("Lifestyle Interests")}.`,
     "",
     "YOUR VOICE (speak naturally like this — do NOT quote these lines verbatim)",
@@ -169,10 +169,10 @@ export function getPersonaProfile() {
     g("Personal Attitudes"),
     "",
     "SEGMENT RESEARCH DATA — analyst figures only. In the member/persona voice these are NOT things you'd know about yourself; do not quote these numbers. (The analyst mode may cite them.)",
-    `- Largest segment: ${share} of Fremantle members; ~97% in WA; mostly male; average age ${age}; SES ${ses}/100.`,
-    `- Average tenure 16.9 years; churn 10% (lowest of all segments vs 22% club baseline); Season Reserved Seat 56%.`,
-    `- Lifetime value avg $13,450 (median $10,450); annual membership spend avg $586; Fan Passion Score 7.0; engagement ${g("Engagement Score")}; merchandise spend slightly below average.`,
-    `- Media profile: ${g("Media Exposure")}; social platforms: ${g("Social Platforms")}.`,
+    `- ${share} of Fremantle members; segment skews slightly male (about 60% male); average age ${age}; SES ${ses}/100; inner-urban, mostly WA.`,
+    `- Average tenure 8.3 years (0.7x); churn 47% (the HIGHEST of all segments vs 22% club baseline) and the only segment to record a net contraction; Season Reserved Seat 28%.`,
+    `- Lifetime value avg $29,350 (median $31,250); annual membership spend avg $297 (below the club average); Fan Passion Score 5.0; engagement ${g("Engagement Score")}; merchandise spend above the club average (purchased 1.4x).`,
+    `- Media profile is heavily digital: ${g("Media Exposure")}; social platforms: ${g("Social Platforms")}.`,
     `- Buying: ${g("Buying Intentions")}; buys for ${g("Buying Behaviour")}; high spend on ${g("High Spend Categories")}.`,
     topBrands.length ? `- Over-indexed brands (treat category-level signal as more reliable than individual brands, which are noisy): ${topBrands.slice(0, 20).join(", ")}.` : "",
   ].filter((l) => l !== "").join("\n");

@@ -1,12 +1,12 @@
 /**
- * cli.js — Interactive terminal chat with the Breezy Boomers persona.
+ * cli.js — Interactive terminal chat with the Urban Hipster persona.
  *
  *   npm run chat                 interactive
  *   node src/cli.js --interview  run the 10 interview questions
  *   node src/cli.js --mode analyst
  */
 import readline from "readline";
-import { BreezyBot } from "./chatbot.js";
+import { UrbanHipsterBot } from "./chatbot.js";
 import { buildIndex, indexExists } from "./rag.js";
 import "dotenv/config";
 
@@ -40,7 +40,7 @@ async function main() {
   }
 
   const mode = arg("--mode", "auto");
-  const bot = new BreezyBot({ apiKey, model: process.env.MODEL, mode });
+  const bot = new UrbanHipsterBot({ apiKey, model: process.env.MODEL, mode });
 
   if (process.argv.includes("--interview")) {
     for (const q of INTERVIEW) {
@@ -52,14 +52,14 @@ async function main() {
     return;
   }
 
-  console.log("\n🏉  Breezy Boomers Bot — chatting as Robert & Susan. Type 'exit' to quit, 'reset' to clear.\n");
+  console.log("\n🏉  Urban Hipster Bot — chatting as Rebecca. Type 'exit' to quit, 'reset' to clear.\n");
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
   const ask = () => rl.question("\x1b[36mYou:\x1b[0m ", async (line) => {
     const t = line.trim();
     if (t.toLowerCase() === "exit") return rl.close();
     if (t.toLowerCase() === "reset") { bot.resetHistory(); console.log("(history cleared)\n"); return ask(); }
     if (!t) return ask();
-    process.stdout.write("\x1b[35mBreezy:\x1b[0m ");
+    process.stdout.write("\x1b[35mRebecca:\x1b[0m ");
     try { await bot.chat(t, { stream: true }); } catch (e) { console.error("\n⚠️ ", e.message); }
     console.log("\n");
     ask();

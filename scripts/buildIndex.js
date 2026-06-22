@@ -1,7 +1,7 @@
 /**
  * buildIndex.js — One-time RAG index builder.
  *   npm run build-index
- * Embeds the Breezy Boomers knowledge corpus into data/vectors/index.json.
+ * Embeds the Urban Hipster knowledge corpus into data/vectors/index.json.
  */
 import { buildIndex } from "../src/rag.js";
 import "dotenv/config";

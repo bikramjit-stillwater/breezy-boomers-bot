@@ -1,10 +1,10 @@
 """
-extract.py — Pull 100% of the Breezy Boomers data from the two source files:
-  1. Excel: 'Persona Info' sheet (all profile/metric fields) + 'Breezy Boomers'
-     sheet (the full 6-block brand spend-propensity matrix).
-  2. PPTX: all text from slides that mention Breezy Boomers.
+extract.py — Pull 100% of the Urban Hipster data from the two source files:
+  1. Excel: 'Persona Info' sheet (all profile/metric fields) + 'Urban Hipster'
+     sheet (the full brand spend-propensity matrix).
+  2. PPTX: all text from slides that mention Urban Hipster.
 
-Outputs _extract/breezy_boomers_source.json  (raw, complete capture).
+Outputs _extract/urban_hipster_source.json  (raw, complete capture).
 """
 import json, os, re
 import openpyxl
@@ -14,17 +14,19 @@ HERE = os.path.dirname(__file__)
 ROOT = os.path.dirname(HERE)
 XLSX = os.path.join(ROOT, "Fremantle 2025 Segmentation AI-Ready Format 2026_05 V2.xlsx")
 PPTX = os.path.join(ROOT, "Fremantle_Personas_050426_V1.2.pptx")
-SEG = "Breezy Boomers"
+SEG = "Urban Hipster"
+# PPTX slides label this segment in both singular and plural ("Urban Hipster(s)").
+PPTX_RE = r"urban\s*hipster"
 
 out = {"segment": SEG, "excel_persona_info": {}, "spend_propensity": {}, "pptx_text": []}
 
 # ---------------------------------------------------------------------------
-# 1. Persona Info sheet -> all fields for Breezy Boomers
+# 1. Persona Info sheet -> all fields for Urban Hipster
 # ---------------------------------------------------------------------------
 wb = openpyxl.load_workbook(XLSX, data_only=True)
 pi = wb["Persona Info"]
 headers = [pi.cell(1, c).value for c in range(1, pi.max_column + 1)]
-# Find the Breezy Boomers row
+# Find the Urban Hipster row
 bb_row = None
 for r in range(2, pi.max_row + 1):
     if str(pi.cell(r, 1).value).strip() == SEG:
@@ -41,7 +43,7 @@ out["excel_persona_info"] = fields
 print(f"Persona Info: captured {len(fields)} fields for {SEG}")
 
 # ---------------------------------------------------------------------------
-# 2. Breezy Boomers sheet -> 6-block spend-propensity matrix
+# 2. Urban Hipster sheet -> 6-block spend-propensity matrix
 #    Blocks start at columns: B(2), H(8), N(14), T(20), Z(26), AF(32)
 #    Each block: [name, score, rounded, index] with a 'Deck Order' col before.
 # ---------------------------------------------------------------------------
@@ -69,7 +71,7 @@ out["spend_propensity"] = spend
 print(f"Spend propensity: {len(spend)} categories, {total_brands} brands total")
 
 # ---------------------------------------------------------------------------
-# 3. PPTX -> text + tables + CHARTS from slides mentioning Breezy Boomers.
+# 3. PPTX -> text + tables + CHARTS from slides mentioning Urban Hipster.
 #    Recurses into grouped shapes and reads native chart data (category:value),
 #    which a plain text-frame extractor would otherwise miss.
 # ---------------------------------------------------------------------------
@@ -116,13 +118,13 @@ for i, slide in enumerate(prs.slides, start=1):
     for shape in slide.shapes:
         texts.extend(shape_text(shape, slide_charts, i))
     joined = "\n".join(texts)
-    if re.search(r"breezy\s*boomer", joined, re.I):
+    if re.search(PPTX_RE, joined, re.I):
         out["pptx_text"].append({"slide": i, "text": joined})
         out["pptx_charts"].extend(slide_charts)
-print(f"PPTX: captured {len(out['pptx_text'])} Breezy Boomers slides, "
+print(f"PPTX: captured {len(out['pptx_text'])} Urban Hipster slides, "
       f"{len(out['pptx_charts'])} charts")
 
 os.makedirs(HERE, exist_ok=True)
-with open(os.path.join(HERE, "breezy_boomers_source.json"), "w", encoding="utf-8") as f:
+with open(os.path.join(HERE, "urban_hipster_source.json"), "w", encoding="utf-8") as f:
     json.dump(out, f, indent=2, ensure_ascii=False)
-print("Wrote _extract/breezy_boomers_source.json")
+print("Wrote _extract/urban_hipster_source.json")
