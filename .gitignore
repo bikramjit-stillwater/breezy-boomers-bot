@@ -13,10 +13,7 @@ data/vectors/
 dist/
 *.zip
 
-# Source documents (internal — not for the public repo)
-*.xlsx
-*.docx
-*.pptx
+# Source documents now tracked in the repo (Excel / Word / PowerPoint)
 *.png
 
 # Logs
