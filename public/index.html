@@ -140,6 +140,42 @@
 </style>
 </head>
 <body>
+  <!-- Client-side password gate (casual access control only — not real security) -->
+  <div id="pwGate" style="position:fixed;inset:0;z-index:100000;background:#0f1117;display:flex;align-items:center;justify-content:center;padding:20px;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">
+    <div style="width:100%;max-width:360px;background:#171a23;border:1px solid #272b38;border-radius:16px;padding:32px 28px;box-shadow:0 20px 60px rgba(0,0,0,.5);text-align:center;">
+      <div style="font-size:34px;margin-bottom:8px;">🔒</div>
+      <h1 style="margin:0 0 6px;font-size:20px;color:#f3f4f6;">Restricted Access</h1>
+      <p style="margin:0 0 20px;font-size:13px;color:#9aa0ad;">Enter the password to continue.</p>
+      <input id="pwInput" type="password" autocomplete="off" placeholder="Password"
+        style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1px solid #2f3442;background:#0f1117;color:#f3f4f6;font-size:15px;outline:none;" />
+      <p id="pwErr" style="display:none;margin:10px 0 0;font-size:13px;color:#f87171;">Incorrect password. Try again.</p>
+      <button id="pwBtn" type="button"
+        style="margin-top:16px;width:100%;padding:12px;border:none;border-radius:10px;background:#7c5cff;color:#fff;font-size:15px;font-weight:600;cursor:pointer;">Unlock</button>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var PASSWORD = "aus@321$";
+    var KEY = "freo_site_unlocked";
+    function unlock() {
+      sessionStorage.setItem(KEY, "1");
+      var g = document.getElementById("pwGate");
+      if (g) g.parentNode.removeChild(g);
+    }
+    if (sessionStorage.getItem(KEY) === "1") { unlock(); return; }
+    var input = document.getElementById("pwInput");
+    var btn = document.getElementById("pwBtn");
+    var err = document.getElementById("pwErr");
+    function check() {
+      if (input.value === PASSWORD) { unlock(); }
+      else { err.style.display = "block"; input.value = ""; input.focus(); }
+    }
+    btn.addEventListener("click", check);
+    input.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
+    input.focus();
+  })();
+  </script>
+
   <div class="topbar">
     <div class="brand">
       <span class="logo">🏉</span>
