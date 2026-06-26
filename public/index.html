@@ -155,24 +155,44 @@
   </div>
   <script>
   (function () {
-    var PASSWORD = "aus@321$";
+    // Password is never stored in source — only the SHA-256 hash of it is.
+    var PASSWORD_HASH = "a23ed943cb92b4df9e5dfcc6943856c9e8e0527b61a06f2ba723c0b5a44425fa";
     var KEY = "freo_site_unlocked";
-    function unlock() {
-      sessionStorage.setItem(KEY, "1");
-      var g = document.getElementById("pwGate");
-      if (g) g.parentNode.removeChild(g);
-    }
-    if (sessionStorage.getItem(KEY) === "1") { unlock(); return; }
+    var IDLE_MS = 5 * 60 * 1000; // auto-logout after 5 minutes of inactivity
+    var idleTimer = null;
+
+    var gate = document.getElementById("pwGate");
     var input = document.getElementById("pwInput");
     var btn = document.getElementById("pwBtn");
     var err = document.getElementById("pwErr");
-    function check() {
-      if (input.value === PASSWORD) { unlock(); }
-      else { err.style.display = "block"; input.value = ""; input.focus(); }
+
+    function showGate() { gate.style.display = "flex"; err.style.display = "none"; input.value = ""; input.focus(); }
+    function hideGate() { gate.style.display = "none"; }
+
+    function resetIdle() { clearTimeout(idleTimer); idleTimer = setTimeout(lock, IDLE_MS); }
+    var ACTIVITY = ["mousemove", "mousedown", "keydown", "scroll", "touchstart", "click"];
+    function startIdleWatch() { ACTIVITY.forEach(function (e) { document.addEventListener(e, resetIdle, true); }); resetIdle(); }
+    function stopIdleWatch() { clearTimeout(idleTimer); ACTIVITY.forEach(function (e) { document.removeEventListener(e, resetIdle, true); }); }
+
+    function unlock() { sessionStorage.setItem(KEY, "1"); hideGate(); startIdleWatch(); }
+    function lock() { sessionStorage.removeItem(KEY); stopIdleWatch(); showGate(); }
+
+    function sha256(str) {
+      return crypto.subtle.digest("SHA-256", new TextEncoder().encode(str)).then(function (buf) {
+        return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, "0"); }).join("");
+      });
     }
+    function check() {
+      sha256(input.value).then(function (h) {
+        if (h === PASSWORD_HASH) { unlock(); }
+        else { err.style.display = "block"; input.value = ""; input.focus(); }
+      });
+    }
+
     btn.addEventListener("click", check);
     input.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
-    input.focus();
+
+    if (sessionStorage.getItem(KEY) === "1") { unlock(); } else { showGate(); }
   })();
   </script>
 
